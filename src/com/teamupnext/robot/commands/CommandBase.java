@@ -1,7 +1,9 @@
 package com.teamupnext.robot.commands;
 
 import com.teamupnext.robot.OI;
+import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.subsystems.*;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,15 +16,21 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public abstract class CommandBase extends Command {
 
     public static OI oi;
-    // Create a single static instance of all of your subsystems
+    
+    private static Compressor compressor = new Compressor(RobotMap.PRESSURE_SWITCH_DIO_CHANNEL, RobotMap.COMPRESSOR_RELAY_CHANNEL);
+    
+    // Create a single static instance of all of your subsystems    
     public static DriveTrain driveTrain = new DriveTrain();
     public static Climber climber = new Climber();
     public static Feeder feeder = new Feeder();
     public static PickerUpper pickerUpper = new PickerUpper();
     public static Shooter shooter = new Shooter();
     public static Targeter targeter = new Targeter();
-
+    public static TableTilter tableTilter = new TableTilter();
+    
     public static void init() {
+        
+        compressor.start();
         
         oi = new OI();
 
@@ -33,6 +41,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(pickerUpper);
         SmartDashboard.putData(shooter);
         SmartDashboard.putData(targeter);
+        SmartDashboard.putData(tableTilter);
     }
 
     public CommandBase(String name) {

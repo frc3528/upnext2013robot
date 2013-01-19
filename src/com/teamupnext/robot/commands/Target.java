@@ -1,5 +1,6 @@
 package com.teamupnext.robot.commands;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.image.BinaryImage;
 import edu.wpi.first.wpilibj.image.ColorImage;
@@ -54,8 +55,8 @@ public class Target extends CommandBase {
     final int Y_EDGE_LIMIT = 60;
     
     final int X_IMAGE_RES = 320;          //X Image resolution in pixels, should be 160, 320 or 640
-    final double VIEW_ANGLE = 43.5;       //Axis 206 camera
-//    final double VIEW_ANGLE = 48;       //Axis M1011 camera
+    //final double VIEW_ANGLE = 43.5;       //Axis 206 camera
+    final double VIEW_ANGLE = 48;       //Axis M1011 camera
     
     //AxisCamera camera;          // the axis camera object (connected to the switch)
     CriteriaCollection cc;      // the criteria for doing the particle filter operation
@@ -80,9 +81,9 @@ public class Target extends CommandBase {
     protected void initialize() {
         
     }
-
+    
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {       
+    protected void execute() {            
         try {
                 /**
                  * Do the image capture with the camera and apply the algorithm described above. This
@@ -93,7 +94,9 @@ public class Target extends CommandBase {
                 //ColorImage image = camera.getImage();     // comment if using stored images
                 ColorImage image;                           // next 2 lines read image from flash on cRIO
                 image = new RGBImage("/HybridLine_SmallGreen2.jpg");//targeter.getImage(); //new RGBImage("/10ft2.jpg");
-                BinaryImage thresholdImage = image.thresholdRGB(25, 255, 0, 45, 0, 47);   // keep only red objects
+                //BinaryImage thresholdImage = image.thresholdRGB(25, 255, 0, 45, 0, 47);   // keep only red objects
+                //BinaryImage thresholdImage = image.thresholdRGB(0, 45, 0, 45, 25, 255);   // keep only blue objects
+                BinaryImage thresholdImage = image.thresholdRGB(0, 45, 25, 255, 0, 47);   // keep only green objects
                 BinaryImage bigObjectsImage = thresholdImage.removeSmallObjects(false, 2);  // remove small artifacts
                 BinaryImage convexHullImage = bigObjectsImage.convexHull(false);          // fill in occluded rectangles
                 BinaryImage filteredImage = convexHullImage.particleFilter(cc);           // find filled in rectangles

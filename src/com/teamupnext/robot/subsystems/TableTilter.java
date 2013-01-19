@@ -5,23 +5,27 @@
 package com.teamupnext.robot.subsystems;
 
 import com.teamupnext.robot.RobotMap;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  * @author jousley
  */
-public class Feeder extends Subsystem {
+public class TableTilter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    //1 dual sulenoid
-    private DoubleSolenoid solenoid;
+    //Mechanical thingies
     
-    public Feeder()
+    private Gyro gyro;
+    private DigitalInput lowLimitSwitch;
+    
+    
+    public TableTilter()
     {
-        solenoid = new DoubleSolenoid(RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL, RobotMap.FEEDER_REVERSE_SOLENOID_CHANNEL);
+        gyro = new Gyro(RobotMap.TABLE_GYRO_CHANNEL);
     }
     
     public void initDefaultCommand() {
