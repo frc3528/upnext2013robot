@@ -5,7 +5,8 @@
 package com.teamupnext.robot.subsystems;
 
 import com.teamupnext.robot.RobotMap;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,11 +18,11 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
 
     //speed controller
-    private Talon shooterWheel;
+    private CANJaguar shooterWheel;
     
-    public Shooter()
+    public Shooter() throws CANTimeoutException
     {
-        shooterWheel = new Talon(RobotMap.SHOOTER_RELAY_CHANNEL);
+        shooterWheel = new CANJaguar(RobotMap.SHOOTER_CAN);
     }
     
     public void initDefaultCommand() {

@@ -7,11 +7,13 @@ package com.teamupnext.robot.subsystems;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
+import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,36 +24,30 @@ public class DriveTrain extends Subsystem {
     
     private RobotDrive drive;
     
-    private SpeedController leftMotor1;
-    private SpeedController leftMotor2;
-    private SpeedController rightMotor1;
-    private SpeedController rightMotor2;
-    
-    //4 encoders
-    private Encoder leftMotor1Encoder;
-    private Encoder leftMotor2Encoder;
-    private Encoder rightMotor1Encoder;
-    private Encoder rightMotor2Encoder;
+    private SpeedController rightBack;
+    private SpeedController rightFront;
+    private SpeedController leftBack;
+    private SpeedController leftFront;
     
     //1 dual sulenoid
     //private Solenoid shiftUpSolenoid;
-    private Solenoid shiftUpSolenoid;
     private Solenoid shiftDownSolenoid;
+    private Solenoid shiftUpSolenoid;
     private Boolean isShiftedUp = null;
     
-    public DriveTrain()
+    public DriveTrain() throws CANTimeoutException
     {
-        leftMotor1 = new Jaguar(RobotMap.LEFT_MOTOR1_RELAY_CHANNEL);
-        leftMotor2 = new Jaguar(RobotMap.LEFT_MOTOR2_RELAY_CHANNEL);
-        rightMotor1 = new Jaguar(RobotMap.RIGHT_MOTOR1_RELAY_CHANNEL);
-        rightMotor2 = new Jaguar(RobotMap.RIGHT_MOTOR2_RELAY_CHANNEL);
-
-        shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
-        shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
+        rightBack = new CANJaguar(RobotMap.DRIVE_RIGHT_BACK_CAN);
+        rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
+        leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
+        leftFront = new CANJaguar(RobotMap.DRIVE_LEFT_FRONT_CAN);
         
-        drive = new RobotDrive(leftMotor1, leftMotor2, rightMotor1, rightMotor2);
-        drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-        drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
+        //drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
+        //drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
+        
+        shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
+        shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
     }
     
     public void initDefaultCommand() {
@@ -71,6 +67,7 @@ public class DriveTrain extends Subsystem {
         }
            
         shiftUpSolenoid.set(true);
+        shiftDownSolenoid.set(false);
         isShiftedUp = Boolean.TRUE;
     }
     
@@ -83,13 +80,14 @@ public class DriveTrain extends Subsystem {
         }
                 
         shiftDownSolenoid.set(true);
+        shiftUpSolenoid.set(false);
         isShiftedUp = Boolean.FALSE;
     }
     
     public void resetSolenoids()
     {
-        shiftUpSolenoid.set(false);
         shiftDownSolenoid.set(false);
+        shiftUpSolenoid.set(false);
     }
     
     public Boolean isShiftedUp()

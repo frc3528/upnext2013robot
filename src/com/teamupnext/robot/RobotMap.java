@@ -26,12 +26,12 @@ public class RobotMap {
     //End Joystick Constants
     
     //Drive Train Constants
-    public static final int LEFT_MOTOR1_RELAY_CHANNEL = 1;
-    public static final int LEFT_MOTOR2_RELAY_CHANNEL = 2;
-    public static final int RIGHT_MOTOR1_RELAY_CHANNEL = 3;
-    public static final int RIGHT_MOTOR2_RELAY_CHANNEL = 4;
-    public static final int SHIFT_UP_SOLENOID_CHANNEL = 1;
-    public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 2;
+    public static final int DRIVE_LEFT_FRONT_CAN = 4;
+    public static final int DRIVE_LEFT_BACK_CAN = 5;
+    public static final int DRIVE_RIGHT_FRONT_CAN = 2;
+    public static final int DRIVE_RIGHT_BACK_CAN = 3;
+    public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 1;
+    public static final int SHIFT_UP_SOLENOID_CHANNEL = 2;
     public static double SHIFT_TIMEOUT_TIME = 1;
     //End Drive Train Constants
     
@@ -40,8 +40,10 @@ public class RobotMap {
     //End Camera Constants
     
     //Feeder Constants
-    public static final int FEEDER_FORWARD_SOLENOID_CHANNEL = 3;
-    public static final int FEEDER_REVERSE_SOLENOID_CHANNEL = 4;
+    public static final int FEEDER_FORWARD_SOLENOID_CHANNEL = 4;
+    public static final int FEEDER_REVERSE_SOLENOID_CHANNEL = 3;
+    public static final double FEEDER_PUSH_TIMEOUT = .25;
+    public static final double FEEDER_PULL_TIMEOUT = .25;
     //End Feeder Constants
     
     //PickerUpper Constants
@@ -51,7 +53,7 @@ public class RobotMap {
     //End PickerUpper Constants
     
     //Shooter Constants
-    public static final int SHOOTER_RELAY_CHANNEL = 7;
+    public static final int SHOOTER_CAN = 6;
     //End Shooter Constants
     
     //Compressor Constants

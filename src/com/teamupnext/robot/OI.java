@@ -1,6 +1,7 @@
 
 package com.teamupnext.robot;
 
+import com.teamupnext.robot.commands.Feed;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
 import edu.wpi.first.wpilibj.Joystick;
@@ -15,6 +16,7 @@ public class OI {
     private Joystick drivingStick;
     private JoystickButton shiftUp;
     private JoystickButton shiftDown;
+    private JoystickButton feed;
     
     public OI()
     {
@@ -26,6 +28,10 @@ public class OI {
         
         shiftUp.whenPressed(new ShiftUp());
         shiftDown.whenPressed(new ShiftDown());
+        
+        //Feed
+        feed = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
+        feed.whenPressed(new Feed());
         
     }
     

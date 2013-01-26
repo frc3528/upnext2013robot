@@ -21,7 +21,7 @@ public class Targeter extends Subsystem {
         
         System.out.println("Initialize");
         
-        camera = AxisCamera.getInstance();
+        //camera = AxisCamera.getInstance();
         //camera.writeBrightness(RobotMap.CAMERA_BRIGHTNESS);
     }
     
