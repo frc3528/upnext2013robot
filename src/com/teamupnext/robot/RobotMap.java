@@ -32,6 +32,7 @@ public class RobotMap {
     public static final int RIGHT_MOTOR2_RELAY_CHANNEL = 4;
     public static final int SHIFT_UP_SOLENOID_CHANNEL = 1;
     public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 2;
+    public static double SHIFT_TIMEOUT_TIME = 1;
     //End Drive Train Constants
     
     //Camera Constants
@@ -50,7 +51,7 @@ public class RobotMap {
     //End PickerUpper Constants
     
     //Shooter Constants
-    public static final int SHOOTER_RELAY_CHANNEL = 5;
+    public static final int SHOOTER_RELAY_CHANNEL = 7;
     //End Shooter Constants
     
     //Compressor Constants
@@ -61,4 +62,5 @@ public class RobotMap {
     //TableTilter Constants
     public static final int TABLE_GYRO_CHANNEL = 1;
     //End TableTilter Constants
+    
 }

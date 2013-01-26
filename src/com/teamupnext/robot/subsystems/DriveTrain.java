@@ -7,7 +7,6 @@ package com.teamupnext.robot.subsystems;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -35,7 +34,10 @@ public class DriveTrain extends Subsystem {
     private Encoder rightMotor2Encoder;
     
     //1 dual sulenoid
-    private DoubleSolenoid shiftSolenoid;
+    //private Solenoid shiftUpSolenoid;
+    private Solenoid shiftUpSolenoid;
+    private Solenoid shiftDownSolenoid;
+    private Boolean isShiftedUp = null;
     
     public DriveTrain()
     {
@@ -44,7 +46,8 @@ public class DriveTrain extends Subsystem {
         rightMotor1 = new Jaguar(RobotMap.RIGHT_MOTOR1_RELAY_CHANNEL);
         rightMotor2 = new Jaguar(RobotMap.RIGHT_MOTOR2_RELAY_CHANNEL);
 
-        shiftSolenoid = new DoubleSolenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL, RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
+        shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
+        shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
         
         drive = new RobotDrive(leftMotor1, leftMotor2, rightMotor1, rightMotor2);
         drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
@@ -61,11 +64,36 @@ public class DriveTrain extends Subsystem {
     
     public void shiftUp()
     {
-        
+        if(isShiftedUp != null) {
+            if(isShiftedUp == Boolean.TRUE) {
+                return;
+            }
+        }
+           
+        shiftUpSolenoid.set(true);
+        isShiftedUp = Boolean.TRUE;
     }
     
     public void shiftDown()
     {
-        
+        if(isShiftedUp != null) {
+            if(isShiftedUp == Boolean.FALSE) {
+                return;
+            }
+        }
+                
+        shiftDownSolenoid.set(true);
+        isShiftedUp = Boolean.FALSE;
+    }
+    
+    public void resetSolenoids()
+    {
+        shiftUpSolenoid.set(false);
+        shiftDownSolenoid.set(false);
+    }
+    
+    public Boolean isShiftedUp()
+    {
+        return isShiftedUp;
     }
 }
