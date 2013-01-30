@@ -22,10 +22,13 @@ public class TableTilter extends Subsystem {
     
     private Gyro gyro;
     private DigitalInput lowLimitSwitch;
+    private DigitalInput highLimitSwitch;
     private Talon leadScrewMotor; 
    
     public TableTilter()
     {
+        lowLimitSwitch = new DigitalInput(RobotMap.TABLE_LOW_LIMIT_CHANNEL);
+        highLimitSwitch = new DigitalInput(RobotMap.TABLE_HIGH_LIMIT_CHANNEL);
         gyro = new Gyro(RobotMap.TABLE_GYRO_CHANNEL);
         leadScrewMotor = new Talon(RobotMap.LEAD_SCREW_PWM);
     }

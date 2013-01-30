@@ -4,36 +4,24 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-import com.teamupnext.robot.Utils;
-import edu.wpi.first.wpilibj.Joystick;
-
 /**
  *
  * @author jousley
  */
-public class DriveWithJoystick extends CommandBase {
+public class SpinUpShooter extends CommandBase {
     
-    public DriveWithJoystick() {
-        requires(driveTrain);
+    public SpinUpShooter() {
+        // Use requires() here to declare subsystem dependencies
+        requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-        Joystick stick = oi.getTestingJoystick();//oi.getDrivingJoystick();
-        
-        double leftPower = stick.getRawAxis(RobotMap.LEFT_Y_AXIS_INDEX);
-        double rightPower = stick.getRawAxis(RobotMap.RIGHT_Y_AXIS_INDEX);
-        
-        leftPower = Utils.rampSpeed(leftPower);
-        rightPower = Utils.rampSpeed(rightPower);
-        
-        driveTrain.drive(leftPower, rightPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

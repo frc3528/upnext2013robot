@@ -4,18 +4,16 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-import com.teamupnext.robot.Utils;
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
 /**
  *
  * @author jousley
  */
-public class DriveWithJoystick extends CommandBase {
+public class PowerUpShooter extends CommandBase {
     
-    public DriveWithJoystick() {
-        requires(driveTrain);
+    public PowerUpShooter() {
+        requires(shooter);
     }
 
     // Called just before this Command runs the first time
@@ -24,29 +22,26 @@ public class DriveWithJoystick extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        
-        Joystick stick = oi.getTestingJoystick();//oi.getDrivingJoystick();
-        
-        double leftPower = stick.getRawAxis(RobotMap.LEFT_Y_AXIS_INDEX);
-        double rightPower = stick.getRawAxis(RobotMap.RIGHT_Y_AXIS_INDEX);
-        
-        leftPower = Utils.rampSpeed(leftPower);
-        rightPower = Utils.rampSpeed(rightPower);
-        
-        driveTrain.drive(leftPower, rightPower);
+        try {
+            shooter.increasePower();
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        //System.out.println("... power up end ...");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        //System.out.println("...powerup shooter interrupted...");
     }
 }

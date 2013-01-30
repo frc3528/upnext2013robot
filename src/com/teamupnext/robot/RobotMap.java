@@ -11,6 +11,7 @@ public class RobotMap {
     //Joystick Constants
     public static final int DRIVING_JOYSTICK_PORT = 1;
     public static final int CONTROLS_JOYSTICK_PORT = 2;
+    public static final int TESTING_JOYSTICK_PORT = 4;
     public static final int A_BUTTON = 1;
     public static final int B_BUTTON = 2;
     public static final int X_BUTTON = 3;
@@ -54,6 +55,7 @@ public class RobotMap {
     
     //Shooter Constants
     public static final int SHOOTER_CAN = 6;
+    public static final double SHOOTING_POWER = .7;
     //End Shooter Constants
     
     //Compressor Constants
@@ -64,6 +66,8 @@ public class RobotMap {
     //TableTilter Constants
     public static final int TABLE_GYRO_CHANNEL = 1;
     public static final int LEAD_SCREW_PWM = 2;
+    public static final int TABLE_LOW_LIMIT_CHANNEL = 1;
+    public static final int TABLE_HIGH_LIMIT_CHANNEL = 2;
     //End TableTilter Constants
     
 }

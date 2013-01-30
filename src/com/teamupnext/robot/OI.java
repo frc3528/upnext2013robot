@@ -2,6 +2,8 @@
 package com.teamupnext.robot;
 
 import com.teamupnext.robot.commands.Feed;
+import com.teamupnext.robot.commands.PowerDownShooter;
+import com.teamupnext.robot.commands.PowerUpShooter;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
 import edu.wpi.first.wpilibj.Joystick;
@@ -18,6 +20,14 @@ public class OI {
     private JoystickButton shiftDown;
     private JoystickButton feed;
     
+    //Testing
+    private Joystick testingStick;
+    private JoystickButton testShiftUp;
+    private JoystickButton testShiftDown;
+    private JoystickButton testFeed;
+    private JoystickButton testShooterIncrease;
+    private JoystickButton testShooterDecrease;
+    
     public OI()
     {
         drivingStick = new Joystick(RobotMap.DRIVING_JOYSTICK_PORT);
@@ -33,11 +43,35 @@ public class OI {
         feed = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
         feed.whenPressed(new Feed());
         
+        
+        //test
+        testingStick = new Joystick(RobotMap.TESTING_JOYSTICK_PORT);
+        
+        testShiftUp = new JoystickButton(testingStick, RobotMap.RIGHT_BUMPER);
+        testShiftUp.whenPressed(new ShiftUp());
+        
+        testShiftDown = new JoystickButton(testingStick, RobotMap.LEFT_BUMPER); 
+        testShiftDown.whenPressed(new ShiftDown());
+        
+        testFeed = new JoystickButton(testingStick, RobotMap.A_BUTTON);
+        testFeed.whenPressed(new Feed());
+        
+        testShooterIncrease = new JoystickButton(testingStick, RobotMap.B_BUTTON);
+        testShooterIncrease.whenPressed(new PowerUpShooter());
+        
+        testShooterDecrease = new JoystickButton(testingStick, RobotMap.X_BUTTON);
+        testShooterDecrease.whenPressed(new PowerDownShooter());
+        
     }
     
     public Joystick getDrivingJoystick()
     {
         return drivingStick;
+    }
+    
+    public Joystick getTestingJoystick()
+    {
+        return testingStick;
     }
     
 }
