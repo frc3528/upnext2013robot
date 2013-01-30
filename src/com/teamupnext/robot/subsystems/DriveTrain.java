@@ -9,7 +9,6 @@ import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -43,8 +42,6 @@ public class DriveTrain extends Subsystem {
         leftFront = new CANJaguar(RobotMap.DRIVE_LEFT_FRONT_CAN);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
-        //drive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true);
-        //drive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true);
         
         shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
         shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
