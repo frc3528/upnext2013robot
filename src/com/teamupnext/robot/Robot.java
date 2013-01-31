@@ -8,12 +8,9 @@
 package com.teamupnext.robot;
 
 
-import InsightLT.DecimalData;
-import InsightLT.InsightLT;
 import com.teamupnext.robot.commands.Autonomous;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.PrintCurrent;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

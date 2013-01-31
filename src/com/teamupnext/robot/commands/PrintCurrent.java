@@ -4,7 +4,6 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
