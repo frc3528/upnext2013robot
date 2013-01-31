@@ -45,7 +45,6 @@ public abstract class CommandBase extends Command {
         //DriverStation
         ds = DriverStation.getInstance();
         double battVoltage = ds.getBatteryVoltage();
-        battVoltage = 1.0;
         
         // InsightLT
         display = new InsightLT(InsightLT.FOUR_ZONES);
