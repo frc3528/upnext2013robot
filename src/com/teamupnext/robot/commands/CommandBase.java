@@ -1,9 +1,12 @@
 package com.teamupnext.robot.commands;
 
+import InsightLT.DecimalData;
+import InsightLT.InsightLT;
 import com.teamupnext.robot.OI;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,7 +32,28 @@ public abstract class CommandBase extends Command {
     public static Targeter targeter = new Targeter();
     public static TableTilter tableTilter = new TableTilter();
     
+    
+    private static InsightLT display;
+    private static DriverStation ds;
+    
+    
+    
     public static void init() {
+        
+        System.out.println("<--------- Top ------------>");
+        
+        //DriverStation
+        ds = DriverStation.getInstance();
+        double battVoltage = ds.getBatteryVoltage();
+        battVoltage = 1.0;
+        
+        // InsightLT
+        display = new InsightLT(InsightLT.FOUR_ZONES);
+        DecimalData disp_batteryVoltage = new DecimalData("Batt:");        
+        display.registerData(disp_batteryVoltage, 2);
+        disp_batteryVoltage.setData(battVoltage);
+        
+        System.out.println("------->i'm here<------ " + battVoltage);
         
         compressor.start();
         try {

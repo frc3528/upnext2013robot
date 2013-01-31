@@ -8,8 +8,12 @@
 package com.teamupnext.robot;
 
 
+import InsightLT.DecimalData;
+import InsightLT.InsightLT;
 import com.teamupnext.robot.commands.Autonomous;
 import com.teamupnext.robot.commands.CommandBase;
+import com.teamupnext.robot.commands.PrintCurrent;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,6 +30,7 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
 
+
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -36,6 +41,8 @@ public class Robot extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        
+
     }
 
     public void autonomousInit() {
@@ -53,6 +60,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        new PrintCurrent().start();
     }
 
     public void teleopPeriodic() {

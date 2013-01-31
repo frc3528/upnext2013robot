@@ -66,8 +66,8 @@ public class RobotMap {
     //TableTilter Constants
     public static final int TABLE_GYRO_CHANNEL = 1;
     public static final int LEAD_SCREW_PWM = 2;
-    public static final int TABLE_LOW_LIMIT_CHANNEL = 1;
-    public static final int TABLE_HIGH_LIMIT_CHANNEL = 2;
+    public static final int TABLE_LOW_LIMIT_CHANNEL = 3;
+    public static final int TABLE_HIGH_LIMIT_CHANNEL = 4;
     //End TableTilter Constants
     
 }

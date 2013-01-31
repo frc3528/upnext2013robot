@@ -9,6 +9,8 @@ import java.util.Vector;
  */
 public class Utils {
 
+    private static final String CLEAR = "                      ";
+    
     //A method used for smooth driving
     public static double rampSpeed(double input) {
         //auto set sensitivity to .5
@@ -39,7 +41,6 @@ public class Utils {
 
     public static void printToDriverStation(String in) {
         v.addElement(in);
-        String clear = "                      ";
 
         if (v.size() > lcdsize) {
             v.removeElementAt(0);
@@ -51,16 +52,23 @@ public class Utils {
             }
         }   
 
-        dslcd.println(DriverStationLCD.Line.kUser1, 1, (String) v.elementAt(5) + clear);
-        dslcd.println(DriverStationLCD.Line.kUser2, 1, (String) v.elementAt(4) + clear);
-        dslcd.println(DriverStationLCD.Line.kUser3, 1, (String) v.elementAt(3) + clear);
-        dslcd.println(DriverStationLCD.Line.kUser4, 1, (String) v.elementAt(2) + clear);
-        dslcd.println(DriverStationLCD.Line.kUser5, 1, (String) v.elementAt(1) + clear);
-        dslcd.println(DriverStationLCD.Line.kUser6, 1, (String) v.elementAt(0) + clear);
+        dslcd.println(DriverStationLCD.Line.kUser1, 1, (String) v.elementAt(5) + CLEAR);
+        dslcd.println(DriverStationLCD.Line.kUser2, 1, (String) v.elementAt(4) + CLEAR);
+        dslcd.println(DriverStationLCD.Line.kUser3, 1, (String) v.elementAt(3) + CLEAR);
+        dslcd.println(DriverStationLCD.Line.kUser4, 1, (String) v.elementAt(2) + CLEAR);
+        dslcd.println(DriverStationLCD.Line.kUser5, 1, (String) v.elementAt(1) + CLEAR);
+        dslcd.println(DriverStationLCD.Line.kUser6, 1, (String) v.elementAt(0) + CLEAR);
 
         dslcd.updateLCD();
     }
-
+    
+    public static void printToDriverStation(String in, DriverStationLCD.Line ln)
+    {
+        dslcd.println(ln, 1, in + CLEAR);
+        
+        dslcd.updateLCD();
+    }
+    
     public static void clearDriverStation() {
         printToDriverStation("");
         printToDriverStation("");
