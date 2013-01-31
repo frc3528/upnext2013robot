@@ -50,6 +50,7 @@ public abstract class CommandBase extends Command {
         display = new InsightLT(InsightLT.FOUR_ZONES);
         DecimalData disp_batteryVoltage = new DecimalData("Batt:");        
         display.registerData(disp_batteryVoltage, 2);
+        display.startDisplay();
         disp_batteryVoltage.setData(battVoltage);
         
         System.out.println("------->i'm here<------ " + battVoltage);
