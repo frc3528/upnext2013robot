@@ -50,7 +50,7 @@ public class RobotMap {
     //PickerUpper Constants
     public static final int ARM_UP_SOLENOID_CHANNEL = 5;
     public static final int ARM_DOWN_SOLENOID_CHANNEL = 6;
-    public static final int SWEEPER_RELAY_CHANNEL = 2;
+    public static final int SWEEPER_PWM_CHANNEL = 2;
     //End PickerUpper Constants
     
     //Shooter Constants
@@ -65,7 +65,7 @@ public class RobotMap {
     
     //TableTilter Constants
     public static final int TABLE_GYRO_CHANNEL = 1;
-    public static final int LEAD_SCREW_PWM = 2;
+    public static final int LEAD_SCREW_PWM = 3;
     public static final int TABLE_LOW_LIMIT_CHANNEL = 3;
     public static final int TABLE_HIGH_LIMIT_CHANNEL = 4;
     //End TableTilter Constants
