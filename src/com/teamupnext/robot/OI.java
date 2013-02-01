@@ -2,6 +2,7 @@
 package com.teamupnext.robot;
 
 import com.teamupnext.robot.commands.Feed;
+import com.teamupnext.robot.commands.Fire;
 import com.teamupnext.robot.commands.PowerDownShooter;
 import com.teamupnext.robot.commands.PowerUpShooter;
 import com.teamupnext.robot.commands.ShiftDown;
@@ -16,9 +17,14 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
     
     private Joystick drivingStick;
+    private Joystick controlsStick;
     private JoystickButton shiftUp;
     private JoystickButton shiftDown;
-    private JoystickButton feed;
+    private JoystickButton fire;
+    private JoystickButton autoShoot;
+    private JoystickButton raiseArm;
+    private JoystickButton lowerArm;
+    private JoystickButton suckFrisbee;
     
     //Testing
     private Joystick testingStick;
@@ -31,6 +37,7 @@ public class OI {
     public OI()
     {
         drivingStick = new Joystick(RobotMap.DRIVING_JOYSTICK_PORT);
+        controlsStick = new Joystick(RobotMap.CONTROLS_JOYSTICK_PORT);
         
          //Shifters
         shiftUp = new JoystickButton(drivingStick, RobotMap.RIGHT_BUMPER);
@@ -39,9 +46,22 @@ public class OI {
         shiftUp.whenPressed(new ShiftUp());
         shiftDown.whenPressed(new ShiftDown());
         
-        //Feed
-        feed = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
-        feed.whenPressed(new Feed());
+        //Fire
+        fire = new JoystickButton(controlsStick, RobotMap.X_BUTTON);
+        fire.whenPressed(new Fire());
+        
+        //Auto Shoot
+        autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
+        autoShoot.whenPressed(new AutoShoot());
+        
+        //Raise Arm
+        raiseArm = new JoystickButton(controlsStick, RobotMap.RIGHT_BUMPER);
+        raiseArm.whenPressed(new RaiseArm());
+        
+        //Lower Arm
+        
+        
+        //Suck Frisbee
         
         
         //test
@@ -60,8 +80,7 @@ public class OI {
         testShooterIncrease.whenPressed(new PowerUpShooter());
         
         testShooterDecrease = new JoystickButton(testingStick, RobotMap.X_BUTTON);
-        testShooterDecrease.whenPressed(new PowerDownShooter());
-        
+        testShooterDecrease.whenPressed(new PowerDownShooter());   
     }
     
     public Joystick getDrivingJoystick()
