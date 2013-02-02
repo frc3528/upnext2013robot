@@ -23,8 +23,14 @@ public class Targeter extends Subsystem {
         System.out.println("Initialize");
         
         targetingCamera = AxisCamera.getInstance(RobotMap.TARGETING_CAMERA_ADDRESS);
+        targetingCamera.writeBrightness(RobotMap.TARGETING_CAMERA_BRIGHTNESS);
+        targetingCamera.writeCompression(RobotMap.TARGETING_CAMERA_COMPRESSION);
+        targetingCamera.writeColorLevel(RobotMap.TARGETING_CAMERA_COLOR_LEVEL);
+        
         discCamera = AxisCamera.getInstance(RobotMap.DISC_CAMERA_ADDRESS);
-        //camera.writeBrightness(RobotMap.CAMERA_BRIGHTNESS);
+        discCamera.writeCompression(RobotMap.DISC_CAMERA_COMPRESSION);
+        discCamera.writeColorLevel(RobotMap.DISC_CAMERA_COLOR_LEVEL);
+        discCamera.writeBrightness(RobotMap.DISC_CAMERA_BRIGHTNESS);
     }
     
     public void initDefaultCommand() {

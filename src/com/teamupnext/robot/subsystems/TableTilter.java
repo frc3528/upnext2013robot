@@ -8,7 +8,7 @@ import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.commands.TiltTableWithJoystick;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,7 +24,7 @@ public class TableTilter extends Subsystem {
     private Gyro gyro;
     private DigitalInput lowLimitSwitch;
     private DigitalInput highLimitSwitch;
-    private Talon leadScrewMotor; 
+    private Relay leadScrewMotor; 
     private double angle;
    
     public TableTilter()
@@ -40,7 +40,7 @@ public class TableTilter extends Subsystem {
         
         angle = gyro.getAngle();
         
-        leadScrewMotor = new Talon(RobotMap.LEAD_SCREW_PWM);
+        leadScrewMotor = new Relay(RobotMap.LEAD_SCREW_PWM);
     }
     
     public void initDefaultCommand() {
@@ -70,24 +70,24 @@ public class TableTilter extends Subsystem {
     public void moveUp()
     {
         if(highLimitSwitch.get()) {
-            leadScrewMotor.set(0);
+            stop();
         } else {
-            leadScrewMotor.set(RobotMap.TABLE_TALON_SPEED);
+            leadScrewMotor.set(Relay.Value.kForward);
         }
     }
     
     public void moveDown()
     {
         if(lowLimitSwitch.get()) {
-            leadScrewMotor.set(0);
+            stop();
         } else {
-            leadScrewMotor.set(-RobotMap.TABLE_TALON_SPEED);
+            leadScrewMotor.set(Relay.Value.kReverse);
         }
     }
     
     public void stop()
     {
-        leadScrewMotor.set(0);
+        leadScrewMotor.set(Relay.Value.kOff);
     }
     
     private void moveUp(double angleToMove) {       

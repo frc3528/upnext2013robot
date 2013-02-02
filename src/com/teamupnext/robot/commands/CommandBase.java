@@ -7,7 +7,6 @@ import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,7 +29,7 @@ public abstract class CommandBase extends Command {
     public static Feeder feeder = new Feeder();
     public static PickerUpper pickerUpper = new PickerUpper();
     public static Shooter shooter;
-    public static Targeter targeter = new Targeter();
+    //public static Targeter targeter = new Targeter();
     public static TableTilter tableTilter = new TableTilter();
     
     
@@ -72,7 +71,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(feeder);
         SmartDashboard.putData(pickerUpper);
         SmartDashboard.putData(shooter);
-        SmartDashboard.putData(targeter);
+        //SmartDashboard.putData(targeter);
         SmartDashboard.putData(tableTilter);
     }
 
