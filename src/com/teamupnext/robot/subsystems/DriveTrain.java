@@ -8,10 +8,8 @@ import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -42,6 +40,9 @@ public class DriveTrain extends Subsystem {
         leftFront = new CANJaguar(RobotMap.DRIVE_LEFT_FRONT_CAN);
         
         initializeJag(rightBack);
+        initializeJag(rightFront);
+        initializeJag(leftBack);
+        initializeJag(leftFront);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
         
