@@ -38,6 +38,8 @@ public class RobotMap {
     
     //Camera Constants
     public static final int CAMERA_BRIGHTNESS = 50;
+    public static final String TARGETING_CAMERA_ADDRESS = "10.35.28.11";
+    public static final String DISC_CAMERA_ADDRESS = "10.35.28.12";
     //End Camera Constants
     
     //Feeder Constants
@@ -68,6 +70,7 @@ public class RobotMap {
     public static final int LEAD_SCREW_PWM = 3;
     public static final int TABLE_LOW_LIMIT_CHANNEL = 3;
     public static final int TABLE_HIGH_LIMIT_CHANNEL = 4;
-    //End TableTilter Constants
-    
+    public static final double TABLE_GYRO_SENSITIVITY = .007;
+    public static double TABLE_TALON_SPEED = .5;
+    //End TableTilter Constants    
 }

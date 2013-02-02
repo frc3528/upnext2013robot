@@ -23,10 +23,10 @@ public class DriveTrain extends Subsystem {
     
     private RobotDrive drive;
     
-    private SpeedController rightBack;
-    private SpeedController rightFront;
-    private SpeedController leftBack;
-    private SpeedController leftFront;
+    private CANJaguar rightBack;
+    private CANJaguar rightFront;
+    private CANJaguar leftBack;
+    private CANJaguar leftFront;
     
     //1 dual sulenoid
     //private Solenoid shiftUpSolenoid;
@@ -40,6 +40,8 @@ public class DriveTrain extends Subsystem {
         rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
         leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
         leftFront = new CANJaguar(RobotMap.DRIVE_LEFT_FRONT_CAN);
+        
+        initializeJag(rightBack);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
         
@@ -90,5 +92,19 @@ public class DriveTrain extends Subsystem {
     public Boolean isShiftedUp()
     {
         return isShiftedUp;
+    }
+    
+    private void initializeJag(CANJaguar jag) {
+        try
+        {
+            jag.enableControl();
+            jag.configEncoderCodesPerRev(360);
+            jag.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
+            jag.setExpiration(.5);
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error enabling closed control on Jag " + e.getMessage());
+        }
     }
 }

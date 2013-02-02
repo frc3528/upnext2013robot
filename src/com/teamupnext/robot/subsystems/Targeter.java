@@ -15,13 +15,15 @@ public class Targeter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    private AxisCamera camera;
+    private AxisCamera targetingCamera;
+    private AxisCamera discCamera;
 
     public Targeter() {
         
         System.out.println("Initialize");
         
-        //camera = AxisCamera.getInstance();
+        targetingCamera = AxisCamera.getInstance(RobotMap.TARGETING_CAMERA_ADDRESS);
+        discCamera = AxisCamera.getInstance(RobotMap.DISC_CAMERA_ADDRESS);
         //camera.writeBrightness(RobotMap.CAMERA_BRIGHTNESS);
     }
     
@@ -31,7 +33,7 @@ public class Targeter extends Subsystem {
     }
 
     //return a ColorImage from the Axis Camera.  May return null if there was an error getting the image.
-    public ColorImage getImage() throws AxisCameraException, NIVisionException {  
-        return camera.getImage();
+    public ColorImage getTargetingImage() throws AxisCameraException, NIVisionException {  
+        return targetingCamera.getImage();
     }
 }

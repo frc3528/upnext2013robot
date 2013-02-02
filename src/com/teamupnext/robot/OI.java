@@ -1,12 +1,16 @@
 
 package com.teamupnext.robot;
 
+import com.teamupnext.robot.commands.AutoShoot;
 import com.teamupnext.robot.commands.Feed;
 import com.teamupnext.robot.commands.Fire;
+import com.teamupnext.robot.commands.LowerArm;
 import com.teamupnext.robot.commands.PowerDownShooter;
 import com.teamupnext.robot.commands.PowerUpShooter;
+import com.teamupnext.robot.commands.RaiseArm;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
+import com.teamupnext.robot.commands.SuckFrisbee;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -59,10 +63,12 @@ public class OI {
         raiseArm.whenPressed(new RaiseArm());
         
         //Lower Arm
-        
+        lowerArm = new JoystickButton(controlsStick, RobotMap.LEFT_BUMPER);
+        lowerArm.whenPressed(new LowerArm());
         
         //Suck Frisbee
-        
+        suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
+        suckFrisbee.whenPressed(new SuckFrisbee());
         
         //test
         testingStick = new Joystick(RobotMap.TESTING_JOYSTICK_PORT);
@@ -86,6 +92,11 @@ public class OI {
     public Joystick getDrivingJoystick()
     {
         return drivingStick;
+    }
+    
+    public Joystick getControlsJoystick()
+    {
+        return controlsStick;
     }
     
     public Joystick getTestingJoystick()

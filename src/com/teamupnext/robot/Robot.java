@@ -11,6 +11,7 @@ package com.teamupnext.robot;
 import com.teamupnext.robot.commands.Autonomous;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.PrintCurrent;
+import com.teamupnext.robot.commands.TestCommand;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -57,7 +58,8 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-        new PrintCurrent().start();
+        //new PrintCurrent().start();
+        //new TestCommand().start();
     }
 
     public void teleopPeriodic() {

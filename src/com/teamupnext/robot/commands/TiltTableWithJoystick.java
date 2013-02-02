@@ -4,36 +4,38 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-import com.teamupnext.robot.Utils;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
  *
  * @author jousley
  */
-public class DriveWithJoystick extends CommandBase {
+public class TiltTableWithJoystick extends CommandBase {
     
     private Joystick stick;
     
-    public DriveWithJoystick() {
-        requires(driveTrain);
+    public TiltTableWithJoystick() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+        requires(tableTilter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        stick = oi.getTestingJoystick();//oi.getDrivingJoystick();
+        stick = oi.getControlsJoystick();
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {        
-        double leftPower = stick.getRawAxis(RobotMap.LEFT_Y_AXIS_INDEX);
-        double rightPower = stick.getRawAxis(RobotMap.RIGHT_Y_AXIS_INDEX);
+    protected void execute() {
+        double value = stick.getZ();
         
-        leftPower = Utils.rampSpeed(leftPower);
-        rightPower = Utils.rampSpeed(rightPower);
-        
-        driveTrain.drive(leftPower, rightPower);
+        if(value < 0){
+            tableTilter.moveUp();
+        } else if(value > 0){
+            tableTilter.moveDown();
+        } else {
+            tableTilter.stop();
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
