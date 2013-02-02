@@ -13,7 +13,7 @@ import com.teamupnext.robot.RobotMap;
 public class ShiftUp extends CommandBase {
     
     public ShiftUp() {
-        requires(driveTrain);
+        //requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class ShiftUp extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        driveTrain.shiftUp();
+        //driveTrain.shiftUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +33,7 @@ public class ShiftUp extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        driveTrain.resetSolenoids();
+        //driveTrain.resetSolenoids();
     }
 
     // Called when another command which requires one or more of the same

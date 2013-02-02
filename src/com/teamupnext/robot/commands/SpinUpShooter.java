@@ -12,7 +12,7 @@ public class SpinUpShooter extends CommandBase {
     
     public SpinUpShooter() {
         // Use requires() here to declare subsystem dependencies
-        requires(shooter);
+        //requires(shooter);
     }
 
     // Called just before this Command runs the first time

@@ -24,12 +24,12 @@ public abstract class CommandBase extends Command {
     private static Compressor compressor = new Compressor(RobotMap.PRESSURE_SWITCH_DIO_CHANNEL, RobotMap.COMPRESSOR_RELAY_CHANNEL);
     
     // Create a single static instance of all of your subsystems    
-    public static DriveTrain driveTrain;
+    //public static DriveTrain driveTrain;
     public static Climber climber = new Climber();
     public static Feeder feeder = new Feeder();
     public static PickerUpper pickerUpper = new PickerUpper();
-    public static Shooter shooter;
-    //public static Targeter targeter = new Targeter();
+    //public static Shooter shooter;
+    public static Targeter targeter = new Targeter();
     public static TableTilter tableTilter = new TableTilter();
     
     
@@ -56,22 +56,22 @@ public abstract class CommandBase extends Command {
         System.out.println("------->i'm here<------ " + battVoltage);
         
         compressor.start();
-        try {
+        /*try {
             shooter = new Shooter();
             driveTrain = new DriveTrain();
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
-        }
+        }*/
         
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
-        SmartDashboard.putData(driveTrain);
+        //SmartDashboard.putData(driveTrain);
         SmartDashboard.putData(climber);
         SmartDashboard.putData(feeder);
         SmartDashboard.putData(pickerUpper);
-        SmartDashboard.putData(shooter);
-        //SmartDashboard.putData(targeter);
+        //SmartDashboard.putData(shooter);
+        SmartDashboard.putData(targeter);
         SmartDashboard.putData(tableTilter);
     }
 

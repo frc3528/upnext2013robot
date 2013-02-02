@@ -70,7 +70,7 @@ public class Target extends CommandBase {
     }
     
     public Target() {
-        //requires(targeter);
+        requires(targeter);
         
         cc = new CriteriaCollection();      // create the criteria for the particle filter
         cc.addCriteria(NIVision.MeasurementType.IMAQ_MT_BOUNDING_RECT_WIDTH, 30, 400, false);

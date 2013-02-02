@@ -42,10 +42,10 @@ public class RobotMap {
     public static final String DISC_CAMERA_ADDRESS = "10.35.28.12";
     public static final int TARGETING_CAMERA_BRIGHTNESS = 50;
     public static final int TARGETING_CAMERA_COMPRESSION = 50;
-    public static final int TARGETING_CAMERA_COLOR_LEVEL = 50;
+    public static final int TARGETING_CAMERA_COLOR_LEVEL = 100;
     public static final int DISC_CAMERA_COMPRESSION = 50;
     public static final int DISC_CAMERA_COLOR_LEVEL = 0;
-    public static final int DISC_CAMERA_BRIGHTNESS = 100;
+    public static final int DISC_CAMERA_BRIGHTNESS = 50;
     //End Camera Constants
     
     //Feeder Constants

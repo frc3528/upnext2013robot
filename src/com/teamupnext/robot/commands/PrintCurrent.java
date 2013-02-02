@@ -25,12 +25,12 @@ public class PrintCurrent extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
+        /*try {
             Utils.printToDriverStation("" + shooter.getCurrent(), DriverStationLCD.Line.kUser2);   
             System.out.println("" + shooter.getCurrent());
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
