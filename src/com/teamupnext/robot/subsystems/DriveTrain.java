@@ -102,6 +102,7 @@ public class DriveTrain extends Subsystem {
             jag.configEncoderCodesPerRev(360);
             jag.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             jag.setExpiration(.5);
+            jag.setSafetyEnabled(false);
         }
         catch(Exception e)
         {

@@ -28,6 +28,7 @@ public class Shooter extends Subsystem {
         super();
         
         shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
+        shootingMotor.setSafetyEnabled(false);
         lcd = DriverStationLCD.getInstance();
         printLCD("STOPPED");
     }

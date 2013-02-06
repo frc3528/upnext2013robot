@@ -17,12 +17,12 @@ public class DriveWithJoystick extends CommandBase {
     private Joystick stick;
     
     public DriveWithJoystick() {
-        //requires(driveTrain);
+        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        stick = oi.getTestingJoystick();//oi.getDrivingJoystick();
+        stick = oi.getDrivingJoystick();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,7 +33,7 @@ public class DriveWithJoystick extends CommandBase {
         leftPower = Utils.rampSpeed(leftPower);
         rightPower = Utils.rampSpeed(rightPower);
         
-        //driveTrain.drive(leftPower, rightPower);
+        driveTrain.drive(leftPower, rightPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

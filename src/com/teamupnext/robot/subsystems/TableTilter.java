@@ -40,7 +40,7 @@ public class TableTilter extends Subsystem {
         
         angle = gyro.getAngle();
         
-        leadScrewMotor = new Relay(RobotMap.LEAD_SCREW_PWM);
+        leadScrewMotor = new Relay(RobotMap.LEAD_SCREW_RELAY_CHANNEL);
     }
     
     public void initDefaultCommand() {
@@ -68,7 +68,9 @@ public class TableTilter extends Subsystem {
     }
     
     public void moveUp()
-    {
+    {        
+        //System.out.println("high limit: " + highLimitSwitch.get());
+        
         if(highLimitSwitch.get()) {
             stop();
         } else {
@@ -78,6 +80,8 @@ public class TableTilter extends Subsystem {
     
     public void moveDown()
     {
+        //System.out.println("low limit: " + lowLimitSwitch.get());
+        
         if(lowLimitSwitch.get()) {
             stop();
         } else {

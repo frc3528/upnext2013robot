@@ -13,7 +13,7 @@ import com.teamupnext.robot.RobotMap;
 public class ShiftDown extends CommandBase {
     
     public ShiftDown() {
-        //requires(driveTrain);
+        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class ShiftDown extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        //driveTrain.shiftDown();
+        driveTrain.shiftDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -33,7 +33,7 @@ public class ShiftDown extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        //driveTrain.resetSolenoids();
+        driveTrain.resetSolenoids();
     }
 
     // Called when another command which requires one or more of the same
