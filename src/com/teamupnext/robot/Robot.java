@@ -34,6 +34,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        
+        // tell 'em where we are folks!
+        System.out.println("===> UpNext2013Robot <===");
+        
+        
         // instantiate the command used for the autonomous period
         autonomousCommand = new Autonomous();
 

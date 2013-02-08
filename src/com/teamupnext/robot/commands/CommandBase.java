@@ -21,7 +21,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     
-    private static Compressor compressor = new Compressor(RobotMap.PRESSURE_SWITCH_DIO_CHANNEL, RobotMap.COMPRESSOR_RELAY_CHANNEL);
+    private static Compressor compressor;
     
     // Create a single static instance of all of your subsystems    
     public static DriveTrain driveTrain;
@@ -32,16 +32,17 @@ public abstract class CommandBase extends Command {
     public static Targeter targeter = new Targeter();
     public static TableTilter tableTilter = new TableTilter();
     
-    
+    // InsightLT stuff
+    /*
     private static InsightLT display;
     private static DriverStation ds;
-    
+    */
     
     
     public static void init() {
         
-        System.out.println("<--------- Top ------------>");
-        
+        // All stuff for the InsightLT unit
+        /*
         //DriverStation
         ds = DriverStation.getInstance();
         double battVoltage = ds.getBatteryVoltage();
@@ -52,17 +53,19 @@ public abstract class CommandBase extends Command {
         display.registerData(disp_batteryVoltage, 2);
         display.startDisplay();
         disp_batteryVoltage.setData(battVoltage);
+        */        
         
-        System.out.println("------->i'm here<------ " + battVoltage);
         
-        compressor.start();
+        // create our Shooter and DriveTrain subystems
         try {
             shooter = new Shooter();
             driveTrain = new DriveTrain();
         } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
+            System.out.println("--- Failed initializing shooter or drive train ---");
+            System.out.println("" + ex.getMessage());
         }
         
+        // Operator Interface
         oi = new OI();
 
         // Show what command your subsystem is running on the SmartDashboard
@@ -73,6 +76,11 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(shooter);
         SmartDashboard.putData(targeter);
         SmartDashboard.putData(tableTilter);
+        
+        
+        // create and start the compressor
+        compressor = new Compressor(RobotMap.PRESSURE_SWITCH_DIO_CHANNEL, RobotMap.COMPRESSOR_RELAY_CHANNEL);
+        compressor.start();        
     }
 
     public CommandBase(String name) {
