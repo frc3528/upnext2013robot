@@ -26,11 +26,11 @@ public class DriveTrain extends Subsystem {
     private CANJaguar leftBack;
     private CANJaguar leftFront;
     
-    //1 dual sulenoid
-    //private Solenoid shiftUpSolenoid;
     private Solenoid shiftDownSolenoid;
     private Solenoid shiftUpSolenoid;
     private Boolean isShiftedUp = null;
+    
+    private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
     public DriveTrain() throws CANTimeoutException
     {
@@ -55,7 +55,9 @@ public class DriveTrain extends Subsystem {
     }
     
     public void drive(double left, double right){
-        drive.tankDrive(Utils.rampSpeed(left), Utils.rampSpeed(right));
+        double leftPower = Utils.rampSpeed(left, sensitivity/10);
+        double rightPower = Utils.rampSpeed(right, sensitivity/10);
+        drive.tankDrive( leftPower , rightPower);
     }
     
     public void shiftUp()
@@ -93,6 +95,26 @@ public class DriveTrain extends Subsystem {
     public Boolean isShiftedUp()
     {
         return isShiftedUp;
+    }
+    
+    public double getLeftEncoder() throws CANTimeoutException {
+        return leftBack.getPosition();
+    }
+    
+    public double getRightEncoder() throws CANTimeoutException {
+        return rightBack.getPosition();
+    }
+    
+    public void decreaseSensitivity() {
+        if(sensitivity <= 0) {
+            sensitivity -= 1;
+        }
+    }
+    
+    public void increaseSensitivity() {
+        if(sensitivity >= 10) {
+            sensitivity += 1;
+        }
     }
     
     private void initializeJag(CANJaguar jag) {

@@ -18,6 +18,8 @@ public class RobotMap {
     public static final int Y_BUTTON = 4;
     public static final int LEFT_BUMPER = 5;
     public static final int RIGHT_BUMPER = 6;
+    public static final int BACK_BUTTON = 7;
+    public static final int START_BUTTON = 8;
     public static final int LEFT_X_AXIS_INDEX = 1;
     public static final int LEFT_Y_AXIS_INDEX = 2;
     public static final int TRIGGERS = 3; //Triggers (Each trigger = 0 to 1, axis value = right - left)
@@ -33,7 +35,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_BACK_CAN = 3;
     public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 1;
     public static final int SHIFT_UP_SOLENOID_CHANNEL = 2;
-    public static double SHIFT_TIMEOUT_TIME = 1;
+    public static final double SHIFT_TIMEOUT_TIME = 1;
+    public static final int DEFAULT_JOYSTICK_SENSITIVITY = 5;
     //End Drive Train Constants
     
     //Camera Constants

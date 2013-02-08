@@ -2,8 +2,10 @@
 package com.teamupnext.robot;
 
 import com.teamupnext.robot.commands.AutoShoot;
+import com.teamupnext.robot.commands.DecreaseSensitivity;
 import com.teamupnext.robot.commands.Feed;
 import com.teamupnext.robot.commands.Fire;
+import com.teamupnext.robot.commands.IncreaseSensitivity;
 import com.teamupnext.robot.commands.LowerArm;
 import com.teamupnext.robot.commands.PowerDownShooter;
 import com.teamupnext.robot.commands.PowerUpShooter;
@@ -29,6 +31,8 @@ public class OI {
     private JoystickButton raiseArm;
     private JoystickButton lowerArm;
     private JoystickButton suckFrisbee;
+    private JoystickButton increaseSensitivity;
+    private JoystickButton decreaseSensitivity;
     
     //Testing
     private Joystick testingStick;
@@ -69,6 +73,12 @@ public class OI {
         //Suck Frisbee
         suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
         suckFrisbee.whenPressed(new SuckFrisbee());
+        
+        //Sensitivity
+        increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);
+        increaseSensitivity.whenPressed(new IncreaseSensitivity());
+        decreaseSensitivity = new JoystickButton(drivingStick, RobotMap.BACK_BUTTON);
+        decreaseSensitivity.whenPressed(new DecreaseSensitivity());
         
         //test
         testingStick = new Joystick(RobotMap.TESTING_JOYSTICK_PORT);

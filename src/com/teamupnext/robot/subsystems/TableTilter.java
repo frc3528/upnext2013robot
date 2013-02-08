@@ -69,7 +69,7 @@ public class TableTilter extends Subsystem {
     
     public void moveUp()
     {        
-        //System.out.println("high limit: " + highLimitSwitch.get());
+        //System.out.println("moving up");
         
         if(highLimitSwitch.get()) {
             stop();
@@ -80,7 +80,7 @@ public class TableTilter extends Subsystem {
     
     public void moveDown()
     {
-        //System.out.println("low limit: " + lowLimitSwitch.get());
+        //System.out.println("moving down");
         
         if(lowLimitSwitch.get()) {
             stop();
@@ -107,7 +107,8 @@ public class TableTilter extends Subsystem {
     }
     
     public double getAngle() {
-        return angle;
+        //return angle;
+        return gyro.getAngle();
     }
     
     public void zeroGyro() {

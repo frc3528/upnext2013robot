@@ -4,19 +4,15 @@
  */
 package com.teamupnext.robot.commands;
 
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-
 /**
  *
- * @author jousley
+ * @author Team Up Next
  */
-public class TestCommand extends CommandBase {
+public class IncreaseSensitivity extends CommandBase {
     
-    public TestCommand() {
+    public IncreaseSensitivity() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(tableTilter);
-        requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
@@ -25,18 +21,12 @@ public class TestCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
-            System.out.println("Table gyro: " + tableTilter.getAngle());
-            System.out.println("Right Encoder: " + driveTrain.getRightEncoder());
-            System.out.println("Left Encoder: " + driveTrain.getLeftEncoder());
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
+        driveTrain.increaseSensitivity();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

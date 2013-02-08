@@ -19,9 +19,6 @@ public class Targeter extends Subsystem {
     private AxisCamera discCamera;
 
     public Targeter() {
-        
-        System.out.println("Initialize");
-        
         //targetingCamera = AxisCamera.getInstance(RobotMap.TARGETING_CAMERA_ADDRESS);
         //targetingCamera.writeBrightness(RobotMap.TARGETING_CAMERA_BRIGHTNESS);
         //targetingCamera.writeCompression(RobotMap.TARGETING_CAMERA_COMPRESSION);
