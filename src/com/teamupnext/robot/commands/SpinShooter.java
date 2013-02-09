@@ -4,38 +4,42 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.Utils;
-import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
+
 /**
  *
- * @author jousley
+ * @author Team Up Next
  */
-public class PrintCurrent extends CommandBase {
+public class SpinShooter extends CommandBase {
     
-    public PrintCurrent() {
+    private double power;
+    private double timeout;
+    
+    public SpinShooter(double power, double timeout) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        //requires(shooter);
+        requires(shooter);
+        this.power = power;
+        this.timeout = timeout;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(timeout);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        /*try {
-            Utils.printToDriverStation("" + shooter.getCurrent(), DriverStationLCD.Line.kUser2);   
-            System.out.println("" + shooter.getCurrent());
+        try {
+            shooter.setPower(power);
         } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }*/
+            System.out.println("" + ex.getMessage());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

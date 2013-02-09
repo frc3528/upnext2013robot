@@ -40,7 +40,7 @@ public class PickerUpper extends Subsystem {
         armPiston.pull();
     }
     
-    public void reset() {
+    public void zeroSolenoids() {
         armPiston.reset();
     }
 }

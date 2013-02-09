@@ -5,6 +5,7 @@
 package com.teamupnext.robot.subsystems;
 
 import com.teamupnext.robot.RobotMap;
+import com.teamupnext.robot.Utils;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
@@ -29,8 +30,9 @@ public class Shooter extends Subsystem {
         
         shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
         shootingMotor.setSafetyEnabled(false);
-        lcd = DriverStationLCD.getInstance();
-        printLCD("STOPPED");
+        shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        //lcd = DriverStationLCD.getInstance();
+        //printLCD("STOPPED");
     }
     
     public void initDefaultCommand() {
@@ -43,8 +45,8 @@ public class Shooter extends Subsystem {
         this.power = power;
         shootingMotor.setX(power);
         
-        System.out.println("Power set to " + power);
-        printLCD("" + power);
+        //System.out.println("Power set to " + power);
+        //printLCD("" + power);
     }
     
     public double getPower()
@@ -62,7 +64,7 @@ public class Shooter extends Subsystem {
             return;
         }
 
-        setPower(roundstrip(power + 0.1));
+        setPower(Utils.roundstrip(power + 0.1));
     }
 
     public void decreasePower() throws CANTimeoutException {      
@@ -70,14 +72,14 @@ public class Shooter extends Subsystem {
             return;
         }
         
-        setPower(roundstrip(power - 0.1));
+        setPower(Utils.roundstrip(power - 0.1));
     }
 
     public void stop() throws CANTimeoutException {
         setPower(0);
     }
        
-    private void printLCD(String s) {
+    /*private void printLCD(String s) {
         clearLCD();
         lcd.println(DriverStationLCD.Line.kUser1, 1, s);
         lcd.updateLCD();
@@ -91,11 +93,5 @@ public class Shooter extends Subsystem {
     private void clearLCD() {
         lcd.println(DriverStationLCD.Line.kUser1, 1, "                              ");
         lcd.updateLCD();
-    }
-    
-    private double roundstrip(double myNum) {    
-        int precision = 10; //keep 1 digit
-        myNum = Math.floor(myNum * precision + .5) / precision;
-        return myNum;        
-    }
+    }*/
 }

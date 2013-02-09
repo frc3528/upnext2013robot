@@ -4,37 +4,45 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
+import com.teamupnext.robot.Utils;
+import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
 /**
  *
  * @author jousley
  */
-public class RaiseArm extends CommandBase {
+public class PrintInfo extends CommandBase {
     
-    public RaiseArm() {
+    public PrintInfo() {
         // Use requires() here to declare subsystem dependencies
-        requires(pickerUpper);
+        // eg. requires(chassis);
+        //requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.ARM_UP_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        pickerUpper.moveUp();
+        /*try {
+            Utils.printToDriverStation("" + shooter.getCurrent(), DriverStationLCD.Line.kUser2);   
+            System.out.println("" + shooter.getCurrent());
+        } catch (CANTimeoutException ex) {
+            ex.printStackTrace();
+        }*/
+        
+        Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
+        Utils.printToDriverStation( "Gyro: " + tableTilter.getAngle(), DriverStationLCD.Line.kUser6);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        pickerUpper.zeroSolenoids();
     }
 
     // Called when another command which requires one or more of the same

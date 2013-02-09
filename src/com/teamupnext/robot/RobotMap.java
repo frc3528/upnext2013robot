@@ -8,6 +8,10 @@ package com.teamupnext.robot;
  */
 public class RobotMap {
     
+    //General Constants
+    public static final double DEFAULT_MOTOR_SAFETY_EXPIRATION = .5;
+    //End General Constants
+    
     //Joystick Constants
     public static final int DRIVING_JOYSTICK_PORT = 1;
     public static final int CONTROLS_JOYSTICK_PORT = 2;
@@ -35,8 +39,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_BACK_CAN = 3;
     public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 7;
     public static final int SHIFT_UP_SOLENOID_CHANNEL = 8;
-    public static final double SHIFT_TIMEOUT_TIME = 1;
-    public static final int DEFAULT_JOYSTICK_SENSITIVITY = 5;
+    public static final double SHIFT_TIMEOUT_TIME = .25;
+    public static final int DEFAULT_JOYSTICK_SENSITIVITY = 0;
     //End Drive Train Constants
     
     //Camera Constants
@@ -56,9 +60,9 @@ public class RobotMap {
     public static final int FEEDER_PULL_SOLENOID_CHANNEL = 6;
     public static final int HOLDER_PUSH_SOLENOID_CHANNEL = 3;
     public static final int HOLDER_PULL_SOLENOID_CHANNEL = 4;
-    public static final double FEEDER_PUSH_TIMEOUT = .25;
-    public static final double FEEDER_PULL_TIMEOUT = .25;
-    public static final double HOLDER_PUSH_TIMEOUT = .25;
+    public static final double FEEDER_PUSH_TIMEOUT = .5;
+    public static final double FEEDER_PULL_TIMEOUT = .1;
+    public static final double HOLDER_PUSH_TIMEOUT = .1;
     public static final double HOLDER_PULL_TIMEOUT = .25;
     //End Feeder Constants
     
@@ -73,6 +77,7 @@ public class RobotMap {
     //Shooter Constants
     public static final int SHOOTER_CAN = 6;
     public static final double SHOOTING_POWER = .7;
+    public static final double SHOOTER_SPIN_UP_TIMEOUT = 1;
     //End Shooter Constants
     
     //Compressor Constants

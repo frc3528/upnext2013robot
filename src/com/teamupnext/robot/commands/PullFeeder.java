@@ -14,9 +14,7 @@ import com.teamupnext.robot.commands.CommandBase;
 public class PullFeeder extends CommandBase {
     
     public PullFeeder() {
-
         requires(feeder);
-        
     }
 
     // Called just before this Command runs the first time
@@ -36,7 +34,7 @@ public class PullFeeder extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        feeder.reset();
+        feeder.zeroSolenoids();
     }
 
     // Called when another command which requires one or more of the same

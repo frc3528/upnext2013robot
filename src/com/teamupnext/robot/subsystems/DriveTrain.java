@@ -4,13 +4,13 @@
  */
 package com.teamupnext.robot.subsystems;
 
+import com.teamupnext.helperPackage.PneumaticDevice;
 import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  * @author jousley
  */
-public class DriveTrain extends Subsystem {
+public class DriveTrain extends Subsystem implements PneumaticDevice {
     
     private RobotDrive drive;
     
@@ -28,10 +28,6 @@ public class DriveTrain extends Subsystem {
     private CANJaguar leftFront;
     
     private PneumaticHelper shifter;
-    
-    //private Solenoid shiftDownSolenoid;
-    //private Solenoid shiftUpSolenoid;
-    //private Boolean isShiftedUp = null;
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
@@ -49,9 +45,6 @@ public class DriveTrain extends Subsystem {
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
         
-        //shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
-        //shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
-        
         shifter = new PneumaticHelper(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL, 
                 RobotMap.SHIFT_UP_SOLENOID_CHANNEL, 
                 RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
@@ -65,6 +58,10 @@ public class DriveTrain extends Subsystem {
         double leftPower = Utils.rampSpeed(left, sensitivity/10);
         double rightPower = Utils.rampSpeed(right, sensitivity/10);
         drive.tankDrive( leftPower , rightPower);
+    }
+    
+    public int getSensitivity() {
+        return sensitivity;
     }
     
     public void shiftUp()
@@ -82,7 +79,11 @@ public class DriveTrain extends Subsystem {
         return !shifter.isPushed().booleanValue();
     }
     
-    public void reset() {
+    public void setToDefaultPosition() {
+        shifter.setToDefault();
+    }
+    
+    public void zeroSolenoids() {
         shifter.reset();
     }
     
@@ -95,13 +96,13 @@ public class DriveTrain extends Subsystem {
     }
     
     public void decreaseSensitivity() {
-        if(sensitivity <= 0) {
+        if(sensitivity > 0) {
             sensitivity -= 1;
         }
     }
     
     public void increaseSensitivity() {
-        if(sensitivity >= 10) {
+        if(sensitivity < 10) {
             sensitivity += 1;
         }
     }
@@ -112,7 +113,7 @@ public class DriveTrain extends Subsystem {
             jag.enableControl();
             jag.configEncoderCodesPerRev(360);
             jag.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
-            jag.setExpiration(.5);
+            jag.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
             jag.setSafetyEnabled(false);
         }
         catch(Exception e)

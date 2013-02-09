@@ -11,6 +11,6 @@ package com.teamupnext.helperPackage;
 public interface PneumaticDevice {
     
     void setToDefaultPosition();
-    void reset();
+    void zeroSolenoids();
     
 }

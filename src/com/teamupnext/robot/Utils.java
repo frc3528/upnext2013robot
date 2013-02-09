@@ -39,6 +39,12 @@ public class Utils {
         return prev + (alpha * (input - prev));
     }
 
+    public static double roundstrip(double myNum) {    
+        int precision = 10; //keep 1 digit
+        myNum = Math.floor(myNum * precision + .5) / precision;
+        return myNum;        
+    }
+    
     public static void printToDriverStation(String in) {
         v.addElement(in);
 

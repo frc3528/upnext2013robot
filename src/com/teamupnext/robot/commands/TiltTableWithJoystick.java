@@ -26,7 +26,7 @@ public class TiltTableWithJoystick extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() {       
         double value = stick.getZ();
         
         if(value < 0){

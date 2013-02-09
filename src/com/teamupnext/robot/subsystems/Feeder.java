@@ -81,7 +81,7 @@ public class Feeder extends Subsystem {
        holder.pull();
    }
    
-   public void reset() {
+   public void zeroSolenoids() {
        //feederPush.set(false);
        //feederPull.set(false);
        

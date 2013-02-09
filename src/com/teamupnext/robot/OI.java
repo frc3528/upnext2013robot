@@ -12,6 +12,7 @@ import com.teamupnext.robot.commands.PowerUpShooter;
 import com.teamupnext.robot.commands.RaiseArm;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
+import com.teamupnext.robot.commands.SpinUpShooter;
 import com.teamupnext.robot.commands.SuckFrisbee;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -33,6 +34,7 @@ public class OI {
     private JoystickButton suckFrisbee;
     private JoystickButton increaseSensitivity;
     private JoystickButton decreaseSensitivity;
+    private JoystickButton spinUpShooter;
     
     //Testing
     private Joystick testingStick;
@@ -73,6 +75,10 @@ public class OI {
         //Suck Frisbee
         suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
         suckFrisbee.whenPressed(new SuckFrisbee());
+        
+        //Spin up Shooter
+        spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);
+        spinUpShooter.whenPressed(new SpinUpShooter());
         
         //Sensitivity
         increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);

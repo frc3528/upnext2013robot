@@ -24,8 +24,9 @@ public class Fire extends CommandGroup {
         //      addSequential(new Command2());
         // Command1 and Command2 will run in parallel.
 
-        addSequential(new SpinUpShooter());
+        //addSequential(new SpinUpShooter());
         addSequential(new Feed());
+        addSequential(new SpinUpShooter());
         
     }
 }
