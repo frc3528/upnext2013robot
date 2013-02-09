@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class SpinUpShooter extends CommandGroup {
     
-    public void SpinUpShooter() {
+    public SpinUpShooter() {
         addSequential(new SpinShooter(RobotMap.SHOOTING_POWER, RobotMap.SHOOTER_SPIN_UP_TIMEOUT));
         addSequential(new RunShooter());
     }

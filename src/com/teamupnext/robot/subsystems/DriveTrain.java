@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  * @author jousley
  */
-public class DriveTrain extends Subsystem implements PneumaticDevice {
+public class DriveTrain extends Subsystem {
     
     private RobotDrive drive;
     
@@ -26,8 +26,6 @@ public class DriveTrain extends Subsystem implements PneumaticDevice {
     private CANJaguar rightFront;
     private CANJaguar leftBack;
     private CANJaguar leftFront;
-    
-    private PneumaticHelper shifter;
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
@@ -43,12 +41,8 @@ public class DriveTrain extends Subsystem implements PneumaticDevice {
         initializeJag(leftBack);
         initializeJag(leftFront);
         
-        drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
-        
-        shifter = new PneumaticHelper(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL, 
-                RobotMap.SHIFT_UP_SOLENOID_CHANNEL, 
-                RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
-    }
+        drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);    
+        }
     
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoystick());
@@ -62,29 +56,6 @@ public class DriveTrain extends Subsystem implements PneumaticDevice {
     
     public int getSensitivity() {
         return sensitivity;
-    }
-    
-    public void shiftUp()
-    {
-        shifter.pull();
-    }
-    
-    public void shiftDown()
-    {
-        shifter.push();
-    }
-    
-    public boolean isShiftedUp()
-    {
-        return !shifter.isPushed().booleanValue();
-    }
-    
-    public void setToDefaultPosition() {
-        shifter.setToDefault();
-    }
-    
-    public void zeroSolenoids() {
-        shifter.reset();
     }
     
     public double getLeftEncoder() throws CANTimeoutException {
