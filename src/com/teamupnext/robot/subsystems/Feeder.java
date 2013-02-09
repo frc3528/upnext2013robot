@@ -4,7 +4,7 @@
  */
 package com.teamupnext.robot.subsystems;
 
-import com.teamupnext.robot.PneumaticHelper;
+import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,9 +38,9 @@ public class Feeder extends Subsystem {
        holderPush = new Solenoid(RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL);
        holderPull = new Solenoid(RobotMap.HOLDER_PULL_SOLENOID_CHANNEL);*/
        
-       feeder = new PneumaticHelper(RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL, 
-               RobotMap.FEEDER_REVERSE_SOLENOID_CHANNEL, 
-               RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL);
+       feeder = new PneumaticHelper(RobotMap.FEEDER_PUSH_SOLENOID_CHANNEL, 
+               RobotMap.FEEDER_PULL_SOLENOID_CHANNEL, 
+               RobotMap.FEEDER_PUSH_SOLENOID_CHANNEL);
        
        holder = new PneumaticHelper(RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL, 
                RobotMap.HOLDER_PULL_SOLENOID_CHANNEL, 
@@ -85,7 +85,7 @@ public class Feeder extends Subsystem {
        //feederPush.set(false);
        //feederPull.set(false);
        
-       feeder.setToDefault();
-       holder.setToDefault();
+       feeder.reset();
+       holder.reset();
    }
 }

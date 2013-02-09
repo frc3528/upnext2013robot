@@ -22,7 +22,7 @@ public class ShiftUp extends CommandBase {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() {  
         driveTrain.shiftUp();
     }
 
@@ -33,7 +33,7 @@ public class ShiftUp extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        driveTrain.resetSolenoids();
+        driveTrain.reset();
     }
 
     // Called when another command which requires one or more of the same

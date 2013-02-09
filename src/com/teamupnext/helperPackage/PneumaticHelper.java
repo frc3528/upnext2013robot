@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.teamupnext.robot;
+package com.teamupnext.helperPackage;
 
 import edu.wpi.first.wpilibj.Solenoid;
 
@@ -58,6 +58,11 @@ public class PneumaticHelper {
         push.set(false);
         pull.set(true);
         isPushed = Boolean.FALSE;
+    }
+    
+    public void reset() {
+        push.set(false);
+        pull.set(false);
     }
     
     public Boolean isPushed() {

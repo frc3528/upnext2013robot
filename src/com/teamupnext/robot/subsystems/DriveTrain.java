@@ -4,6 +4,7 @@
  */
 package com.teamupnext.robot.subsystems;
 
+import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
@@ -26,9 +27,11 @@ public class DriveTrain extends Subsystem {
     private CANJaguar leftBack;
     private CANJaguar leftFront;
     
-    private Solenoid shiftDownSolenoid;
-    private Solenoid shiftUpSolenoid;
-    private Boolean isShiftedUp = null;
+    private PneumaticHelper shifter;
+    
+    //private Solenoid shiftDownSolenoid;
+    //private Solenoid shiftUpSolenoid;
+    //private Boolean isShiftedUp = null;
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
@@ -46,8 +49,12 @@ public class DriveTrain extends Subsystem {
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);
         
-        shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
-        shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
+        //shiftDownSolenoid = new Solenoid(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL);
+        //shiftUpSolenoid = new Solenoid(RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
+        
+        shifter = new PneumaticHelper(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL, 
+                RobotMap.SHIFT_UP_SOLENOID_CHANNEL, 
+                RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
     }
     
     public void initDefaultCommand() {
@@ -62,39 +69,21 @@ public class DriveTrain extends Subsystem {
     
     public void shiftUp()
     {
-        if(isShiftedUp != null) {
-            if(isShiftedUp == Boolean.TRUE) {
-                return;
-            }
-        }
-           
-        shiftUpSolenoid.set(true);
-        shiftDownSolenoid.set(false);
-        isShiftedUp = Boolean.TRUE;
+        shifter.pull();
     }
     
     public void shiftDown()
     {
-        if(isShiftedUp != null) {
-            if(isShiftedUp == Boolean.FALSE) {
-                return;
-            }
-        }
-                
-        shiftDownSolenoid.set(true);
-        shiftUpSolenoid.set(false);
-        isShiftedUp = Boolean.FALSE;
+        shifter.push();
     }
     
-    public void resetSolenoids()
+    public boolean isShiftedUp()
     {
-        shiftDownSolenoid.set(false);
-        shiftUpSolenoid.set(false);
+        return !shifter.isPushed().booleanValue();
     }
     
-    public Boolean isShiftedUp()
-    {
-        return isShiftedUp;
+    public void reset() {
+        shifter.reset();
     }
     
     public double getLeftEncoder() throws CANTimeoutException {

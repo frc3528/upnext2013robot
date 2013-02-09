@@ -4,7 +4,7 @@
  */
 package com.teamupnext.robot.subsystems;
 
-import com.teamupnext.robot.PneumaticHelper;
+import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
@@ -38,5 +38,9 @@ public class PickerUpper extends Subsystem {
     
     public void moveDown() {
         armPiston.pull();
+    }
+    
+    public void reset() {
+        armPiston.reset();
     }
 }
