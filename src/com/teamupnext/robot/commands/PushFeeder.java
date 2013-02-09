@@ -13,10 +13,8 @@ import com.teamupnext.robot.commands.CommandBase;
  */
 public class PushFeeder extends CommandBase {
     
-    public PushFeeder() {
-        
+    public PushFeeder() {   
         requires(feeder);
-        
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +24,7 @@ public class PushFeeder extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        feeder.push();
+        feeder.pushFeeder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +34,6 @@ public class PushFeeder extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        feeder.reset();
     }
 
     // Called when another command which requires one or more of the same

@@ -54,13 +54,19 @@ public class RobotMap {
     //Feeder Constants
     public static final int FEEDER_FORWARD_SOLENOID_CHANNEL = 4;
     public static final int FEEDER_REVERSE_SOLENOID_CHANNEL = 3;
+    public static final int HOLDER_PUSH_SOLENOID_CHANNEL = 6;
+    public static final int HOLDER_PULL_SOLENOID_CHANNEL = 5;
     public static final double FEEDER_PUSH_TIMEOUT = .25;
     public static final double FEEDER_PULL_TIMEOUT = .25;
+    public static final double HOLDER_PUSH_TIMEOUT = .25;
+    public static final double HOLDER_PULL_TIMEOUT = .25;
     //End Feeder Constants
     
     //PickerUpper Constants
-    public static final int ARM_UP_SOLENOID_CHANNEL = 5;
-    public static final int ARM_DOWN_SOLENOID_CHANNEL = 6;
+    public static final int ARM_UP_SOLENOID_CHANNEL = 8;
+    public static final int ARM_DOWN_SOLENOID_CHANNEL = 7;
+    public static final double ARM_UP_TIMEOUT = .25;
+    public static final double ARM_DOWN_TIMEOUT = .25;
     public static final int SWEEPER_PWM_CHANNEL = 2;
     //End PickerUpper Constants
     

@@ -4,6 +4,7 @@
  */
 package com.teamupnext.robot.subsystems;
 
+import com.teamupnext.robot.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -17,34 +18,74 @@ public class Feeder extends Subsystem {
     // here. Call these from Commands.
     
     
-   private Solenoid feederPush;
+   /*private Solenoid feederPush;
    private Solenoid feederPull;
    
+   private boolean feederIsPushed;
+   
+   private Solenoid holderPush;
+   private Solenoid holderPull;
+   
+   private boolean holderIsPushed;*/
+   
+   private PneumaticHelper feeder;
+   private PneumaticHelper holder;
+   
    public Feeder() {
-       feederPush = new Solenoid(RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL);
+       /*feederPush = new Solenoid(RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL);
        feederPull = new Solenoid(RobotMap.FEEDER_REVERSE_SOLENOID_CHANNEL);
+       
+       holderPush = new Solenoid(RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL);
+       holderPull = new Solenoid(RobotMap.HOLDER_PULL_SOLENOID_CHANNEL);*/
+       
+       feeder = new PneumaticHelper(RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL, 
+               RobotMap.FEEDER_REVERSE_SOLENOID_CHANNEL, 
+               RobotMap.FEEDER_FORWARD_SOLENOID_CHANNEL);
+       
+       holder = new PneumaticHelper(RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL, 
+               RobotMap.HOLDER_PULL_SOLENOID_CHANNEL, 
+               RobotMap.HOLDER_PULL_SOLENOID_CHANNEL);
+       
    }
    
-   public void push() {
-       feederPull.set(false);
-       feederPush.set(true);
-   }
-   
-   
-   public void pull() {
-       feederPush.set(false);
-       feederPull.set(true);
-   }
-   
-   
-   public void reset() {
-       feederPush.set(false);
-       feederPull.set(false);
-   }
-   
-
-    public void initDefaultCommand() {
+   public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+   
+   public void pushFeeder() {
+       //feederPull.set(false);
+       //feederPush.set(true);
+       
+       feeder.push();
+   } 
+   
+   public void pullFeeder() {
+       //feederPush.set(false);
+       //feederPull.set(true);
+       
+       feeder.pull();
+   }
+   
+   public void pushHolder() {
+       //holderPull.set(false);
+       //holderPush.set(true);
+       
+       holder.push();
+   }
+   
+   public void pullHolder() {
+       //holderPush.set(false);
+       //holderPull.set(true);
+       
+       holder.pull();
+   }
+   
+   public void reset() {
+       //feederPush.set(false);
+       //feederPull.set(false);
+       
+       feeder.setToDefault();
+       holder.setToDefault();
+   }
 }

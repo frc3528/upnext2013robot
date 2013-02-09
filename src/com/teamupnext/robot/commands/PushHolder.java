@@ -4,29 +4,31 @@
  */
 package com.teamupnext.robot.commands;
 
+import com.teamupnext.robot.RobotMap;
+
 /**
  *
- * @author jousley
+ * @author Team Up Next
  */
-public class SpinUpShooter extends CommandBase {
+public class PushHolder extends CommandBase {
     
-    public SpinUpShooter() {
-        // Use requires() here to declare subsystem dependencies
-        //requires(shooter);
+    public PushHolder() {
+        requires(feeder);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        
+        setTimeout(RobotMap.HOLDER_PUSH_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        feeder.pushHolder();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
