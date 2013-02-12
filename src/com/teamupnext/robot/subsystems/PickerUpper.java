@@ -4,9 +4,9 @@
  */
 package com.teamupnext.robot.subsystems;
 
+import com.teamupnext.helperPackage.PneumaticDevice;
 import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  * @author jousley
  */
-public class PickerUpper extends Subsystem {
+public class PickerUpper extends Subsystem implements PneumaticDevice {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -42,5 +42,9 @@ public class PickerUpper extends Subsystem {
     
     public void zeroSolenoids() {
         armPiston.reset();
+    }
+
+    public void setToDefaultPosition() {
+        armPiston.setToDefault();
     }
 }

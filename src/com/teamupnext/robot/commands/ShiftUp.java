@@ -13,7 +13,7 @@ import com.teamupnext.robot.RobotMap;
 public class ShiftUp extends CommandBase {
     
     public ShiftUp() {
-        //requires(driveTrain);
+        requires(shifters);
     }
 
     // Called just before this Command runs the first time

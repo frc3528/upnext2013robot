@@ -65,11 +65,11 @@ public class OI {
         autoShoot.whenPressed(new AutoShoot());
         
         //Raise Arm
-        raiseArm = new JoystickButton(controlsStick, RobotMap.RIGHT_BUMPER);
+        raiseArm = new JoystickButton(drivingStick, RobotMap.Y_BUTTON);
         raiseArm.whenPressed(new RaiseArm());
         
         //Lower Arm
-        lowerArm = new JoystickButton(controlsStick, RobotMap.LEFT_BUMPER);
+        lowerArm = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
         lowerArm.whenPressed(new LowerArm());
         
         //Suck Frisbee

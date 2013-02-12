@@ -11,7 +11,9 @@ package com.teamupnext.robot;
 import com.teamupnext.robot.commands.Autonomous;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.PrintInfo;
+import com.teamupnext.robot.commands.SetPneumaticDevicesToDefault;
 import com.teamupnext.robot.commands.TestCommand;
+import com.teamupnext.robot.commands.TurnOffShooter;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -36,20 +38,18 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         
         // tell 'em where we are folks!
-        System.out.println("===> UpNext2013Robot <===");
-        
+        System.out.println("===> UpNext2013Robot <===");       
         
         // instantiate the command used for the autonomous period
         autonomousCommand = new Autonomous();
 
         // Initialize all subsystems
         CommandBase.init();
-        
-
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
+        //new SetPneumaticDevicesToDefault().start();
         autonomousCommand.start();
     }
 
@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        //new SetPneumaticDevicesToDefault().start();
         new PrintInfo().start();
         //new TestCommand().start();
     }
@@ -73,5 +74,10 @@ public class Robot extends IterativeRobot {
     
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void disabledInit() {
+        //new SetPneumaticDevicesToDefault().start();
+        new TurnOffShooter().start();
     }
 }

@@ -4,36 +4,36 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
- * @author jousley
+ * @author Team Up Next
  */
-public class ShiftDown extends CommandBase {
+public class SetPneumaticDevicesToDefault extends CommandBase {
     
-    public ShiftDown() {
+    public SetPneumaticDevicesToDefault() {
+        requires(feeder);
+        requires(pickerUpper);
         requires(shifters);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.SHIFT_TIMEOUT_TIME);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shifters.shiftDown();
+        feeder.setToDefaultPosition();
+        pickerUpper.setToDefaultPosition();
+        shifters.setToDefaultPosition();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shifters.zeroSolenoids();
     }
 
     // Called when another command which requires one or more of the same
