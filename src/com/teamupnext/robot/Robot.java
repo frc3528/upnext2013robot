@@ -49,7 +49,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        //new SetPneumaticDevicesToDefault().start();
+        new SetPneumaticDevicesToDefault().start();
         autonomousCommand.start();
     }
 
@@ -63,7 +63,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
-        //new SetPneumaticDevicesToDefault().start();
+        new SetPneumaticDevicesToDefault().start();
         new PrintInfo().start();
         //new TestCommand().start();
     }
@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
     }
     
     public void disabledInit() {
-        //new SetPneumaticDevicesToDefault().start();
+        new SetPneumaticDevicesToDefault().start();
         new TurnOffShooter().start();
     }
 }

@@ -22,14 +22,17 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     
     private Talon sweeper;
    
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    public PickerUpper() {
         armPiston = new PneumaticHelper(RobotMap.ARM_UP_SOLENOID_CHANNEL, 
                 RobotMap.ARM_DOWN_SOLENOID_CHANNEL, 
                 RobotMap.ARM_UP_SOLENOID_CHANNEL);
         
         sweeper = new Talon(RobotMap.SWEEPER_PWM_CHANNEL);
+    }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());    
     }
     
     public void moveUp() {

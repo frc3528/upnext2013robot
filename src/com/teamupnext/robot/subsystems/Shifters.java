@@ -19,13 +19,15 @@ public class Shifters extends Subsystem implements PneumaticDevice {
 
     private PneumaticHelper shifter;
     
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-        
+    public Shifters() {
         shifter = new PneumaticHelper(RobotMap.SHIFT_DOWN_SOLENOID_CHANNEL, 
                 RobotMap.SHIFT_UP_SOLENOID_CHANNEL, 
                 RobotMap.SHIFT_UP_SOLENOID_CHANNEL);
+    }
+    
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
     }
     
     public void shiftUp()
