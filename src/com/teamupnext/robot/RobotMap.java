@@ -40,14 +40,14 @@ public class RobotMap {
     public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 7;
     public static final int SHIFT_UP_SOLENOID_CHANNEL = 8;
     public static final double SHIFT_TIMEOUT_TIME = .25;
-    public static final int DEFAULT_JOYSTICK_SENSITIVITY = 0;
+    public static final int DEFAULT_JOYSTICK_SENSITIVITY = 8;
     //End Drive Train Constants
     
     //Camera Constants
     public static final int CAMERA_BRIGHTNESS = 50;
     public static final String TARGETING_CAMERA_ADDRESS = "10.35.28.11";
     public static final String DISC_CAMERA_ADDRESS = "10.35.28.12";
-    public static final int TARGETING_CAMERA_BRIGHTNESS = 50;
+    public static final int TARGETING_CAMERA_BRIGHTNESS = 0;
     public static final int TARGETING_CAMERA_COMPRESSION = 50;
     public static final int TARGETING_CAMERA_COLOR_LEVEL = 100;
     public static final int DISC_CAMERA_COMPRESSION = 50;

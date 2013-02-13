@@ -93,10 +93,11 @@ public class Target extends CommandBase {
                  */
                 //ColorImage image = camera.getImage();     // comment if using stored images
                 ColorImage image;                           // next 2 lines read image from flash on cRIO
-                image = new RGBImage("/HybridLine_SmallGreen2.jpg");//targeter.getImage(); //new RGBImage("/10ft2.jpg");
+                //image = new RGBImage("/HybridLine_SmallGreen2.jpg"); //new RGBImage("/10ft2.jpg");
+                image = targeter.getTargetingImage();
                 //BinaryImage thresholdImage = image.thresholdRGB(25, 255, 0, 45, 0, 47);   // keep only red objects
-                //BinaryImage thresholdImage = image.thresholdRGB(0, 45, 0, 45, 25, 255);   // keep only blue objects
-                BinaryImage thresholdImage = image.thresholdRGB(0, 45, 25, 255, 0, 47);   // keep only green objects
+                BinaryImage thresholdImage = image.thresholdRGB(0, 0, 0, 25, 45, 255);   // keep only blue objects
+                //BinaryImage thresholdImage = image.thresholdRGB(0, 45, 25, 255, 0, 47);   // keep only green objects
                 BinaryImage bigObjectsImage = thresholdImage.removeSmallObjects(false, 2);  // remove small artifacts
                 BinaryImage convexHullImage = bigObjectsImage.convexHull(false);          // fill in occluded rectangles
                 BinaryImage filteredImage = convexHullImage.particleFilter(cc);           // find filled in rectangles

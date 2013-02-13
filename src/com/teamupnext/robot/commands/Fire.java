@@ -26,7 +26,7 @@ public class Fire extends CommandGroup {
 
         //addSequential(new SpinUpShooter());
         addSequential(new Feed());
-        addSequential(new SpinUpShooter());
+        //addSequential(new SpinUpShooter());
         
     }
 }
