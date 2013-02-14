@@ -31,9 +31,16 @@ public class PrintInfo extends CommandBase {
         } catch (CANTimeoutException ex) {
             ex.printStackTrace();
         }*/
-        
-        Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
+        try {
+            Utils.printToDriverStation("input, output: " + shooter.getBusVoltage() + ", " + shooter.getOutputVoltage(), DriverStationLCD.Line.kUser1);
+            Utils.printToDriverStation("leftEncoder: " + driveTrain.getLeftEncoder(), DriverStationLCD.Line.kUser2);
+            Utils.printToDriverStation("rightEncoder: " + driveTrain.getRightEncoder(), DriverStationLCD.Line.kUser3);
+            Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
+        } catch (CANTimeoutException ex) {
+            System.out.println(ex.getMessage());
+        }
         Utils.printToDriverStation( "Gyro: " + tableTilter.getAngle(), DriverStationLCD.Line.kUser6);
+        Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -72,6 +72,7 @@ public class RobotMap {
     public static final double ARM_UP_TIMEOUT = .25;
     public static final double ARM_DOWN_TIMEOUT = .25;
     public static final int SWEEPER_PWM_CHANNEL = 2;
+    public static double SWEEPER_SPEED = 1;
     //End PickerUpper Constants
     
     //Shooter Constants

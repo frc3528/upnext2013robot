@@ -14,6 +14,7 @@ import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
 import com.teamupnext.robot.commands.SpinUpShooter;
 import com.teamupnext.robot.commands.SuckFrisbee;
+import com.teamupnext.robot.commands.ToggleSweeper;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -74,7 +75,7 @@ public class OI {
         
         //Suck Frisbee
         suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
-        suckFrisbee.whenPressed(new SuckFrisbee());
+        suckFrisbee.whenPressed(new ToggleSweeper());
         
         //Spin up Shooter
         spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);

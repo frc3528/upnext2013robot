@@ -54,10 +54,17 @@ public class Shooter extends Subsystem {
         return power;
     }
     
-    public double getCurrent() throws CANTimeoutException
-    {
+    public double getCurrent() throws CANTimeoutException {
         return shootingMotor.getOutputCurrent();
     }
+    
+    public double getOutputVoltage() throws CANTimeoutException {
+        return shootingMotor.getOutputVoltage();
+    }
+    
+    public double getBusVoltage() throws CANTimeoutException {
+        return shootingMotor.getBusVoltage();
+    }    
     
     public void increasePower() throws CANTimeoutException {
         if (power >= 1.0) {
