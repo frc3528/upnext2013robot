@@ -35,6 +35,6 @@ public class Autonomous extends CommandGroup {
         //addSequential(new Fire());
         //addSequential(new Fire());
         
-        addSequential(new Target());
+        
     }
 }

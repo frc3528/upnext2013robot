@@ -48,6 +48,14 @@ public class TableTilter extends Subsystem {
         setDefaultCommand(new TiltTableWithJoystick());
     }
     
+    public boolean getLowLimitSwitch() {
+        return lowLimitSwitch.get();
+    }
+    
+    public boolean getHighLimitSwitch() {
+        return highLimitSwitch.get();
+    }
+    
     public void move(double destination) {
         if(destination == angle) {
             return;

@@ -79,7 +79,6 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(tableTilter);
         SmartDashboard.putData(shifters);
         
-        
         // create and start the compressor
         compressor = new Compressor(RobotMap.PRESSURE_SWITCH_DIO_CHANNEL, RobotMap.COMPRESSOR_RELAY_CHANNEL);
         compressor.start();        

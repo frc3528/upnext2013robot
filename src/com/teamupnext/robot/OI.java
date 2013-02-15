@@ -10,9 +10,10 @@ import com.teamupnext.robot.commands.LowerArm;
 import com.teamupnext.robot.commands.PowerDownShooter;
 import com.teamupnext.robot.commands.PowerUpShooter;
 import com.teamupnext.robot.commands.RaiseArm;
+import com.teamupnext.robot.commands.RampAndRunShooter;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
-import com.teamupnext.robot.commands.SpinUpShooter;
+import com.teamupnext.robot.commands.BigHopShooter;
 import com.teamupnext.robot.commands.SuckFrisbee;
 import com.teamupnext.robot.commands.ToggleSweeper;
 import edu.wpi.first.wpilibj.Joystick;
@@ -36,6 +37,8 @@ public class OI {
     private JoystickButton increaseSensitivity;
     private JoystickButton decreaseSensitivity;
     private JoystickButton spinUpShooter;
+    private JoystickButton shooterIncrease;
+    private JoystickButton shooterDecrease;
     
     //Testing
     private Joystick testingStick;
@@ -79,7 +82,13 @@ public class OI {
         
         //Spin up Shooter
         spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);
-        spinUpShooter.whenPressed(new SpinUpShooter());
+        spinUpShooter.whenPressed(new RampAndRunShooter());
+        
+        //Change shooter speed
+        shooterIncrease = new JoystickButton(controlsStick, RobotMap.START_BUTTON);
+        shooterIncrease.whenPressed(new PowerUpShooter());
+        shooterDecrease = new JoystickButton(controlsStick, RobotMap.BACK_BUTTON);
+        shooterDecrease.whenPressed(new PowerDownShooter());
         
         //Sensitivity
         increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);

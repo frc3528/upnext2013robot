@@ -25,15 +25,16 @@ public class SpinShooter extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        shooter.setPower(power);
         setTimeout(timeout);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         try {
-            shooter.setPower(power);
+            shooter.runShooter();
         } catch (CANTimeoutException ex) {
-            System.out.println("" + ex.getMessage());
+            System.out.println(ex.getMessage());
         }
     }
 

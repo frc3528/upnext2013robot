@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  */
 public class RunShooter extends CommandBase {
     
+    private double power;
+    
     public RunShooter() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -26,7 +28,7 @@ public class RunShooter extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         try {
-            shooter.setPower(RobotMap.SHOOTING_POWER);
+            shooter.runShooter();
         } catch (CANTimeoutException ex) {
             System.out.println(ex.getMessage());
         }

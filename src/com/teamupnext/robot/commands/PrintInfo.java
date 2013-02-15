@@ -7,6 +7,7 @@ package com.teamupnext.robot.commands;
 import com.teamupnext.robot.Utils;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  * @author jousley
@@ -15,8 +16,6 @@ public class PrintInfo extends CommandBase {
     
     public PrintInfo() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        //requires(shooter);
     }
 
     // Called just before this Command runs the first time
@@ -25,27 +24,26 @@ public class PrintInfo extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        /*try {
-            Utils.printToDriverStation("" + shooter.getCurrent(), DriverStationLCD.Line.kUser2);   
-            System.out.println("" + shooter.getCurrent());
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }*/
         try {
-            Utils.printToDriverStation("input, output: " + shooter.getBusVoltage() + ", " + shooter.getOutputVoltage(), DriverStationLCD.Line.kUser1);
+            //Utils.printToDriverStation("i, o: " + shooter.getBusVoltage() + ", " + shooter.getOutputVoltage(), DriverStationLCD.Line.kUser1);
+            Utils.printToDriverStation("shooting power: " + shooter.getPower(), DriverStationLCD.Line.kUser1);
             Utils.printToDriverStation("leftEncoder: " + driveTrain.getLeftEncoder(), DriverStationLCD.Line.kUser2);
             Utils.printToDriverStation("rightEncoder: " + driveTrain.getRightEncoder(), DriverStationLCD.Line.kUser3);
             Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
         } catch (CANTimeoutException ex) {
             System.out.println(ex.getMessage());
         }
+        
         Utils.printToDriverStation( "Gyro: " + tableTilter.getAngle(), DriverStationLCD.Line.kUser6);
         Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
+        
+        SmartDashboard.putBoolean("TableLowLimit", tableTilter.getLowLimitSwitch());
+        SmartDashboard.putBoolean("TableHighLimit", tableTilter.getHighLimitSwitch());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

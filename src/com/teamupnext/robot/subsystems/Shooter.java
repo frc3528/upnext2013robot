@@ -22,17 +22,15 @@ public class Shooter extends Subsystem {
     //speed controller
     private CANJaguar shootingMotor;
     private DriverStationLCD lcd;
-    private double power = 0;
+    private double power;
     
-    public Shooter() throws CANTimeoutException
-    {
+    public Shooter() throws CANTimeoutException {
         super();
         
         shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
         shootingMotor.setSafetyEnabled(false);
         shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
-        //lcd = DriverStationLCD.getInstance();
-        //printLCD("STOPPED");
+        power = RobotMap.SHOOTING_POWER_DEFAULT;
     }
     
     public void initDefaultCommand() {
@@ -40,18 +38,16 @@ public class Shooter extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void setPower(double power) throws CANTimeoutException
-    {
+    public void setPower(double power) {
         this.power = power;
-        shootingMotor.setX(power);
-        
-        //System.out.println("Power set to " + power);
-        //printLCD("" + power);
     }
     
-    public double getPower()
-    {
+    public double getPower() {
         return power;
+    }
+    
+    public void runShooter() throws CANTimeoutException {
+        shootingMotor.setX(power);
     }
     
     public double getCurrent() throws CANTimeoutException {
@@ -84,21 +80,7 @@ public class Shooter extends Subsystem {
 
     public void stop() throws CANTimeoutException {
         setPower(0);
+        runShooter();
+        System.out.println("STOPPING");
     }
-       
-    /*private void printLCD(String s) {
-        clearLCD();
-        lcd.println(DriverStationLCD.Line.kUser1, 1, s);
-        lcd.updateLCD();
-    }
-    
-    private void printLCD(String s, DriverStationLCD.Line line)
-    {
-        lcd.println(line, 1, s);
-    }
-    
-    private void clearLCD() {
-        lcd.println(DriverStationLCD.Line.kUser1, 1, "                              ");
-        lcd.updateLCD();
-    }*/
 }
