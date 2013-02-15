@@ -22,7 +22,7 @@ public class Shooter extends Subsystem {
     //speed controller
     private CANJaguar shootingMotor;
     private DriverStationLCD lcd;
-    private double power;
+    private double power = 0;
     
     public Shooter() throws CANTimeoutException {
         super();
@@ -30,7 +30,7 @@ public class Shooter extends Subsystem {
         shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
         shootingMotor.setSafetyEnabled(false);
         shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
-        power = RobotMap.SHOOTING_POWER_DEFAULT;
+        //power = RobotMap.SHOOTING_POWER_DEFAULT;
     }
     
     public void initDefaultCommand() {
@@ -48,6 +48,7 @@ public class Shooter extends Subsystem {
     
     public void runShooter() throws CANTimeoutException {
         shootingMotor.setX(power);
+        System.out.println("spinning at " + power);
     }
     
     public double getCurrent() throws CANTimeoutException {

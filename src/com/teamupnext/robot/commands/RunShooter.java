@@ -4,7 +4,6 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
 /**
@@ -13,7 +12,7 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  */
 public class RunShooter extends CommandBase {
     
-    private double power;
+    private double power = 0;
     
     public RunShooter() {
         // Use requires() here to declare subsystem dependencies
@@ -27,8 +26,14 @@ public class RunShooter extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        
+        if(shooter.getPower() == power) {
+            return;
+        }
+        
         try {
             shooter.runShooter();
+            power = shooter.getPower();
         } catch (CANTimeoutException ex) {
             System.out.println(ex.getMessage());
         }

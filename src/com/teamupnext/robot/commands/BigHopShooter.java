@@ -5,7 +5,6 @@
 package com.teamupnext.robot.commands;
 
 import com.teamupnext.robot.RobotMap;
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
 
 /**
  *
@@ -18,7 +17,7 @@ public class BigHopShooter extends CommandBase {
     }
     
     protected void initialize() {       
-       shooter.setPower(1);
+       shooter.setPower(1.0);
        setTimeout(RobotMap.SHOOTER_FROM_STOP_TIMEOUT);
     }
 
