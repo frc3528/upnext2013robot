@@ -54,6 +54,10 @@ public class DriveTrain extends Subsystem {
         drive.tankDrive( leftPower , rightPower);
     }
     
+    public void stopDrive() {
+        drive(0,0);
+    }
+    
     public int getSensitivity() {
         return sensitivity;
     }
@@ -64,6 +68,13 @@ public class DriveTrain extends Subsystem {
     
     public double getRightEncoder() throws CANTimeoutException {
         return rightBack.getPosition();
+    }
+    
+    public void zeroEncoders() throws CANTimeoutException {
+        leftBack.disableControl();
+        leftBack.enableControl();
+        rightBack.disableControl();
+        rightBack.enableControl();
     }
     
     public void decreaseSensitivity() {
@@ -85,7 +96,7 @@ public class DriveTrain extends Subsystem {
             jag.configEncoderCodesPerRev(360);
             jag.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             jag.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
-            jag.setSafetyEnabled(false);
+            jag.setSafetyEnabled(true);
         }
         catch(Exception e)
         {

@@ -19,13 +19,11 @@ public class TableTilter extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-    //Mechanical thingies
-    
     private Gyro gyro;
     private DigitalInput lowLimitSwitch;
     private DigitalInput highLimitSwitch;
     private Relay leadScrewMotor; 
-    private double angle;
+    //private double angle;
    
     public TableTilter()
     {
@@ -38,7 +36,7 @@ public class TableTilter extends Subsystem {
         gyro.setSensitivity(RobotMap.TABLE_GYRO_SENSITIVITY);
         gyro.reset();
         
-        angle = gyro.getAngle();
+        //angle = gyro.getAngle();
         
         leadScrewMotor = new Relay(RobotMap.LEAD_SCREW_RELAY_CHANNEL);
     }
@@ -57,22 +55,24 @@ public class TableTilter extends Subsystem {
     }
     
     public void move(double destination) {
+        double angle = gyro.getAngle();
+        
         if(destination == angle) {
             return;
         }
         
-        double toMove = destination - angle;
+        //double toMove = destination - angle;
         
-        gyro.reset();
+        //zeroGyro();
         
-        if(toMove > 0) {
-            moveUp(toMove);
+        if(destination > angle) {
+            moveUp(destination);
         }
         else {
-            moveDown(toMove);
+            moveDown(destination);
         }
 
-        angle += gyro.getAngle();
+        //angle += gyro.getAngle();
     }
     
     public void moveUp()
@@ -80,9 +80,11 @@ public class TableTilter extends Subsystem {
         //System.out.println("moving up");
         
         if(highLimitSwitch.get()) {
+            zeroGyro();
             stop();
         } else {
             leadScrewMotor.set(Relay.Value.kForward);
+            //angle = gyro.getAngle();
         }
     }
     
@@ -94,6 +96,7 @@ public class TableTilter extends Subsystem {
             stop();
         } else {
             leadScrewMotor.set(Relay.Value.kReverse);
+            //angle = gyro.getAngle();
         }
     }
     
@@ -102,15 +105,16 @@ public class TableTilter extends Subsystem {
         leadScrewMotor.set(Relay.Value.kOff);
     }
     
-    private void moveUp(double angleToMove) {       
-        while(gyro.getAngle() < angleToMove) {
+    private void moveUp(double destinationAngle) {       
+        while(gyro.getAngle() < destinationAngle && !highLimitSwitch.get()) {
             moveUp();
         }
     }
     
-    private void moveDown(double angleToMove) {
-        while(gyro.getAngle() > angleToMove) {
+    private void moveDown(double destinationAngle) {
+        while(gyro.getAngle() > destinationAngle && !lowLimitSwitch.get()) {
             moveDown();
+            //System.out.println("dest: " + destinationAngle + "current: " + gyro.getAngle());
         }
     }
     

@@ -5,6 +5,7 @@ package com.teamupnext.robot.commands;
  * and open the template in the editor.
  */
 
+import com.teamupnext.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -30,11 +31,15 @@ public class Autonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        
-        //addSequential(new Fire());
-        //addSequential(new Fire());
-        //addSequential(new Fire());
-        
+        //addSequential(new TiltShooter(7.5));
+        addSequential(new ReverseDriveTrainByTime(RobotMap.AUTO_REVERSE_TIME));
+        addSequential(new PreBigHopShooter());
+        addSequential(new BigHopShooter());
+        addSequential(new LowerArm());
+        addSequential(new TiltShooter(-7.1));
+        addSequential(new Fire());
+        addSequential(new Fire());
+        addSequential(new Fire());
         
     }
 }

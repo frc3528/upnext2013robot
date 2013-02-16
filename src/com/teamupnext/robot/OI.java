@@ -2,19 +2,17 @@
 package com.teamupnext.robot;
 
 import com.teamupnext.robot.commands.AutoShoot;
+import com.teamupnext.robot.commands.BigHopShooter;
 import com.teamupnext.robot.commands.DecreaseSensitivity;
+import com.teamupnext.robot.commands.DecreaseShooterPower;
 import com.teamupnext.robot.commands.Feed;
 import com.teamupnext.robot.commands.Fire;
 import com.teamupnext.robot.commands.IncreaseSensitivity;
+import com.teamupnext.robot.commands.IncreaseShooterPower;
 import com.teamupnext.robot.commands.LowerArm;
-import com.teamupnext.robot.commands.PowerDownShooter;
-import com.teamupnext.robot.commands.PowerUpShooter;
 import com.teamupnext.robot.commands.RaiseArm;
-import com.teamupnext.robot.commands.RampAndRunShooter;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
-import com.teamupnext.robot.commands.BigHopShooter;
-import com.teamupnext.robot.commands.SuckFrisbee;
 import com.teamupnext.robot.commands.ToggleSweeper;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -82,13 +80,13 @@ public class OI {
         
         //Spin up Shooter
         spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);
-        spinUpShooter.whenPressed(new RampAndRunShooter());
+        spinUpShooter.whenPressed(new BigHopShooter());
         
         //Change shooter speed
         shooterIncrease = new JoystickButton(controlsStick, RobotMap.START_BUTTON);
-        shooterIncrease.whenPressed(new PowerUpShooter());
+        shooterIncrease.whenPressed(new IncreaseShooterPower());
         shooterDecrease = new JoystickButton(controlsStick, RobotMap.BACK_BUTTON);
-        shooterDecrease.whenPressed(new PowerDownShooter());
+        shooterDecrease.whenPressed(new DecreaseShooterPower());
         
         //Sensitivity
         increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);
@@ -109,10 +107,10 @@ public class OI {
         testFeed.whenPressed(new Feed());
         
         testShooterIncrease = new JoystickButton(testingStick, RobotMap.B_BUTTON);
-        testShooterIncrease.whenPressed(new PowerUpShooter());
+        testShooterIncrease.whenPressed(new IncreaseShooterPower());
         
         testShooterDecrease = new JoystickButton(testingStick, RobotMap.X_BUTTON);
-        testShooterDecrease.whenPressed(new PowerDownShooter());   
+        testShooterDecrease.whenPressed(new DecreaseShooterPower());   
     }
     
     public Joystick getDrivingJoystick()

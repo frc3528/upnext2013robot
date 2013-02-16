@@ -4,38 +4,38 @@
  */
 package com.teamupnext.robot.commands;
 
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-
 /**
  *
  * @author Team Up Next
  */
-public class RunShooter extends CommandBase {
+public class ReverseDriveTrainByTime extends CommandBase {
     
-    public RunShooter() {
-        requires(shooter);
+    private double time;
+    
+    public ReverseDriveTrainByTime(double time) {
+        // Use requires() here to declare subsystem dependencies
+        requires(driveTrain);
+        this.time = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
-            shooter.runShooter();
-        } catch (CANTimeoutException ex) {
-            System.out.println(ex.getMessage());
-        }
+        driveTrain.drive(0.5, 0.5);       
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        driveTrain.stopDrive();
     }
 
     // Called when another command which requires one or more of the same

@@ -6,6 +6,7 @@ package com.teamupnext.robot.subsystems;
 
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
+import com.teamupnext.robot.commands.RunShooter;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
@@ -28,27 +29,32 @@ public class Shooter extends Subsystem {
         super();
         
         shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
-        shootingMotor.setSafetyEnabled(false);
+        shootingMotor.setSafetyEnabled(true);
         shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
         //power = RobotMap.SHOOTING_POWER_DEFAULT;
     }
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new RunShooter());
     }
     
-    public void setPower(double power) {
+    public void setPower(double power){
         this.power = power;
+        //shootingMotor.setX(power);
     }
     
     public double getPower() {
         return power;
     }
     
-    public void runShooter() throws CANTimeoutException {
+    public void runShooter() throws CANTimeoutException { 
+        /*if(power == shootingMotor.getX()) {
+            System.out.println("power on shooter: " + shootingMotor.getX());
+            return;
+        }*/
+        
         shootingMotor.setX(power);
-        System.out.println("spinning at " + power);
     }
     
     public double getCurrent() throws CANTimeoutException {
@@ -81,7 +87,6 @@ public class Shooter extends Subsystem {
 
     public void stop() throws CANTimeoutException {
         setPower(0);
-        runShooter();
         System.out.println("STOPPING");
     }
 }

@@ -1,6 +1,8 @@
 
 package com.teamupnext.robot.commands;
 
+import edu.wpi.first.wpilibj.can.CANTimeoutException;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -26,10 +28,15 @@ public class SetRobotToDefault extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        new SetPneumaticDevicesToDefault().start();
-        new TurnOffShooter().start();
-        
-        tableTilter.zeroGyro();
+        try {
+            new SetPneumaticDevicesToDefault().start();
+            new TurnOffShooter().start();
+            
+            tableTilter.zeroGyro();
+            driveTrain.zeroEncoders();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

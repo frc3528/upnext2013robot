@@ -35,14 +35,14 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
         
+        // Initialize all subsystems
+        CommandBase.init();
+        
         // tell 'em where we are folks!
         System.out.println("===> UpNext2013Robot <===");       
         
         // instantiate the command used for the autonomous period
         autonomousCommand = new Autonomous();
-
-        // Initialize all subsystems
-        CommandBase.init();
     }
 
     public void autonomousInit() {
@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        new PrintInfo().start();
     }
 
     public void teleopInit() {

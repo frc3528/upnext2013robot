@@ -79,6 +79,8 @@ public class RobotMap {
     public static final int SHOOTER_CAN = 6;
     public static final double SHOOTING_POWER_DEFAULT = .7;
     public static final double SHOOTER_FROM_STOP_TIMEOUT = 5;
+    public static final double SHOOTER_LITTLE_HOP_TIMEOUT = 2;
+    public static double SHOOTER_HOP_SPEED = 1.0;
     //End Shooter Constants
     
     //Compressor Constants
@@ -87,10 +89,14 @@ public class RobotMap {
     //End Compressor Constants
     
     //TableTilter Constants
-    public static final int TABLE_GYRO_CHANNEL = 1;
+    public static final int TABLE_GYRO_CHANNEL = 2;
     public static final int LEAD_SCREW_RELAY_CHANNEL = 3;
     public static final int TABLE_LOW_LIMIT_CHANNEL = 3;
     public static final int TABLE_HIGH_LIMIT_CHANNEL = 5;
-    public static final double TABLE_GYRO_SENSITIVITY = .01;
+    public static final double TABLE_GYRO_SENSITIVITY = .007;
     //End TableTilter Constants    
+    
+    //Auto Constants
+    public static double AUTO_REVERSE_TIME = 1.75;
+    //End Auto Constants
 }

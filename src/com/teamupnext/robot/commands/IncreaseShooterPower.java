@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  *
  * @author jousley
  */
-public class PowerUpShooter extends CommandBase {
+public class IncreaseShooterPower extends CommandBase {
     
-    public PowerUpShooter() {
+    public IncreaseShooterPower() {
         //requires(shooter);
     }
 

@@ -4,38 +4,24 @@
  */
 package com.teamupnext.robot.commands;
 
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-
 /**
  *
  * @author Team Up Next
  */
-public class SpinShooter extends CommandBase {
+public class PreBigHopShooter extends CommandBase {
     
-    private double power;
-    private double timeout;
-    
-    public SpinShooter(double power, double timeout) {
+    public PreBigHopShooter() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(shooter);
-        this.power = power;
-        this.timeout = timeout;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        shooter.setPower(power);
-        setTimeout(timeout);
+        setTimeout(.5);
+        shooter.setPower(.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
-            shooter.runShooter();
-        } catch (CANTimeoutException ex) {
-            System.out.println(ex.getMessage());
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -45,6 +31,7 @@ public class SpinShooter extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        shooter.setPower(1.0);
     }
 
     // Called when another command which requires one or more of the same

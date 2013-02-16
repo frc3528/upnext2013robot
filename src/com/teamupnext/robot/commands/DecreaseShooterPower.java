@@ -10,10 +10,9 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
  *
  * @author jousley
  */
-public class PowerDownShooter extends CommandBase {
+public class DecreaseShooterPower extends CommandBase {
     
-    public PowerDownShooter() {
-        //requires(shooter);
+    public DecreaseShooterPower() {
     }
 
     // Called just before this Command runs the first time
@@ -22,12 +21,11 @@ public class PowerDownShooter extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        /*
         try {
             shooter.decreasePower();
         } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }*/
+            System.out.println(ex.getMessage());
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,12 +35,10 @@ public class PowerDownShooter extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        //System.out.println("... power down end ...");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        //System.out.println("...powerdown shooter interrupted...");
     }
 }

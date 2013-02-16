@@ -8,17 +8,19 @@ import com.teamupnext.robot.RobotMap;
 
 /**
  *
- * @author jousley
+ * @author Team Up Next
  */
-public class BigHopShooter extends CommandBase {
+public class LittleHopShooter extends CommandBase {
     
-    public BigHopShooter() {
-        //requires(shooter);
+    public LittleHopShooter() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
-    
+
+    // Called just before this Command runs the first time
     protected void initialize() {       
        shooter.setPower(RobotMap.SHOOTER_HOP_SPEED);
-       setTimeout(RobotMap.SHOOTER_FROM_STOP_TIMEOUT);
+       setTimeout(RobotMap.SHOOTER_LITTLE_HOP_TIMEOUT);
     }
 
     protected void execute() {
