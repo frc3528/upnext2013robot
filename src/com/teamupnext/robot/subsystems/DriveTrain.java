@@ -4,8 +4,6 @@
  */
 package com.teamupnext.robot.subsystems;
 
-import com.teamupnext.helperPackage.PneumaticDevice;
-import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
@@ -29,8 +27,7 @@ public class DriveTrain extends Subsystem {
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
-    public DriveTrain() throws CANTimeoutException
-    {
+    public DriveTrain() throws CANTimeoutException {
         rightBack = new CANJaguar(RobotMap.DRIVE_RIGHT_BACK_CAN);
         rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
         leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
@@ -42,7 +39,7 @@ public class DriveTrain extends Subsystem {
         initializeJag(leftFront);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);    
-        }
+    }
     
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoystick());
@@ -73,6 +70,7 @@ public class DriveTrain extends Subsystem {
     public void zeroEncoders() throws CANTimeoutException {
         leftBack.disableControl();
         leftBack.enableControl();
+        
         rightBack.disableControl();
         rightBack.enableControl();
     }
@@ -90,16 +88,13 @@ public class DriveTrain extends Subsystem {
     }
     
     private void initializeJag(CANJaguar jag) {
-        try
-        {
+        try {
             jag.enableControl();
             jag.configEncoderCodesPerRev(360);
             jag.setPositionReference(CANJaguar.PositionReference.kQuadEncoder);
             jag.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
             jag.setSafetyEnabled(true);
-        }
-        catch(Exception e)
-        {
+        } catch(Exception e) {
             System.out.println("Error enabling closed control on Jag " + e.getMessage());
         }
     }

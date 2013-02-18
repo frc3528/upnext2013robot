@@ -27,10 +27,11 @@ public class SetRobotToDefault extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         try {
-            new SetPneumaticDevicesToDefault().start();
-            //setPneumaticDevicesToDefault();
+            //new SetPneumaticDevicesToDefault().start();
+            setPneumaticDevicesToDefault();
             
-            new TurnOffShooter().start();
+            //new TurnOffShooter().start();
+            shooter.stop();
             
             tableTilter.zeroGyro();
             driveTrain.zeroEncoders();

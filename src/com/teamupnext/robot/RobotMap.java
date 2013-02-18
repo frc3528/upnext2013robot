@@ -10,6 +10,7 @@ public class RobotMap {
     
     //General Constants
     public static final double DEFAULT_MOTOR_SAFETY_EXPIRATION = .5;
+    public static double DEFAULT_PNEUMATIC_TIMEOUT = .5;
     //End General Constants
     
     //Joystick Constants
@@ -73,6 +74,7 @@ public class RobotMap {
     public static final double ARM_DOWN_TIMEOUT = .25;
     public static final int SWEEPER_PWM_CHANNEL = 2;
     public static double SWEEPER_SPEED = 1;
+    public static double CLAMP_TIMEOUT = .3;
     //End PickerUpper Constants
     
     //Shooter Constants
@@ -102,6 +104,4 @@ public class RobotMap {
     //Auto Constants
     public static double AUTO_REVERSE_TIME = 1.7;
     //End Auto Constants
-    public static double DEFAULT_PNEUMATIC_TIMEOUT = .5;
-    public static double CLAMP_TIMEOUT = .3;
 }
