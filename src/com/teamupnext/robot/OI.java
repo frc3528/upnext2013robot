@@ -3,6 +3,7 @@ package com.teamupnext.robot;
 
 import com.teamupnext.robot.commands.AutoShoot;
 import com.teamupnext.robot.commands.BigHopShooter;
+import com.teamupnext.robot.commands.Clamp;
 import com.teamupnext.robot.commands.DecreaseSensitivity;
 import com.teamupnext.robot.commands.DecreaseShooterPower;
 import com.teamupnext.robot.commands.Feed;
@@ -10,10 +11,14 @@ import com.teamupnext.robot.commands.Fire;
 import com.teamupnext.robot.commands.IncreaseSensitivity;
 import com.teamupnext.robot.commands.IncreaseShooterPower;
 import com.teamupnext.robot.commands.LowerArm;
+import com.teamupnext.robot.commands.PullHolder;
+import com.teamupnext.robot.commands.PushHolder;
 import com.teamupnext.robot.commands.RaiseArm;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
+import com.teamupnext.robot.commands.ToggleClamp;
 import com.teamupnext.robot.commands.ToggleSweeper;
+import com.teamupnext.robot.commands.UnClamp;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -61,22 +66,30 @@ public class OI {
         //Fire
         fire = new JoystickButton(controlsStick, RobotMap.X_BUTTON);
         fire.whenPressed(new Fire());
-        
-        //Auto Shoot
-        autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
-        autoShoot.whenPressed(new AutoShoot());
-        
+                
         //Raise Arm
         raiseArm = new JoystickButton(drivingStick, RobotMap.Y_BUTTON);
         raiseArm.whenPressed(new RaiseArm());
         
         //Lower Arm
-        lowerArm = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
+        lowerArm = new JoystickButton(drivingStick, RobotMap.X_BUTTON);
         lowerArm.whenPressed(new LowerArm());
         
-        //Suck Frisbee
+        //Release Holder
+        JoystickButton releaseHolder = new JoystickButton(drivingStick, RobotMap.B_BUTTON);
+        releaseHolder.whenPressed(new PullHolder());
+        
+        //Hold
+        JoystickButton hold = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
+        hold.whenPressed(new PushHolder());
+        
+        //Un Clamp
+        autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
+        autoShoot.whenPressed(new UnClamp());
+        
+        //Clamp
         suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
-        suckFrisbee.whenPressed(new ToggleSweeper());
+        suckFrisbee.whenPressed(new Clamp());
         
         //Spin up Shooter
         spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);

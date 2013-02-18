@@ -10,20 +10,17 @@ import com.teamupnext.robot.RobotMap;
  *
  * @author Team Up Next
  */
-public class SetPneumaticDevicesToDefault extends CommandBase {
+public class Clamp extends CommandBase {
     
-    public SetPneumaticDevicesToDefault() {
-        //requires(feeder);
-        //requires(pickerUpper);
-        //requires(shifters);
+    public Clamp() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.DEFAULT_PNEUMATIC_TIMEOUT);
-        feeder.setToDefaultPosition();
-        pickerUpper.setToDefaultPosition();
-        shifters.setToDefaultPosition();
+        pickerUpper.runPickerUpper(-.5);
+        setTimeout(RobotMap.CLAMP_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -37,9 +34,7 @@ public class SetPneumaticDevicesToDefault extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-        feeder.zeroSolenoids();
-        pickerUpper.zeroSolenoids();
-        shifters.zeroSolenoids();
+        pickerUpper.stopPickerUpper();
     }
 
     // Called when another command which requires one or more of the same

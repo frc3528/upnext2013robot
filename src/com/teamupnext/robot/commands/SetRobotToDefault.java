@@ -1,8 +1,6 @@
 
 package com.teamupnext.robot.commands;
 
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,11 +13,11 @@ import edu.wpi.first.wpilibj.can.CANTimeoutException;
 public class SetRobotToDefault extends CommandBase {
     
     public SetRobotToDefault() {
-        requires(shooter);
-        requires(driveTrain);
-        requires(feeder);
-        requires(pickerUpper);
-        requires(tableTilter);
+        //requires(shooter);
+        //requires(driveTrain);
+        //requires(feeder);
+        //requires(pickerUpper);
+        //requires(tableTilter);
     }
 
     // Called just before this Command runs the first time
@@ -30,6 +28,8 @@ public class SetRobotToDefault extends CommandBase {
     protected void execute() {
         try {
             new SetPneumaticDevicesToDefault().start();
+            //setPneumaticDevicesToDefault();
+            
             new TurnOffShooter().start();
             
             tableTilter.zeroGyro();
@@ -52,5 +52,12 @@ public class SetRobotToDefault extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+
+    private void setPneumaticDevicesToDefault() {
+        new RaiseArm().start();
+        new PullFeeder().start();
+        new PushHolder().start();
+        new ShiftDown().start();
     }
 }

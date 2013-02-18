@@ -29,6 +29,8 @@ public class PneumaticHelper {
     }
         
     public void setToDefault() {
+        isPushed = null;
+        
         if(defaultSolenoidChannel == pushSolenoidChannel) {
             push();
         } else {

@@ -4,6 +4,8 @@
  */
 package com.teamupnext.robot.commands;
 
+import com.teamupnext.robot.RobotMap;
+
 /**
  *
  * @author Team Up Next
@@ -24,10 +26,10 @@ public class ToggleSweeper extends CommandBase {
     protected void execute() {
         if(isOn) {
             isOn = false;
-            pickerUpper.stopSweeper();
+            pickerUpper.stopPickerUpper();
         } else {
             isOn = true;
-            pickerUpper.runSweeper();
+            pickerUpper.runPickerUpper(RobotMap.SWEEPER_SPEED);
         }
     }
 

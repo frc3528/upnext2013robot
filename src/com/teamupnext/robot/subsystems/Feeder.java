@@ -58,7 +58,7 @@ public class Feeder extends Subsystem implements PneumaticDevice {
    }
 
     public void setToDefaultPosition() {
-        feeder.setToDefault();
         holder.setToDefault();
+        feeder.setToDefault();
     }
 }

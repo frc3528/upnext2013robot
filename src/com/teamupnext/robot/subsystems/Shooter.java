@@ -7,8 +7,8 @@ package com.teamupnext.robot.subsystems;
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.RunShooter;
-import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.DriverStationLCD;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,16 +21,16 @@ public class Shooter extends Subsystem {
     // here. Call these from Commands.
 
     //speed controller
-    private CANJaguar shootingMotor;
+    private Talon shootingMotor;
     private DriverStationLCD lcd;
     private double power = 0;
     
     public Shooter() throws CANTimeoutException {
         super();
         
-        shootingMotor = new CANJaguar(RobotMap.SHOOTER_CAN);
-        shootingMotor.setSafetyEnabled(true);
-        shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        shootingMotor = new Talon(RobotMap.SHOOTER_PWM_CHANNEL);//CANJaguar(RobotMap.SHOOTER_CAN);
+        //shootingMotor.setSafetyEnabled(true);
+        //shootingMotor.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
         //power = RobotMap.SHOOTING_POWER_DEFAULT;
     }
     
@@ -48,28 +48,28 @@ public class Shooter extends Subsystem {
         return power;
     }
     
-    public void runShooter() throws CANTimeoutException { 
+    public void runShooter() { 
         /*if(power == shootingMotor.getX()) {
             System.out.println("power on shooter: " + shootingMotor.getX());
             return;
         }*/
         
-        shootingMotor.setX(power);
+        shootingMotor.set(power);
     }
     
-    public double getCurrent() throws CANTimeoutException {
+    /*public double getCurrent() {
         return shootingMotor.getOutputCurrent();
     }
     
-    public double getOutputVoltage() throws CANTimeoutException {
+    public double getOutputVoltage() {
         return shootingMotor.getOutputVoltage();
     }
     
     public double getBusVoltage() throws CANTimeoutException {
         return shootingMotor.getBusVoltage();
-    }    
+    }*/    
     
-    public void increasePower() throws CANTimeoutException {
+    public void increasePower() {
         if (power >= 1.0) {
             return;
         }
@@ -77,7 +77,7 @@ public class Shooter extends Subsystem {
         setPower(Utils.roundstrip(power + 0.1));
     }
 
-    public void decreasePower() throws CANTimeoutException {      
+    public void decreasePower() {      
         if(power <= -1.0) {
             return;
         }

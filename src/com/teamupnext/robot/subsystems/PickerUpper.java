@@ -23,8 +23,8 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     private Talon sweeper;
    
     public PickerUpper() {
-        armPiston = new PneumaticHelper(RobotMap.ARM_UP_SOLENOID_CHANNEL, 
-                RobotMap.ARM_DOWN_SOLENOID_CHANNEL, 
+        armPiston = new PneumaticHelper(RobotMap.ARM_DOWN_SOLENOID_CHANNEL, 
+                RobotMap.ARM_UP_SOLENOID_CHANNEL, 
                 RobotMap.ARM_UP_SOLENOID_CHANNEL);
         
         sweeper = new Talon(RobotMap.SWEEPER_PWM_CHANNEL);
@@ -36,18 +36,18 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     }
     
     public void moveUp() {
-        armPiston.push();
-    }
-    
-    public void moveDown() {
         armPiston.pull();
     }
     
-    public void runSweeper() {
-        sweeper.set(RobotMap.SWEEPER_SPEED);
+    public void moveDown() {
+        armPiston.push();
     }
     
-    public void stopSweeper() {
+    public void runPickerUpper(double power) {
+        sweeper.set(power);
+    }
+    
+    public void stopPickerUpper() {
         sweeper.set(0);
     }
     
@@ -56,6 +56,7 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     }
 
     public void setToDefaultPosition() {
+        //System.out.println("setting arm to default");
         armPiston.setToDefault();
     }
 }

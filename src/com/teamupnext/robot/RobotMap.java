@@ -77,10 +77,13 @@ public class RobotMap {
     
     //Shooter Constants
     public static final int SHOOTER_CAN = 6;
-    public static final double SHOOTING_POWER_DEFAULT = .7;
-    public static final double SHOOTER_FROM_STOP_TIMEOUT = 5;
-    public static final double SHOOTER_LITTLE_HOP_TIMEOUT = 2;
-    public static double SHOOTER_HOP_SPEED = 1.0;
+    public static final int SHOOTER_PWM_CHANNEL = 3;
+    public static final double SHOOTING_POWER_DEFAULT = .75;
+    public static final double SHOOTER_FROM_STOP_TIMEOUT = 4;
+    public static final double SHOOTER_LITTLE_HOP_TIMEOUT = 1;
+    public static final double SHOOTER_PREHOP_TIMEOUT = .5;
+    public static final double SHOOTER_HOP_SPEED = 1.0;
+    public static final double SHOOTER_PREHOP_SPEED = .5;
     //End Shooter Constants
     
     //Compressor Constants
@@ -97,6 +100,8 @@ public class RobotMap {
     //End TableTilter Constants    
     
     //Auto Constants
-    public static double AUTO_REVERSE_TIME = 1.75;
+    public static double AUTO_REVERSE_TIME = 1.7;
     //End Auto Constants
+    public static double DEFAULT_PNEUMATIC_TIMEOUT = .5;
+    public static double CLAMP_TIMEOUT = .3;
 }

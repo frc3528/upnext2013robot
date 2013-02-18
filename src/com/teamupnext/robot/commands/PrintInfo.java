@@ -29,7 +29,7 @@ public class PrintInfo extends CommandBase {
             Utils.printToDriverStation("shooting power: " + shooter.getPower(), DriverStationLCD.Line.kUser1);
             Utils.printToDriverStation("leftEncoder: " + driveTrain.getLeftEncoder(), DriverStationLCD.Line.kUser2);
             Utils.printToDriverStation("rightEncoder: " + driveTrain.getRightEncoder(), DriverStationLCD.Line.kUser3);
-            Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
+            //Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
         } catch (CANTimeoutException ex) {
             System.out.println(ex.getMessage());
         }
