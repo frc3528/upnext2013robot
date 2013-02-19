@@ -83,13 +83,17 @@ public class OI {
         JoystickButton hold = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
         hold.whenPressed(new PushHolder());
         
+        //Sweep
+        JoystickButton sweeper = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
+        sweeper.whenPressed(new ToggleSweeper());
+        
         //Un Clamp
-        autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
-        autoShoot.whenPressed(new UnClamp());
+        //autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
+        //autoShoot.whenPressed(new UnClamp());
         
         //Clamp
-        suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
-        suckFrisbee.whenPressed(new Clamp());
+        //suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
+        //suckFrisbee.whenPressed(new Clamp());
         
         //Spin up Shooter
         spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);

@@ -4,42 +4,42 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
  * @author Team Up Next
  */
-public class ToggleSweeper extends CommandBase {
+public class DriveByTime extends CommandBase {
     
-    private static boolean isOn = false;
+    private double leftPower;
+    private double rightPower;
+    private double time;
     
-    public ToggleSweeper() {
-        requires(pickerUpper);
+    public DriveByTime(double leftPower, double rightPower, double time) {
+        // Use requires() here to declare subsystem dependencies
+        requires(driveTrain);
+        this.leftPower = leftPower;
+        this.rightPower = rightPower;
+        this.time = time;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(isOn) {
-            isOn = false;
-            new TurnSweeperOff().start();
-        } else {
-            isOn = true;
-            new TurnSweeperOn().start();
-        }
+        driveTrain.drive(leftPower, rightPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        driveTrain.stopDrive();
     }
 
     // Called when another command which requires one or more of the same

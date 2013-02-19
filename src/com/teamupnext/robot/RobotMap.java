@@ -102,6 +102,8 @@ public class RobotMap {
     //End TableTilter Constants    
     
     //Auto Constants
-    public static double AUTO_REVERSE_TIME = 1.7;
+    public static final double AUTO_REVERSE_TIME = 1.7;
+    public static final double AUTO_DRIVE_POWER = 0.6;
+    public static final double AUTO_FORWARD_TIME = 2;
     //End Auto Constants
 }

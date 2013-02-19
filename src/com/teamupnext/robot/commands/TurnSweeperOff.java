@@ -4,33 +4,24 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
  * @author Team Up Next
  */
-public class ToggleSweeper extends CommandBase {
+public class TurnSweeperOff extends CommandBase {
     
-    private static boolean isOn = false;
-    
-    public ToggleSweeper() {
-        requires(pickerUpper);
+    public TurnSweeperOff() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        pickerUpper.stopPickerUpper();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(isOn) {
-            isOn = false;
-            new TurnSweeperOff().start();
-        } else {
-            isOn = true;
-            new TurnSweeperOn().start();
-        }
     }
 
     // Make this return true when this Command no longer needs to run execute()

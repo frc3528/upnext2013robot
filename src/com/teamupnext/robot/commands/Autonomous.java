@@ -31,15 +31,22 @@ public class Autonomous extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-        //addSequential(new TiltShooter(7.5));
-        //addParallel(new PreBigHopShooter());
+        
+        
         addParallel(new BigHopShooter());
-        //addParallel(new LowerArm());
-        addSequential(new ReverseDriveTrainByTime(RobotMap.AUTO_REVERSE_TIME));
         addSequential(new TiltShooter(-7.9));
+        addSequential(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_REVERSE_TIME));//addSequential(new ReverseDriveTrainByTime(5));
         addSequential(new Fire());
-        addSequential(new Fire());
-        addSequential(new Fire());
+        //addSequential(new Fire());
+        //addSequential(new Fire());
+        //addSequential(new LowerArm());
+        //addSequential(new TurnSweeperOn());
+        //addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_FORWARD_TIME));
+        //addParallel(new TurnSweeperOff());
+        //addSequential(new RaiseArm());
+        //addSequential(new TurnSweeperOn());
+        //addSequential(new Wait(.5));
+        //addSequential(new TurnSweeperOff());
         
     }
 }
