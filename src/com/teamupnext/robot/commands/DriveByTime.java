@@ -15,7 +15,7 @@ public class DriveByTime extends CommandBase {
     private double time;
     
     public DriveByTime(double leftPower, double rightPower, double time) {
-        // Use requires() here to declare subsystem dependencies
+        super("DriveByTime");
         requires(driveTrain);
         this.leftPower = leftPower;
         this.rightPower = rightPower;

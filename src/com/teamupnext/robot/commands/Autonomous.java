@@ -32,21 +32,31 @@ public class Autonomous extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         
+        //addSequential(new TiltTableToTop());
         
-        addParallel(new BigHopShooter());
-        addSequential(new TiltShooter(-7.9));
-        addSequential(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_REVERSE_TIME));//addSequential(new ReverseDriveTrainByTime(5));
+        //addParallel(new TiltTableDown(-7.9));//addSequential(new TiltTable(-7.9));
+        addParallel(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_REVERSE_TIME));//addSequential(new ReverseDriveTrainByTime(5));
+        addSequential(new BigHopShooter());
+        
         addSequential(new Fire());
-        //addSequential(new Fire());
-        //addSequential(new Fire());
-        //addSequential(new LowerArm());
-        //addSequential(new TurnSweeperOn());
-        //addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_FORWARD_TIME));
-        //addParallel(new TurnSweeperOff());
-        //addSequential(new RaiseArm());
-        //addSequential(new TurnSweeperOn());
-        //addSequential(new Wait(.5));
-        //addSequential(new TurnSweeperOff());
+        addSequential(new Fire());
+        addSequential(new Fire());
         
+        addParallel(new LowerArm());
+        addSequential(new TiltTableToBottom());
+        
+        //addSequential(new Wait(5));
+        addParallel(new TurnSweeperOn());
+        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_FORWARD_TIME));
+        
+        addParallel(new TurnSweeperOff());
+        addParallel(new TiltTableToTop());
+        addSequential(new RaiseArm());
+        
+        addSequential(new TurnSweeperOn());
+        addSequential(new Wait(3));
+        addSequential(new TurnSweeperOff());
+        addSequential(new Fire());
+        addSequential(new Fire());        
     }
 }

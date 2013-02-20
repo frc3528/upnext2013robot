@@ -28,6 +28,9 @@ public class DriveTrain extends Subsystem {
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
     public DriveTrain() throws CANTimeoutException {
+        
+        super("DriveTrain");
+        
         rightBack = new CANJaguar(RobotMap.DRIVE_RIGHT_BACK_CAN);
         rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
         leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
@@ -85,6 +88,13 @@ public class DriveTrain extends Subsystem {
         if(sensitivity < 10) {
             sensitivity += 1;
         }
+    }
+    
+    public void setMotorSafety(boolean enabled) {
+        rightBack.setSafetyEnabled(enabled);
+        rightFront.setSafetyEnabled(enabled);
+        leftBack.setSafetyEnabled(enabled);
+        leftFront.setSafetyEnabled(enabled);
     }
     
     private void initializeJag(CANJaguar jag) {

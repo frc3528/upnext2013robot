@@ -30,7 +30,7 @@ public abstract class CommandBase extends Command {
     public static PickerUpper pickerUpper = new PickerUpper();
     public static Shooter shooter;
     public static Targeter targeter = new Targeter();
-    public static TableTilter tableTilter = new TableTilter();
+    public static Table table = new Table();
     public static Shifters shifters = new Shifters();
     
     // InsightLT stuff
@@ -76,7 +76,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(pickerUpper);
         SmartDashboard.putData(shooter);
         SmartDashboard.putData(targeter);
-        SmartDashboard.putData(tableTilter);
+        SmartDashboard.putData(table);
         SmartDashboard.putData(shifters);
         
         // create and start the compressor

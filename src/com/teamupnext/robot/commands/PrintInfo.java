@@ -34,11 +34,11 @@ public class PrintInfo extends CommandBase {
             System.out.println(ex.getMessage());
         }
         
-        Utils.printToDriverStation( "Gyro: " + tableTilter.getAngle(), DriverStationLCD.Line.kUser6);
+        Utils.printToDriverStation( "Gyro: " + table.getAngle(), DriverStationLCD.Line.kUser6);
         Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
         
-        SmartDashboard.putBoolean("TableLowLimit", tableTilter.getLowLimitSwitch());
-        SmartDashboard.putBoolean("TableHighLimit", tableTilter.getHighLimitSwitch());
+        SmartDashboard.putBoolean("TableLowLimit", table.getLowLimitSwitch());
+        SmartDashboard.putBoolean("TableHighLimit", table.getHighLimitSwitch());
     }
 
     // Make this return true when this Command no longer needs to run execute()

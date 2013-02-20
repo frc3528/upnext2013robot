@@ -13,31 +13,32 @@ package com.teamupnext.robot.commands;
 public class SetRobotToDefault extends CommandBase {
     
     public SetRobotToDefault() {
-        //requires(shooter);
-        //requires(driveTrain);
-        //requires(feeder);
-        //requires(pickerUpper);
-        //requires(tableTilter);
+        requires(shooter);
+        requires(driveTrain);
+        requires(feeder);
+        requires(pickerUpper);
+        requires(table);
+        //setInterruptible(false);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
         try {
+            new SetTableToDefault().start();
             //new SetPneumaticDevicesToDefault().start();
             setPneumaticDevicesToDefault();
-            
             //new TurnOffShooter().start();
             shooter.stop();
-            
-            tableTilter.zeroGyro();
+            table.zeroGyro();
             driveTrain.zeroEncoders();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+        
     }
 
     // Make this return true when this Command no longer needs to run execute()

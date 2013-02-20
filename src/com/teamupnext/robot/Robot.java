@@ -11,6 +11,8 @@ package com.teamupnext.robot;
 import com.teamupnext.robot.commands.Autonomous;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.PrintInfo;
+import com.teamupnext.robot.commands.SetMotorSafetyOff;
+import com.teamupnext.robot.commands.SetMotorSafetyOn;
 import com.teamupnext.robot.commands.SetRobotToDefault;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -48,6 +50,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
         new SetRobotToDefault().start();
+        new SetMotorSafetyOff().start();
         autonomousCommand.start();
     }
 
@@ -62,6 +65,7 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         autonomousCommand.cancel();
+        new SetMotorSafetyOn().start();
         new SetRobotToDefault().start();
         //new PrintInfo().start();
         //new TestCommand().start();

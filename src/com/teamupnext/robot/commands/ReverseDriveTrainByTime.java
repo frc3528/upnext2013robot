@@ -13,7 +13,6 @@ public class ReverseDriveTrainByTime extends CommandBase {
     private double time;
     
     public ReverseDriveTrainByTime(double time) {
-        // Use requires() here to declare subsystem dependencies
         requires(driveTrain);
         this.time = time;
     }

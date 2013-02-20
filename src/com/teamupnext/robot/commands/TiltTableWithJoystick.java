@@ -16,8 +16,8 @@ public class TiltTableWithJoystick extends CommandBase {
     
     public TiltTableWithJoystick() {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-        requires(tableTilter);
+        super("TiltTableWithJoystick");
+        requires(table);
     }
 
     // Called just before this Command runs the first time
@@ -30,11 +30,11 @@ public class TiltTableWithJoystick extends CommandBase {
         double value = stick.getZ();
         
         if(value < 0){
-            tableTilter.moveUp();
+            table.moveUp();
         } else if(value > 0){
-            tableTilter.moveDown();
+            table.moveDown();
         } else {
-            tableTilter.stop();
+            table.stop();
         }
     }
 

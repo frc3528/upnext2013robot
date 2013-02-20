@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  * @author jousley
  */
-public class TableTilter extends Subsystem {
+public class Table extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -25,7 +25,7 @@ public class TableTilter extends Subsystem {
     private Relay leadScrewMotor; 
     //private double angle;
    
-    public TableTilter()
+    public Table()
     {
         super();
         
@@ -54,7 +54,7 @@ public class TableTilter extends Subsystem {
         return highLimitSwitch.get();
     }
     
-    public void move(double destination) {
+    /*public void move(double destination) {
         double angle = gyro.getAngle();
         
         if(destination == angle) {
@@ -73,7 +73,7 @@ public class TableTilter extends Subsystem {
         }
 
         //angle += gyro.getAngle();
-    }
+    }*/
     
     public void moveUp()
     {        
@@ -105,7 +105,7 @@ public class TableTilter extends Subsystem {
         leadScrewMotor.set(Relay.Value.kOff);
     }
     
-    private void moveUp(double destinationAngle) {       
+    /*private void moveUp(double destinationAngle) {       
         while(gyro.getAngle() < destinationAngle && !highLimitSwitch.get()) {
             moveUp();
         }
@@ -116,7 +116,7 @@ public class TableTilter extends Subsystem {
             moveDown();
             //System.out.println("dest: " + destinationAngle + "current: " + gyro.getAngle());
         }
-    }
+    }*/
     
     public double getAngle() {
         //return angle;
@@ -125,5 +125,13 @@ public class TableTilter extends Subsystem {
     
     public void zeroGyro() {
         gyro.reset();
+    }
+
+    public boolean isUp() {
+        return highLimitSwitch.get();
+    }
+    
+    public boolean isDown() {
+        return lowLimitSwitch.get();
     }
 }

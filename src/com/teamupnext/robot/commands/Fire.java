@@ -13,21 +13,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Fire extends CommandGroup {
     
     public Fire() {
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        //addSequential(new SpinUpShooter());
         addSequential(new Feed());
         addSequential(new LittleHopShooter());
-        //addSequential(new SpinUpShooter());
-        
     }
 }

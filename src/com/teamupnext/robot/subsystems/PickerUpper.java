@@ -44,11 +44,12 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     }
     
     public void runPickerUpper(double power) {
+        System.out.println("setting sweeper to " + power);
         sweeper.set(power);
     }
     
     public void stopPickerUpper() {
-        sweeper.set(0);
+        runPickerUpper(0);
     }
     
     public void zeroSolenoids() {
