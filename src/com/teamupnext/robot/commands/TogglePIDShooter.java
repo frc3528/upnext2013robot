@@ -1,39 +1,35 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.teamupnext.robot.commands;
-
-import com.teamupnext.robot.RobotMap;
 
 /**
  *
- * @author Team Up Next
+ * @author TeamUpNextControls
  */
-public class PushHolder extends CommandBase {
+public class TogglePIDShooter extends CommandBase {
     
-    public PushHolder() {
-        requires(feeder);
+    private static final int Setpoints[] = new int[] {0, 56, 58, 66, 68};
+    private static int counter = 0;
+    
+    public TogglePIDShooter() {
+        // Use requires() here to declare subsystem dependencies
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.HOLDER_PUSH_TIMEOUT);
+        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        feeder.pushHolder();
+        shooter.setSpeed(Setpoints[counter++ % Setpoints.length]);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        feeder.zeroSolenoids();
     }
 
     // Called when another command which requires one or more of the same

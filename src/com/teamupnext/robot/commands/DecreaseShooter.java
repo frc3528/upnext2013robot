@@ -8,9 +8,9 @@ package com.teamupnext.robot.commands;
  *
  * @author jousley
  */
-public class DecreaseShooterPower extends CommandBase {
+public class DecreaseShooter extends CommandBase {
     
-    public DecreaseShooterPower() {
+    public DecreaseShooter() {
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +19,7 @@ public class DecreaseShooterPower extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shooter.decreasePower();
+        shooter.decrease();
     }
 
     // Make this return true when this Command no longer needs to run execute()

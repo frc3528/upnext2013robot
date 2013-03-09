@@ -4,36 +4,33 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
- * @author Team Up Next
+ * @author jousley
  */
-public class PullHolder extends CommandBase {
+public class IncreaseShooter extends CommandBase {
     
-    public PullHolder() {
-        requires(feeder);
+    public IncreaseShooter() {
+        //requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.HOLDER_PULL_TIMEOUT);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        feeder.pullHolder();
+        shooter.increase();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        feeder.zeroSolenoids();
+        //System.out.println("... power up end ...");
     }
 
     // Called when another command which requires one or more of the same

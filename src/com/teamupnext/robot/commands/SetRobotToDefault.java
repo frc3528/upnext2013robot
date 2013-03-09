@@ -1,10 +1,4 @@
-
 package com.teamupnext.robot.commands;
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -24,12 +18,10 @@ public class SetRobotToDefault extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         try {
-            new SetTableToDefault().start();
-            //new SetPneumaticDevicesToDefault().start();
+            //new SetTableToDefault().start();
             setPneumaticDevicesToDefault();
-            //new TurnOffShooter().start();
-            shooter.stop();
-            table.zeroGyro();
+            shooter.setToDefault();
+            //table.zeroGyro();
             driveTrain.zeroEncoders();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -57,9 +49,11 @@ public class SetRobotToDefault extends CommandBase {
     }
 
     private void setPneumaticDevicesToDefault() {
+        //pickerUpper.setToDefaultPosition();
+        //feeder.setToDefaultPosition();
+        //shifters.setToDefaultPosition();
         new RaiseArm().start();
         new PullFeeder().start();
-        new PushHolder().start();
         new ShiftDown().start();
     }
 }

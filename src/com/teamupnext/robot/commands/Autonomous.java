@@ -36,7 +36,7 @@ public class Autonomous extends CommandGroup {
         
         //addParallel(new TiltTableDown(-7.9));//addSequential(new TiltTable(-7.9));
         addParallel(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_REVERSE_TIME));//addSequential(new ReverseDriveTrainByTime(5));
-        addSequential(new BigHopShooter());
+        //addSequential(new BigHopShooter());
         
         addSequential(new Fire());
         addSequential(new Fire());

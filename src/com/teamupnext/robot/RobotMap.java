@@ -45,12 +45,11 @@ public class RobotMap {
     //End Drive Train Constants
     
     //Camera Constants
-    public static final int CAMERA_BRIGHTNESS = 50;
     public static final String TARGETING_CAMERA_ADDRESS = "10.35.28.11";
     public static final String DISC_CAMERA_ADDRESS = "10.35.28.12";
-    public static final int TARGETING_CAMERA_BRIGHTNESS = 0;
-    public static final int TARGETING_CAMERA_COMPRESSION = 50;
-    public static final int TARGETING_CAMERA_COLOR_LEVEL = 100;
+    public static final int TARGETING_CAMERA_BRIGHTNESS = 25;
+    public static final int TARGETING_CAMERA_COMPRESSION = 0;
+    public static final int TARGETING_CAMERA_COLOR_LEVEL = 0;
     public static final int DISC_CAMERA_COMPRESSION = 50;
     public static final int DISC_CAMERA_COLOR_LEVEL = 0;
     public static final int DISC_CAMERA_BRIGHTNESS = 50;
@@ -59,12 +58,9 @@ public class RobotMap {
     //Feeder Constants
     public static final int FEEDER_PUSH_SOLENOID_CHANNEL = 5;
     public static final int FEEDER_PULL_SOLENOID_CHANNEL = 6;
-    public static final int HOLDER_PUSH_SOLENOID_CHANNEL = 3;
-    public static final int HOLDER_PULL_SOLENOID_CHANNEL = 4;
-    public static final double FEEDER_PUSH_TIMEOUT = .25;
-    public static final double FEEDER_PULL_TIMEOUT = .05;
-    public static final double HOLDER_PUSH_TIMEOUT = .05;
-    public static final double HOLDER_PULL_TIMEOUT = .125;
+    public static final double FEEDER_PUSH_TIMEOUT = .05;
+    public static final double FEEDER_PULL_TIMEOUT = .15;
+    public static final double FEEDER_EXTENDED_PULL_TIMEOUT = 1;
     //End Feeder Constants
     
     //PickerUpper Constants
@@ -78,14 +74,16 @@ public class RobotMap {
     //End PickerUpper Constants
     
     //Shooter Constants
-    public static final int SHOOTER_CAN = 6;
     public static final int SHOOTER_PWM_CHANNEL = 3;
-    public static final double SHOOTING_POWER_DEFAULT = .75;
-    public static final double SHOOTER_FROM_STOP_TIMEOUT = 2;
-    public static final double SHOOTER_LITTLE_HOP_TIMEOUT = .5;
-    public static final double SHOOTER_PREHOP_TIMEOUT = .5;
-    public static final double SHOOTER_HOP_SPEED = 1.0;
-    public static final double SHOOTER_PREHOP_SPEED = .5;
+    public static final int SHOOTER_ENCODER_PORT = 7;
+    public static final int SHOOTER_ENCODER_MAGNET_COUNT = 1;
+    
+    //PID
+    public static final double SHOOTER_KP = 0.036;//0.024;
+    public static final double SHOOTER_KI = 0.0288;//0.005;
+    public static final double SHOOTER_KD = 0.3125;//0.0;
+    public static final double SHOOTER_KF = 0.0133;
+    //End PID
     //End Shooter Constants
     
     //Compressor Constants

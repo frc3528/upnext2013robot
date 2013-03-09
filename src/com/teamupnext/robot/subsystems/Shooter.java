@@ -6,7 +6,6 @@ package com.teamupnext.robot.subsystems;
 
 import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
-import com.teamupnext.robot.commands.RunShooter;
 import edu.wpi.first.wpilibj.DriverStationLCD;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
@@ -36,7 +35,7 @@ public class Shooter extends Subsystem {
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new RunShooter());
+        //setDefaultCommand(new RunShooter());
     }
     
     public void setPower(double power){

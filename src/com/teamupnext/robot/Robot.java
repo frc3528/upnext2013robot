@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        new PrintInfo().start();
+        //new PrintInfo().start();
     }
 
     public void teleopInit() {
@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot {
         autonomousCommand.cancel();
         new SetMotorSafetyOn().start();
         new SetRobotToDefault().start();
+        
         //new PrintInfo().start();
         //new TestCommand().start();
     }
@@ -85,6 +86,6 @@ public class Robot extends IterativeRobot {
     }
     
     public void disabledPeriodic() {
-        //new PrintInfo().start();
+        
     }
 }

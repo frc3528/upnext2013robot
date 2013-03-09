@@ -1,19 +1,19 @@
 
 package com.teamupnext.robot;
 
-import com.teamupnext.robot.commands.BigHopShooter;
 import com.teamupnext.robot.commands.DecreaseSensitivity;
-import com.teamupnext.robot.commands.DecreaseShooterPower;
+import com.teamupnext.robot.commands.DecreaseShooter;
 import com.teamupnext.robot.commands.Feed;
 import com.teamupnext.robot.commands.Fire;
 import com.teamupnext.robot.commands.IncreaseSensitivity;
-import com.teamupnext.robot.commands.IncreaseShooterPower;
+import com.teamupnext.robot.commands.IncreaseShooter;
 import com.teamupnext.robot.commands.LowerArm;
-import com.teamupnext.robot.commands.PullHolder;
-import com.teamupnext.robot.commands.PushHolder;
+import com.teamupnext.robot.commands.PIDShooterEncoderFailToggle;
 import com.teamupnext.robot.commands.RaiseArm;
+import com.teamupnext.robot.commands.RapidFire;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
+import com.teamupnext.robot.commands.TogglePIDShooter;
 import com.teamupnext.robot.commands.ToggleSweeper;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -29,15 +29,17 @@ public class OI {
     private JoystickButton shiftUp;
     private JoystickButton shiftDown;
     private JoystickButton fire;
+    private JoystickButton rapidFire;
     private JoystickButton autoShoot;
     private JoystickButton raiseArm;
     private JoystickButton lowerArm;
     private JoystickButton suckFrisbee;
     private JoystickButton increaseSensitivity;
     private JoystickButton decreaseSensitivity;
-    private JoystickButton spinUpShooter;
+    private JoystickButton toggleShooter;
     private JoystickButton shooterIncrease;
     private JoystickButton shooterDecrease;
+    private JoystickButton toggleFailMode;
     
     //Testing
     private Joystick testingStick;
@@ -58,10 +60,6 @@ public class OI {
         
         shiftUp.whenPressed(new ShiftUp());
         shiftDown.whenPressed(new ShiftDown());
-        
-        //Fire
-        fire = new JoystickButton(controlsStick, RobotMap.X_BUTTON);
-        fire.whenPressed(new Fire());
                 
         //Raise Arm
         raiseArm = new JoystickButton(drivingStick, RobotMap.Y_BUTTON);
@@ -72,16 +70,22 @@ public class OI {
         lowerArm.whenPressed(new LowerArm());
         
         //Release Holder
-        JoystickButton releaseHolder = new JoystickButton(drivingStick, RobotMap.B_BUTTON);
-        releaseHolder.whenPressed(new PullHolder());
+        //JoystickButton releaseHolder = new JoystickButton(drivingStick, RobotMap.B_BUTTON);
+        //releaseHolder.whenPressed(new PullHolder());
         
         //Hold
-        JoystickButton hold = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
-        hold.whenPressed(new PushHolder());
+        //JoystickButton hold = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
+        //hold.whenPressed(new PushHolder());
         
         //Sweep
-        JoystickButton sweeper = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
+        JoystickButton sweeper = new JoystickButton(drivingStick, RobotMap.Y_BUTTON);
         sweeper.whenPressed(new ToggleSweeper());
+        
+        //Sensitivity
+        increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);
+        increaseSensitivity.whenPressed(new IncreaseSensitivity());
+        decreaseSensitivity = new JoystickButton(drivingStick, RobotMap.BACK_BUTTON);
+        decreaseSensitivity.whenPressed(new DecreaseSensitivity());
         
         //Un Clamp
         //autoShoot = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
@@ -91,21 +95,28 @@ public class OI {
         //suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
         //suckFrisbee.whenPressed(new Clamp());
         
-        //Spin up Shooter
-        spinUpShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);
-        spinUpShooter.whenPressed(new BigHopShooter());
+        //Fire
+        fire = new JoystickButton(controlsStick, RobotMap.X_BUTTON);
+        fire.whenPressed(new Fire());
+        
+        //Rapid Fire
+        rapidFire = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
+        rapidFire.whenPressed(new RapidFire());
+        
+        //Toggle Shooter
+        toggleShooter = new JoystickButton(controlsStick, RobotMap.B_BUTTON);
+        toggleShooter.whenPressed(new TogglePIDShooter());
+        
+        //Toggle Shooter Fail Mode
+        toggleFailMode = new JoystickButton(controlsStick, RobotMap.A_BUTTON);
+        toggleFailMode.whenPressed(new PIDShooterEncoderFailToggle());
         
         //Change shooter speed
         shooterIncrease = new JoystickButton(controlsStick, RobotMap.START_BUTTON);
-        shooterIncrease.whenPressed(new IncreaseShooterPower());
+        shooterIncrease.whenPressed(new IncreaseShooter());
         shooterDecrease = new JoystickButton(controlsStick, RobotMap.BACK_BUTTON);
-        shooterDecrease.whenPressed(new DecreaseShooterPower());
+        shooterDecrease.whenPressed(new DecreaseShooter());
         
-        //Sensitivity
-        increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);
-        increaseSensitivity.whenPressed(new IncreaseSensitivity());
-        decreaseSensitivity = new JoystickButton(drivingStick, RobotMap.BACK_BUTTON);
-        decreaseSensitivity.whenPressed(new DecreaseSensitivity());
         
         //test
         testingStick = new Joystick(RobotMap.TESTING_JOYSTICK_PORT);
@@ -120,10 +131,10 @@ public class OI {
         testFeed.whenPressed(new Feed());
         
         testShooterIncrease = new JoystickButton(testingStick, RobotMap.B_BUTTON);
-        testShooterIncrease.whenPressed(new IncreaseShooterPower());
+        testShooterIncrease.whenPressed(new IncreaseShooter());
         
         testShooterDecrease = new JoystickButton(testingStick, RobotMap.X_BUTTON);
-        testShooterDecrease.whenPressed(new DecreaseShooterPower());   
+        testShooterDecrease.whenPressed(new DecreaseShooter());   
     }
     
     public Joystick getDrivingJoystick()

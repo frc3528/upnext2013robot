@@ -28,7 +28,7 @@ public abstract class CommandBase extends Command {
     public static Climber climber = new Climber();
     public static Feeder feeder = new Feeder();
     public static PickerUpper pickerUpper = new PickerUpper();
-    public static Shooter shooter;
+    public static PIDShooter shooter;
     public static Targeter targeter = new Targeter();
     public static Table table = new Table();
     public static Shifters shifters = new Shifters();
@@ -59,7 +59,8 @@ public abstract class CommandBase extends Command {
         
         // create our Shooter and DriveTrain subystems
         try {
-            shooter = new Shooter();
+            shooter = new PIDShooter();
+            shooter.startShooter();
             driveTrain = new DriveTrain();
         } catch (CANTimeoutException ex) {
             System.out.println("--- Failed initializing shooter or drive train ---");

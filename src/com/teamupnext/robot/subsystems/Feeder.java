@@ -18,17 +18,12 @@ public class Feeder extends Subsystem implements PneumaticDevice {
     // here. Call these from Commands.
    
    private PneumaticHelper feeder;
-   private PneumaticHelper holder;
+   private double pullTime = RobotMap.FEEDER_PULL_TIMEOUT;
    
    public Feeder() {
        feeder = new PneumaticHelper(RobotMap.FEEDER_PUSH_SOLENOID_CHANNEL, 
                RobotMap.FEEDER_PULL_SOLENOID_CHANNEL, 
                RobotMap.FEEDER_PULL_SOLENOID_CHANNEL);
-       
-       holder = new PneumaticHelper(RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL, 
-               RobotMap.HOLDER_PULL_SOLENOID_CHANNEL, 
-               RobotMap.HOLDER_PUSH_SOLENOID_CHANNEL);
-       
    }
    
    public void initDefaultCommand() {
@@ -37,6 +32,7 @@ public class Feeder extends Subsystem implements PneumaticDevice {
     }
    
    public void pushFeeder() {
+       System.out.println("feeding");
        feeder.push();
    } 
    
@@ -44,21 +40,23 @@ public class Feeder extends Subsystem implements PneumaticDevice {
        feeder.pull();
    }
    
-   public void pushHolder() {    
-       holder.push();
-   }
-   
-   public void pullHolder() {     
-       holder.pull();
-   }
-   
    public void zeroSolenoids() {
        feeder.reset();
-       holder.reset();
    }
 
     public void setToDefaultPosition() {
-        holder.setToDefault();
         feeder.setToDefault();
+    }
+    
+     public void setUseExtendedPullTime(boolean use) {
+        if(use) {
+            pullTime = RobotMap.FEEDER_EXTENDED_PULL_TIMEOUT;
+        } else {
+            pullTime = RobotMap.FEEDER_PULL_TIMEOUT;
+        }
+    }
+
+    public double getPullTime() {
+        return pullTime;
     }
 }

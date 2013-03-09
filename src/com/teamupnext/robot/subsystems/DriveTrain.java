@@ -8,6 +8,7 @@ import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.Utils;
 import com.teamupnext.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.can.CANTimeoutException;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,10 +21,14 @@ public class DriveTrain extends Subsystem {
     
     private RobotDrive drive;
     
-    private CANJaguar rightBack;
-    private CANJaguar rightFront;
-    private CANJaguar leftBack;
-    private CANJaguar leftFront;
+    //private CANJaguar rightBack;
+    //private CANJaguar rightFront;
+    //private CANJaguar leftBack;
+    //private CANJaguar leftFront;
+    
+    //TestBot
+    private Jaguar right;
+    private Jaguar left;
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
@@ -31,6 +36,7 @@ public class DriveTrain extends Subsystem {
         
         super("DriveTrain");
         
+        /*
         rightBack = new CANJaguar(RobotMap.DRIVE_RIGHT_BACK_CAN);
         rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
         leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
@@ -42,6 +48,15 @@ public class DriveTrain extends Subsystem {
         initializeJag(leftFront);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);    
+        */
+        
+        left = new Jaguar(10);
+        right = new Jaguar(9);
+        
+        left.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        right.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        
+        drive = new RobotDrive(left, right);
     }
     
     public void initDefaultCommand() {
@@ -51,7 +66,7 @@ public class DriveTrain extends Subsystem {
     public void drive(double left, double right){
         double leftPower = Utils.rampSpeed(left, sensitivity/10);
         double rightPower = Utils.rampSpeed(right, sensitivity/10);
-        drive.tankDrive( leftPower , rightPower);
+        drive.tankDrive(leftPower , rightPower);
     }
     
     public void stopDrive() {
@@ -63,19 +78,19 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getLeftEncoder() throws CANTimeoutException {
-        return leftBack.getPosition();
+        return 0.0;//leftBack.getPosition();
     }
     
     public double getRightEncoder() throws CANTimeoutException {
-        return rightBack.getPosition();
+        return 0.0;// rightBack.getPosition();
     }
     
     public void zeroEncoders() throws CANTimeoutException {
-        leftBack.disableControl();
-        leftBack.enableControl();
+        //leftBack.disableControl();
+        //leftBack.enableControl();
         
-        rightBack.disableControl();
-        rightBack.enableControl();
+        //rightBack.disableControl();
+        //rightBack.enableControl();
     }
     
     public void decreaseSensitivity() {
@@ -91,10 +106,13 @@ public class DriveTrain extends Subsystem {
     }
     
     public void setMotorSafety(boolean enabled) {
-        rightBack.setSafetyEnabled(enabled);
+        left.setSafetyEnabled(enabled);
+        right.setSafetyEnabled(enabled);
+        
+        /*rightBack.setSafetyEnabled(enabled);
         rightFront.setSafetyEnabled(enabled);
         leftBack.setSafetyEnabled(enabled);
-        leftFront.setSafetyEnabled(enabled);
+        leftFront.setSafetyEnabled(enabled);*/
     }
     
     private void initializeJag(CANJaguar jag) {

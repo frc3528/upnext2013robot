@@ -24,18 +24,20 @@ public class PrintInfo extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        try {
-            //Utils.printToDriverStation("i, o: " + shooter.getBusVoltage() + ", " + shooter.getOutputVoltage(), DriverStationLCD.Line.kUser1);
-            Utils.printToDriverStation("shooting power: " + shooter.getPower(), DriverStationLCD.Line.kUser1);
-            Utils.printToDriverStation("leftEncoder: " + driveTrain.getLeftEncoder(), DriverStationLCD.Line.kUser2);
-            Utils.printToDriverStation("rightEncoder: " + driveTrain.getRightEncoder(), DriverStationLCD.Line.kUser3);
-            //Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
-        } catch (CANTimeoutException ex) {
-            System.out.println(ex.getMessage());
-        }
+        //Utils.printToDriverStation("i, o: " + shooter.getBusVoltage() + ", " + shooter.getOutputVoltage(), DriverStationLCD.Line.kUser1);
+        Utils.printToDriverStation("shooting power: " + shooter.getOutputPower(), DriverStationLCD.Line.kUser1);
+        Utils.printToDriverStation("Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser2);
+        //Utils.printToDriverStation("leftEncoder: " + driveTrain.getLeftEncoder(), DriverStationLCD.Line.kUser2);
+        //Utils.printToDriverStation("rightEncoder: " + driveTrain.getRightEncoder(), DriverStationLCD.Line.kUser3);
+        //Utils.printToDriverStation("Shooter current: " + shooter.getCurrent(), DriverStationLCD.Line.kUser4);
+        Utils.printToDriverStation("Shooter Count: " + shooter.getShooterEncoderCount(), DriverStationLCD.Line.kUser3);
         
-        Utils.printToDriverStation( "Gyro: " + table.getAngle(), DriverStationLCD.Line.kUser6);
-        Utils.printToDriverStation( "Sensitivity: " + driveTrain.getSensitivity(), DriverStationLCD.Line.kUser5);
+        int setpoint = shooter.getPIDSetpoint();
+        double rps = shooter.getRPS();
+        
+        Utils.printToDriverStation("Setpoint: " + setpoint, DriverStationLCD.Line.kUser4);
+        Utils.printToDriverStation("Shooter RPS: " + rps, DriverStationLCD.Line.kUser5);
+        Utils.printToDriverStation("Dif: " + (rps - setpoint), DriverStationLCD.Line.kUser6);
         
         SmartDashboard.putBoolean("TableLowLimit", table.getLowLimitSwitch());
         SmartDashboard.putBoolean("TableHighLimit", table.getHighLimitSwitch());

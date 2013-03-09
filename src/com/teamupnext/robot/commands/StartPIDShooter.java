@@ -6,18 +6,18 @@ package com.teamupnext.robot.commands;
 
 /**
  *
- * @author Team Up Next
+ * @author TeamUpNextControls
  */
-public class PreBigHopShooter extends CommandBase {
+public class StartPIDShooter extends CommandBase {
     
-    public PreBigHopShooter() {
+    public StartPIDShooter() {
         // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(.5);
-        shooter.setPower(.5);
+        shooter.startShooter();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,12 +26,11 @@ public class PreBigHopShooter extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        shooter.setPower(1.0);
     }
 
     // Called when another command which requires one or more of the same

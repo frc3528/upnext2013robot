@@ -4,16 +4,15 @@
  */
 package com.teamupnext.robot.commands;
 
-import edu.wpi.first.wpilibj.can.CANTimeoutException;
-
 /**
  *
- * @author jousley
+ * @author TeamUpNextControls
  */
-public class TurnOffShooter extends CommandBase {
+public class WaitTillShooterOnTarget extends CommandBase {
     
-    public TurnOffShooter() {
-        requires(shooter);
+    public WaitTillShooterOnTarget() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -22,12 +21,12 @@ public class TurnOffShooter extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shooter.stop();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        //System.out.println("on target: " + shooter.isOnPIDSetpoint());
+        return shooter.isOnPIDSetpoint();
     }
 
     // Called once after isFinished returns true
