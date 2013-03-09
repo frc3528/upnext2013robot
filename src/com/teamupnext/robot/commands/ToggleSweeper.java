@@ -4,8 +4,6 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
  * @author Team Up Next
@@ -24,13 +22,9 @@ public class ToggleSweeper extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        if(isOn) {
-            isOn = false;
-            new TurnSweeperOff().start();
-        } else {
-            isOn = true;
-            new TurnSweeperOn().start();
-        }
+        isOn = !isOn;
+        
+        pickerUpper.setOn(isOn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

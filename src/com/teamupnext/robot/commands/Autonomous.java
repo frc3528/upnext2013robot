@@ -46,16 +46,16 @@ public class Autonomous extends CommandGroup {
         addSequential(new TiltTableToBottom());
         
         //addSequential(new Wait(5));
-        addParallel(new TurnSweeperOn());
+        addParallel(new ToggleSweeper());
         addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_FORWARD_TIME));
         
-        addParallel(new TurnSweeperOff());
+        addParallel(new ToggleSweeper());
         addParallel(new TiltTableToTop());
         addSequential(new RaiseArm());
         
-        addSequential(new TurnSweeperOn());
+        addSequential(new ToggleSweeper());
         addSequential(new Wait(3));
-        addSequential(new TurnSweeperOff());
+        addSequential(new ToggleSweeper());
         addSequential(new Fire());
         addSequential(new Fire());        
     }

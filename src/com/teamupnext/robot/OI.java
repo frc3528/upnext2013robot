@@ -1,9 +1,7 @@
 
 package com.teamupnext.robot;
 
-import com.teamupnext.robot.commands.AutoShoot;
 import com.teamupnext.robot.commands.BigHopShooter;
-import com.teamupnext.robot.commands.Clamp;
 import com.teamupnext.robot.commands.DecreaseSensitivity;
 import com.teamupnext.robot.commands.DecreaseShooterPower;
 import com.teamupnext.robot.commands.Feed;
@@ -16,9 +14,7 @@ import com.teamupnext.robot.commands.PushHolder;
 import com.teamupnext.robot.commands.RaiseArm;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
-import com.teamupnext.robot.commands.ToggleClamp;
 import com.teamupnext.robot.commands.ToggleSweeper;
-import com.teamupnext.robot.commands.UnClamp;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 

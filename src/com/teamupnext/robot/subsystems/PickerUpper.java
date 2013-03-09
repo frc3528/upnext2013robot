@@ -43,14 +43,22 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
         armPiston.push();
     }
     
-    public void runPickerUpper(double power) {
+    public void setOn(boolean on) {
+        if(on) {
+            sweeper.set(RobotMap.SWEEPER_SPEED);
+        } else {
+            sweeper.set(0);
+        }
+    }
+    
+    /*public void runPickerUpper(double power) {
         System.out.println("setting sweeper to " + power);
         sweeper.set(power);
     }
     
     public void stopPickerUpper() {
         runPickerUpper(0);
-    }
+    }*/
     
     public void zeroSolenoids() {
         armPiston.reset();
