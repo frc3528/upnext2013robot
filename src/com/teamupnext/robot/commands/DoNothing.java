@@ -1,26 +1,34 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.teamupnext.robot.commands;
 
 /**
  *
  * @author TeamUpNextControls
  */
-public class TogglePIDShooter extends CommandBase {
+public class DoNothing extends CommandBase implements IAutonomousCommand {
     
-    private static final int Setpoints[] = new int[] {0, 56, 58, 66, 68};
-    private static int counter = 0;
+    public String getName() {
+        return "doNothing";
+    }
     
-    public TogglePIDShooter() {
+    public boolean accepts(String name) {
+        return name.equalsIgnoreCase(getName());
+    }
+    
+    public DoNothing() {
         // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        shooter.setSetpoint(Setpoints[counter++ % Setpoints.length]);
     }
 
     // Make this return true when this Command no longer needs to run execute()

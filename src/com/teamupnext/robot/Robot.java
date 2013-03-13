@@ -9,15 +9,19 @@ package com.teamupnext.robot;
 
 
 import com.teamupnext.robot.commands.Autonomous;
+import com.teamupnext.robot.commands.AutonomousSelector;
 import com.teamupnext.robot.commands.CommandBase;
+import com.teamupnext.robot.commands.IAutonomousCommand;
 import com.teamupnext.robot.commands.PrintInfo;
 import com.teamupnext.robot.commands.SetMotorSafetyOff;
 import com.teamupnext.robot.commands.SetMotorSafetyOn;
 import com.teamupnext.robot.commands.SetRobotToDefault;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,30 +32,64 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
-    Command autonomousCommand;
+    private SendableChooser autoChooser;
+    private AutonomousSelector selector;
+    private IAutonomousCommand autonomousCommand;
+    private PrintInfo printInfo = new PrintInfo();
 
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    
+    public Robot() {   
+    }
+    
     public void robotInit() {
         
         // Initialize all subsystems
         CommandBase.init();
         
         // tell 'em where we are folks!
-        System.out.println("===> UpNext2013Robot <===");       
+        System.out.println("===> UpNext2013Robot <===");  
+        selector = new AutonomousSelector(new Autonomous());
+        autonomousCommand = new Autonomous();
         
         // instantiate the command used for the autonomous period
-        autonomousCommand = new Autonomous();
+        //autonomousCommand = new Autonomous();
     }
-
+    
     public void autonomousInit() {
         // schedule the autonomous command (example)
         new SetRobotToDefault().start();
         new SetMotorSafetyOff().start();
+        
+        String name = SmartDashboard.getString("Autonomous Mode", "7disc");   
+        System.out.println("Auto name: " + name);
+        autonomousCommand = selector.select(name);
+        
+        printInfo.start();
+        //System.out.println(SmartDashboard.getString("Autonomous Mode"));
         autonomousCommand.start();
+    }
+    
+    private String GetAutonomousName() {
+        //NetworkTable operation = NetworkTable.getTable("Operation");
+        
+        //System.out.println(SmartDashboard.getString("Autonomous Mode"));
+        
+        //System.out.println(SmartDashboard.getBoolean("Checkbox 1"));
+        
+        //System.out.println("TestBool1: " + SmartDashboard.getBoolean("TestBool 1"));
+        
+        //String name = String.valueOf(SmartDashboard.getNumber("Autonomous", -1));
+        //System.out.println("autoString: " + name);
+        //System.out.println("autoDouble: " + SmartDashboard.getNumber("Autonomous", -1));
+        
+        String name = SmartDashboard.getString("Autonomous Mode", "7disc");
+        
+        return name;//SmartDashboard.getString("Autonomous", "none");
     }
 
     public void autonomousPeriodic() {
@@ -68,13 +106,15 @@ public class Robot extends IterativeRobot {
         new SetMotorSafetyOn().start();
         new SetRobotToDefault().start();
         
+        printInfo.start();
+        
         //new PrintInfo().start();
         //new TestCommand().start();
     }
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        new PrintInfo().start();
+        //new PrintInfo().start();
     }
     
     public void testPeriodic() {
@@ -83,6 +123,7 @@ public class Robot extends IterativeRobot {
     
     public void disabledInit() {
         new SetRobotToDefault().start();
+        printInfo.cancel();
     }
     
     public void disabledPeriodic() {

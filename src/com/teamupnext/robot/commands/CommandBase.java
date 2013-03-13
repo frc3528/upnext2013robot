@@ -25,7 +25,6 @@ public abstract class CommandBase extends Command {
     
     // Create a single static instance of all of your subsystems    
     public static DriveTrain driveTrain;
-    public static Climber climber = new Climber();
     public static Feeder feeder = new Feeder();
     public static PickerUpper pickerUpper = new PickerUpper();
     public static PIDShooter shooter;
@@ -72,7 +71,6 @@ public abstract class CommandBase extends Command {
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(driveTrain);
-        SmartDashboard.putData(climber);
         SmartDashboard.putData(feeder);
         SmartDashboard.putData(pickerUpper);
         SmartDashboard.putData(shooter);

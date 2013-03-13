@@ -19,7 +19,7 @@ public class SetShooterSetpoint extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         shooter.startShooter();
-        shooter.setSpeed(setpoint);
+        shooter.setSetpoint(setpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run

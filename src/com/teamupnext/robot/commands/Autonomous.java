@@ -12,7 +12,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author jousley
  */
-public class Autonomous extends CommandGroup {
+public class Autonomous extends CommandGroup implements IAutonomousCommand {
+    
+    public String getName() {
+        return "7disc";
+    }
+    
+    public boolean accepts(String name) {
+        return name.equalsIgnoreCase(getName());    
+    }
     
     public Autonomous() {
         // Add Commands here:
@@ -37,7 +45,7 @@ public class Autonomous extends CommandGroup {
         //addParallel(new TiltTableDown(-7.9));//addSequential(new TiltTable(-7.9));
         addParallel(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_REVERSE_TIME));//addSequential(new ReverseDriveTrainByTime(5));
         //addSequential(new BigHopShooter());
-        
+        addSequential(new SetShooterSetpoint(55));
         addSequential(new Fire());
         addSequential(new Fire());
         addSequential(new Fire());

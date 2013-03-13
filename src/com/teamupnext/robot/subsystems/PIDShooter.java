@@ -59,11 +59,15 @@ public class PIDShooter extends Subsystem {
         isFailed = failed;
     }
     
+    public boolean getEncoderFailMode() {
+        return isFailed;
+    }
+    
     public void setPID(double KP, double KI, double KD, double KF) {
         PIDController.setPID(KP, KI, KD, KF);
     }
     
-    public void setSpeed(int rps) {
+    public void setSetpoint(int rps) {
         this.setpoint = rps;
         PIDController.setSetpoint(setpoint);
     }
@@ -107,21 +111,21 @@ public class PIDShooter extends Subsystem {
     
     public void increase() {
         if (setpoint < 88) {
-           setSpeed(setpoint + speedChange);
+           setSetpoint(setpoint + speedChange);
         }
     }
 
     public void decrease() {      
         if(setpoint > 0) {
             if(setpoint <= powerChange) {
-                setSpeed(0);
+                setSetpoint(0);
             } else {
-                setSpeed(setpoint - speedChange);
+                setSetpoint(setpoint - speedChange);
             }
         }
     }
 
     public void stop() {
-        setSpeed(0);
+        setSetpoint(0);
     }
 }
