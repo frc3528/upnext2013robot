@@ -4,38 +4,40 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
- * @author jousley
+ * @author TeamUpNextControls
  */
-public class RaiseArm extends CommandBase {
+public class TiltTableUp extends CommandBase {
     
-    public RaiseArm() {
+    private double angle;
+    
+    public TiltTableUp(double angle) {
         // Use requires() here to declare subsystem dependencies
-        requires(pickerUpper);
+        super("TiltTableUp");
+        requires(table);
+        this.angle = angle;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.ARM_UP_TIMEOUT);
-        new StopSweeper().start();
+        table.zeroGyro();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        pickerUpper.moveUp();
+        table.moveUp();
+        System.out.println("table angle: " + table.getAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return (table.getAngle() >= angle) || table.isUp();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        pickerUpper.zeroSolenoids();
+        table.stop();
     }
 
     // Called when another command which requires one or more of the same

@@ -6,7 +6,7 @@ package com.teamupnext.robot.commands;
  */
 public class TogglePIDShooter extends CommandBase {
     
-    private static final int Setpoints[] = new int[] {0, 56, 58, 66, 68};
+    private static final int Setpoints[] = new int[] {0, 56, 58, 61, 66, 68};
     private static int counter = 0;
     
     public TogglePIDShooter() {

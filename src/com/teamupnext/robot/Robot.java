@@ -8,7 +8,7 @@
 package com.teamupnext.robot;
 
 
-import com.teamupnext.robot.commands.Autonomous;
+import com.teamupnext.robot.commands.Autonomous5Disc;
 import com.teamupnext.robot.commands.AutonomousSelector;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.IAutonomousCommand;
@@ -51,13 +51,15 @@ public class Robot extends IterativeRobot {
         // Initialize all subsystems
         CommandBase.init();
         
-        // tell 'em where we are folks!
+        // tell 'em where we are folks!\
+        
+        
         System.out.println("===> UpNext2013Robot <===");  
-        selector = new AutonomousSelector(new Autonomous());
-        autonomousCommand = new Autonomous();
+        selector = new AutonomousSelector(new Autonomous5Disc());
+        autonomousCommand = new Autonomous5Disc();
         
         // instantiate the command used for the autonomous period
-        //autonomousCommand = new Autonomous();
+        //autonomousCommand = new Autonomous5Disc();
     }
     
     public void autonomousInit() {
@@ -65,31 +67,31 @@ public class Robot extends IterativeRobot {
         new SetRobotToDefault().start();
         new SetMotorSafetyOff().start();
         
-        String name = SmartDashboard.getString("Autonomous Mode", "7disc");   
+        String name = SmartDashboard.getString("Autonomous Mode", "5disc");   
         System.out.println("Auto name: " + name);
         autonomousCommand = selector.select(name);
         
         printInfo.start();
-        //System.out.println(SmartDashboard.getString("Autonomous Mode"));
+        //System.out.println(SmartDashboard.getString("Autonomous5Disc Mode"));
         autonomousCommand.start();
     }
     
     private String GetAutonomousName() {
         //NetworkTable operation = NetworkTable.getTable("Operation");
         
-        //System.out.println(SmartDashboard.getString("Autonomous Mode"));
+        //System.out.println(SmartDashboard.getString("Autonomous5Disc Mode"));
         
         //System.out.println(SmartDashboard.getBoolean("Checkbox 1"));
         
         //System.out.println("TestBool1: " + SmartDashboard.getBoolean("TestBool 1"));
         
-        //String name = String.valueOf(SmartDashboard.getNumber("Autonomous", -1));
+        //String name = String.valueOf(SmartDashboard.getNumber("Autonomous5Disc", -1));
         //System.out.println("autoString: " + name);
-        //System.out.println("autoDouble: " + SmartDashboard.getNumber("Autonomous", -1));
+        //System.out.println("autoDouble: " + SmartDashboard.getNumber("Autonomous5Disc", -1));
         
         String name = SmartDashboard.getString("Autonomous Mode", "7disc");
         
-        return name;//SmartDashboard.getString("Autonomous", "none");
+        return name;//SmartDashboard.getString("Autonomous5Disc", "none");
     }
 
     public void autonomousPeriodic() {

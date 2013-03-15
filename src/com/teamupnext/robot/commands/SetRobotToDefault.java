@@ -18,10 +18,10 @@ public class SetRobotToDefault extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         try {
-            //new SetTableToDefault().start();
+            new SetTableToDefault().start();
             setPneumaticDevicesToDefault();
             shooter.setToDefault();
-            //table.zeroGyro();
+            table.zeroGyro();
             driveTrain.zeroEncoders();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

@@ -21,14 +21,14 @@ public class DriveTrain extends Subsystem {
     
     private RobotDrive drive;
     
-    //private CANJaguar rightBack;
-    //private CANJaguar rightFront;
-    //private CANJaguar leftBack;
-    //private CANJaguar leftFront;
+    private CANJaguar rightBack;
+    private CANJaguar rightFront;
+    private CANJaguar leftBack;
+    private CANJaguar leftFront;
     
     //TestBot
-    private Jaguar right;
-    private Jaguar left;
+    //private Jaguar right;
+    //private Jaguar left;
     
     private int sensitivity = RobotMap.DEFAULT_JOYSTICK_SENSITIVITY;
     
@@ -36,7 +36,6 @@ public class DriveTrain extends Subsystem {
         
         super("DriveTrain");
         
-        /*
         rightBack = new CANJaguar(RobotMap.DRIVE_RIGHT_BACK_CAN);
         rightFront = new CANJaguar(RobotMap.DRIVE_RIGHT_FRONT_CAN);
         leftBack = new CANJaguar(RobotMap.DRIVE_LEFT_BACK_CAN);
@@ -48,15 +47,14 @@ public class DriveTrain extends Subsystem {
         initializeJag(leftFront);
         
         drive = new RobotDrive(leftFront, leftBack, rightFront, rightBack);    
-        */
         
-        left = new Jaguar(10);
-        right = new Jaguar(9);
+        //left = new Jaguar(10);
+        //right = new Jaguar(9);
         
-        left.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
-        right.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        //left.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
+        //right.setExpiration(RobotMap.DEFAULT_MOTOR_SAFETY_EXPIRATION);
         
-        drive = new RobotDrive(left, right);
+        //drive = new RobotDrive(left, right);
     }
     
     public void initDefaultCommand() {
@@ -78,19 +76,19 @@ public class DriveTrain extends Subsystem {
     }
     
     public double getLeftEncoder() throws CANTimeoutException {
-        return 0.0;//leftBack.getPosition();
+        return leftBack.getPosition();
     }
     
     public double getRightEncoder() throws CANTimeoutException {
-        return 0.0;// rightBack.getPosition();
+        return rightBack.getPosition();
     }
     
     public void zeroEncoders() throws CANTimeoutException {
-        //leftBack.disableControl();
-        //leftBack.enableControl();
+        leftBack.disableControl();
+        leftBack.enableControl();
         
-        //rightBack.disableControl();
-        //rightBack.enableControl();
+        rightBack.disableControl();
+        rightBack.enableControl();
     }
     
     public void decreaseSensitivity() {
@@ -106,13 +104,13 @@ public class DriveTrain extends Subsystem {
     }
     
     public void setMotorSafety(boolean enabled) {
-        left.setSafetyEnabled(enabled);
-        right.setSafetyEnabled(enabled);
+        //left.setSafetyEnabled(enabled);
+        //right.setSafetyEnabled(enabled);
         
-        /*rightBack.setSafetyEnabled(enabled);
+        rightBack.setSafetyEnabled(enabled);
         rightFront.setSafetyEnabled(enabled);
         leftBack.setSafetyEnabled(enabled);
-        leftFront.setSafetyEnabled(enabled);*/
+        leftFront.setSafetyEnabled(enabled);
     }
     
     private void initializeJag(CANJaguar jag) {

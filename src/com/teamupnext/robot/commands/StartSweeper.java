@@ -4,38 +4,33 @@
  */
 package com.teamupnext.robot.commands;
 
-import com.teamupnext.robot.RobotMap;
-
 /**
  *
- * @author jousley
+ * @author TeamUpNextControls
  */
-public class RaiseArm extends CommandBase {
+public class StartSweeper extends CommandBase {
     
-    public RaiseArm() {
+    public StartSweeper() {
         // Use requires() here to declare subsystem dependencies
         requires(pickerUpper);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(RobotMap.ARM_UP_TIMEOUT);
-        new StopSweeper().start();
+        pickerUpper.setOn(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        pickerUpper.moveUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        pickerUpper.zeroSolenoids();
     }
 
     // Called when another command which requires one or more of the same

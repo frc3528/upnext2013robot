@@ -54,6 +54,8 @@ public class OI {
         drivingStick = new Joystick(RobotMap.DRIVING_JOYSTICK_PORT);
         controlsStick = new Joystick(RobotMap.CONTROLS_JOYSTICK_PORT);
         
+        //----Driving Stick---\\        
+        
          //Shifters
         shiftUp = new JoystickButton(drivingStick, RobotMap.RIGHT_BUMPER);
         shiftDown = new JoystickButton(drivingStick, RobotMap.LEFT_BUMPER);
@@ -78,7 +80,7 @@ public class OI {
         //hold.whenPressed(new PushHolder());
         
         //Sweep
-        JoystickButton sweeper = new JoystickButton(drivingStick, RobotMap.Y_BUTTON);
+        JoystickButton sweeper = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
         sweeper.whenPressed(new ToggleSweeper());
         
         //Sensitivity
@@ -94,6 +96,8 @@ public class OI {
         //Clamp
         //suckFrisbee = new JoystickButton(controlsStick, RobotMap.Y_BUTTON);
         //suckFrisbee.whenPressed(new Clamp());
+        
+        //-----Controls Stick-----\\\
         
         //Fire
         fire = new JoystickButton(controlsStick, RobotMap.X_BUTTON);
@@ -119,6 +123,7 @@ public class OI {
         
         
         //test
+        /*
         testingStick = new Joystick(RobotMap.TESTING_JOYSTICK_PORT);
         
         testShiftUp = new JoystickButton(testingStick, RobotMap.RIGHT_BUMPER);
@@ -135,6 +140,7 @@ public class OI {
         
         testShooterDecrease = new JoystickButton(testingStick, RobotMap.X_BUTTON);
         testShooterDecrease.whenPressed(new DecreaseShooter());   
+        */
     }
     
     public Joystick getDrivingJoystick()

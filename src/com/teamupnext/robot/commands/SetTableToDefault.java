@@ -31,6 +31,6 @@ public class SetTableToDefault extends CommandGroup {
         // arm.
         
         addSequential(new TiltTableToTop());
-        addParallel(new TiltTableDown(-7.9));
+        addSequential(new TiltTableDown(-6.8));
     }
 }
