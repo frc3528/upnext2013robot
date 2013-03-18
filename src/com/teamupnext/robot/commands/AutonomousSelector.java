@@ -9,7 +9,7 @@ public class AutonomousSelector {
     private IAutonomousCommand[] commands = new IAutonomousCommand[] 
         { 
             new Autonomous5Disc(),
-            new Autonomous7Disc(),
+            //new Autonomous7Disc(),
             new AutonomousLeft(),
             new AutonomousRight(),
             new DoNothing()

@@ -44,7 +44,7 @@ public class Autonomous5Disc extends CommandGroup implements IAutonomousCommand 
         //Drive Toward the 2 discs
         //addSequential(new StopSweeper());
         //addParallel(new TiltTableToTop());
-        addParallel(new RaiseArm());
+        addSequential(new RaiseArm());
         addSequential(new TiltTableUp(9));
         
         addSequential(new StartSweeper());
@@ -52,5 +52,14 @@ public class Autonomous5Disc extends CommandGroup implements IAutonomousCommand 
         addSequential(new StopSweeper());
         addSequential(new Fire());
         addSequential(new Fire());   
+        
+        //safety shots
+        addSequential(new Wait(1));
+        addSequential(new Fire());
+        addSequential(new Fire());
+        
+        //prepare for tele-op
+        addParallel(new LowerArm());
+        addSequential(new TiltTableToBottom());
     }
 }

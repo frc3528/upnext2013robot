@@ -21,6 +21,7 @@ public class AutonomousRight extends CommandGroup implements IAutonomousCommand 
     }
     
     public AutonomousRight() {
+        addSequential(new SetShooterSetpoint(50));
         addSequential(new Fire());
         addSequential(new Fire());
         addSequential(new Fire());

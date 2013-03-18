@@ -12,6 +12,8 @@ import com.teamupnext.robot.RobotMap;
  */
 public class RaiseArm extends CommandBase {
     
+    StopSweeper stopSweeper = new StopSweeper();
+    
     public RaiseArm() {
         // Use requires() here to declare subsystem dependencies
         requires(pickerUpper);
@@ -20,7 +22,8 @@ public class RaiseArm extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         setTimeout(RobotMap.ARM_UP_TIMEOUT);
-        new StopSweeper().start();
+        //stopSweeper.start();
+        pickerUpper.setOn(false);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,6 +39,7 @@ public class RaiseArm extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
         pickerUpper.zeroSolenoids();
+        //stopSweeper.cancel();
     }
 
     // Called when another command which requires one or more of the same

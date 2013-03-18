@@ -13,9 +13,11 @@ import com.teamupnext.robot.commands.AutonomousSelector;
 import com.teamupnext.robot.commands.CommandBase;
 import com.teamupnext.robot.commands.IAutonomousCommand;
 import com.teamupnext.robot.commands.PrintInfo;
+import com.teamupnext.robot.commands.RaiseArm;
 import com.teamupnext.robot.commands.SetMotorSafetyOff;
 import com.teamupnext.robot.commands.SetMotorSafetyOn;
 import com.teamupnext.robot.commands.SetRobotToDefault;
+import com.teamupnext.robot.commands.SetTableToDefault;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -89,7 +91,7 @@ public class Robot extends IterativeRobot {
         //System.out.println("autoString: " + name);
         //System.out.println("autoDouble: " + SmartDashboard.getNumber("Autonomous5Disc", -1));
         
-        String name = SmartDashboard.getString("Autonomous Mode", "7disc");
+        String name = SmartDashboard.getString("Autonomous Mode", "5disc");
         
         return name;//SmartDashboard.getString("Autonomous5Disc", "none");
     }
@@ -117,6 +119,11 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         //new PrintInfo().start();
+    }
+    
+    public void testInit() {
+        //new SetTableToDefault().start();
+        //new RaiseArm().start();
     }
     
     public void testPeriodic() {
