@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Autonomous5Disc extends CommandGroup implements IAutonomousCommand {
     
     public String getName() {
-        return "5disc";
+        return "5Disc";
     }
     
     public boolean accepts(String name) {

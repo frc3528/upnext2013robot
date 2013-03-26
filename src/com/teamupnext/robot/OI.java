@@ -14,7 +14,7 @@ import com.teamupnext.robot.commands.RapidFire;
 import com.teamupnext.robot.commands.ShiftDown;
 import com.teamupnext.robot.commands.ShiftUp;
 import com.teamupnext.robot.commands.TogglePIDShooter;
-import com.teamupnext.robot.commands.ToggleSweeper;
+import com.teamupnext.robot.commands.ToggleSweeperForward;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -80,8 +80,10 @@ public class OI {
         //hold.whenPressed(new PushHolder());
         
         //Sweep
-        JoystickButton sweeper = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
-        sweeper.whenPressed(new ToggleSweeper());
+        JoystickButton sweeperForward = new JoystickButton(drivingStick, RobotMap.A_BUTTON);
+        sweeperForward.whenPressed(new ToggleSweeperForward());
+        JoystickButton sweeperReverse = new JoystickButton(drivingStick, RobotMap.B_BUTTON);
+        sweeperReverse.whenPressed(new ToggleSweeperForward());
         
         //Sensitivity
         increaseSensitivity = new JoystickButton(drivingStick, RobotMap.START_BUTTON);

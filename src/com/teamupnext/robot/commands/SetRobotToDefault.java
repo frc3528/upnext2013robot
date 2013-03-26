@@ -10,18 +10,18 @@ public class SetRobotToDefault extends CommandBase {
         requires(shooter);
         requires(driveTrain);
         requires(feeder);
-        requires(pickerUpper);
-        requires(table);
+        //requires(pickerUpper);
+        //requires(table);
         //setInterruptible(false);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
         try {
-            new SetTableToDefault().start();
+            //new SetTableToDefault().start();
             setPneumaticDevicesToDefault();
             shooter.setToDefault();
-            table.zeroGyro();
+            //table.zeroGyro();
             driveTrain.zeroEncoders();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -52,7 +52,7 @@ public class SetRobotToDefault extends CommandBase {
         //pickerUpper.setToDefaultPosition();
         //feeder.setToDefaultPosition();
         //shifters.setToDefaultPosition();
-        new RaiseArm().start();
+        //new RaiseArm().start();
         new PullFeeder().start();
         new ShiftDown().start();
     }

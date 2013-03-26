@@ -23,7 +23,7 @@ public class RaiseArm extends CommandBase {
     protected void initialize() {
         setTimeout(RobotMap.ARM_UP_TIMEOUT);
         //stopSweeper.start();
-        pickerUpper.setOn(false);
+        pickerUpper.setForward(false);
     }
 
     // Called repeatedly when this Command is scheduled to run

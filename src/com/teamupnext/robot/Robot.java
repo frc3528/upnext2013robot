@@ -122,8 +122,9 @@ public class Robot extends IterativeRobot {
     }
     
     public void testInit() {
-        //new SetTableToDefault().start();
-        //new RaiseArm().start();
+        new SetTableToDefault().start();
+        new RaiseArm().start();
+        System.out.println("test init finished");
     }
     
     public void testPeriodic() {

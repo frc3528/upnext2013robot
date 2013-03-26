@@ -32,5 +32,6 @@ public class SetTableToDefault extends CommandGroup {
         
         addSequential(new TiltTableToTop());
         addSequential(new TiltTableDown(-6));
+        addSequential(new ZeroTableGyro());
     }
 }

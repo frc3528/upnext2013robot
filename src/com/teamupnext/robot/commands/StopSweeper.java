@@ -17,7 +17,7 @@ public class StopSweeper extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        pickerUpper.setOn(false);
+        pickerUpper.setForward(false);
     }
 
     // Called repeatedly when this Command is scheduled to run

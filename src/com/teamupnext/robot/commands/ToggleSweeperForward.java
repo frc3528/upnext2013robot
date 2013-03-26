@@ -8,11 +8,11 @@ package com.teamupnext.robot.commands;
  *
  * @author Team Up Next
  */
-public class ToggleSweeper extends CommandBase {
+public class ToggleSweeperForward extends CommandBase {
     
     private static boolean isOn = false;
     
-    public ToggleSweeper() {
+    public ToggleSweeperForward() {
         requires(pickerUpper);
     }
 
@@ -24,7 +24,7 @@ public class ToggleSweeper extends CommandBase {
     protected void execute() {
         isOn = !isOn;
         
-        pickerUpper.setOn(isOn);
+        pickerUpper.setForward(isOn);
     }
 
     // Make this return true when this Command no longer needs to run execute()
