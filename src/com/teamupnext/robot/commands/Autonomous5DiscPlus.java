@@ -12,17 +12,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author jousley
  */
-public class Autonomous5PlusDisc extends CommandGroup implements IAutonomousCommand {
+public class Autonomous5DiscPlus extends CommandGroup implements IAutonomousCommand {
     
     public String getName() {
-        return "5PlusDisc";
+        return "5DiscPlus";
     }
     
     public boolean accepts(String name) {
         return name.equalsIgnoreCase(getName());    
     }
     
-    public Autonomous5PlusDisc() {
+    public Autonomous5DiscPlus() {
              
         //Shoot pre-loaded discs
         addSequential(new SetShooterSetpoint(50));
