@@ -21,8 +21,6 @@ import com.teamupnext.robot.commands.SetTableToDefault;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -34,7 +32,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-    private SendableChooser autoChooser;
     private AutonomousSelector selector;
     private IAutonomousCommand autonomousCommand;
     private PrintInfo printInfo = new PrintInfo();
@@ -122,6 +119,8 @@ public class Robot extends IterativeRobot {
     }
     
     public void testInit() {
+        LiveWindow.setEnabled(false);
+        //new SetMotorSafetyOff().start();
         new SetRobotToDefault().start();
         new SetTableToDefault().start();
         new RaiseArm().start();

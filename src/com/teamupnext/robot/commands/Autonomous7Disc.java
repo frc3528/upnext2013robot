@@ -41,7 +41,7 @@ public class Autonomous7Disc extends CommandGroup implements  IAutonomousCommand
         //drive towards the next two discs
         addParallel(new LowerArm());
         addSequential(new TiltTableToBottom());
-        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 3));
+        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 3.2));
         
         //Pick up last two;
         addParallel(new RaiseArm());
@@ -49,6 +49,9 @@ public class Autonomous7Disc extends CommandGroup implements  IAutonomousCommand
         addSequential(new StartSweeper());
         addSequential(new Wait(2.5));
         addSequential(new StopSweeper());
+        
+        //back up to front of pyramid
+        addParallel(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, 1.5));
         
         //Shoot all
         addSequential(new TiltTableDown(3));
