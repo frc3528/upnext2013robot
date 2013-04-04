@@ -55,7 +55,9 @@ public class Autonomous5DiscPlus extends CommandGroup implements IAutonomousComm
         //Pick up last two
         addParallel(new LowerArm());
         addSequential(new TiltTableToBottom());
-        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 3));
+        addParallel(new StartSweeper());
+        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 3.2));
+        addSequential(new StopSweeper());
         
         addParallel(new RaiseArm());
         addSequential(new TiltTableUp(9));
@@ -64,7 +66,7 @@ public class Autonomous5DiscPlus extends CommandGroup implements IAutonomousComm
         addSequential(new StopSweeper());
         
         //prepare for tele-op
-        addParallel(new LowerArm());
-        addSequential(new TiltTableToBottom());
+        //addParallel(new LowerArm());
+        //addSequential(new TiltTableToBottom());
     }
 }
