@@ -10,7 +10,7 @@ public class AutonomousSelector {
         { 
             new Autonomous5Disc(),
             new Autonomous5DiscPlus(),
-            //new Autonomous7Disc(),
+            new Autonomous7Disc(),
             new AutonomousLeft(),
             new AutonomousRight(),
             new DoNothing()

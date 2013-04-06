@@ -66,7 +66,7 @@ public class RobotMap {
     //PickerUpper Constants
     public static final int ARM_UP_SOLENOID_CHANNEL = 2;
     public static final int ARM_DOWN_SOLENOID_CHANNEL = 1;
-    public static final double ARM_UP_TIMEOUT = 1;
+    public static final double ARM_UP_TIMEOUT = 1.25;
     public static final double ARM_DOWN_TIMEOUT = 1;
     public static final int SWEEPER_PWM_CHANNEL = 2;
     public static double SWEEPER_SPEED = 1;

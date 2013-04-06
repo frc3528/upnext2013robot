@@ -23,38 +23,38 @@ public class Autonomous7Disc extends CommandGroup implements  IAutonomousCommand
 
     public Autonomous7Disc() {
         //Shoot pre-loaded discs
+        addParallel(new LowerArm());
         addSequential(new SetShooterSetpoint(50));
         addSequential(new Fire());
         addSequential(new Fire());
         addSequential(new Fire());
         
-        //Pick-up first discs
+        //Pick-up discs
         addParallel(new StartSweeper());
-        addSequential(new LowerArm());
-        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 1));//RobotMap.AUTO_FORWARD_TIME));
+        addSequential(new DriveByTime(-1, -1, .65));//RobotMap.AUTO_FORWARD_TIME));
         
-        addParallel(new RaiseArm());
-        
-        addSequential(new StartSweeper());
-        addSequential(new Wait(1)); 
-        
-        //drive towards the next two discs
-        addParallel(new LowerArm());
+        //Drive Toward the 2 discs
+        addSequential(new RaiseArm());
+        addParallel(new StartSweeper());
+        addSequential(new Wait(.4));
         addSequential(new TiltTableToBottom());
-        addSequential(new DriveByTime(-RobotMap.AUTO_DRIVE_POWER, -RobotMap.AUTO_DRIVE_POWER, 3.2));
-        
-        //Pick up last two;
-        addParallel(new RaiseArm());
-        addSequential(new TiltTableUp(9));
-        addSequential(new StartSweeper());
-        addSequential(new Wait(2.5));
+            
+        //drive towards the next two discs
+        addSequential(new LowerArm());
+        addSequential(new DriveByTime(-1, -1, 1.8));
         addSequential(new StopSweeper());
+        //Pick up last two;
+        //addSequential(new TiltTableUp(9));
+        addParallel(new TiltTableUp(6));
+        addSequential(new RaiseArm());
+        addParallel(new StartSweeper());
+        //addSequential(new Wait(1.5));
         
         //back up to front of pyramid
-        addParallel(new DriveByTime(RobotMap.AUTO_DRIVE_POWER, RobotMap.AUTO_DRIVE_POWER, 1.5));
+        addParallel(new DriveByTime(1, 1, 1.4));
         
         //Shoot all
-        addSequential(new TiltTableDown(3));
+        addSequential(new TiltTableToTop());
         
         addSequential(new Fire());
         addSequential(new Fire()); 

@@ -56,7 +56,7 @@ public class Robot extends IterativeRobot {
         System.out.println("===> UpNext2013Robot <===");  
         selector = new AutonomousSelector(new Autonomous5Disc());
         autonomousCommand = new Autonomous5Disc();
-        
+
         // instantiate the command used for the autonomous period
         //autonomousCommand = new Autonomous5Disc();
     }
