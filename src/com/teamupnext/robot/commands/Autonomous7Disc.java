@@ -51,7 +51,7 @@ public class Autonomous7Disc extends CommandGroup implements  IAutonomousCommand
         //addSequential(new Wait(1.5));
         
         //back up to front of pyramid
-        addParallel(new DriveByTime(1, 1, 1.4));
+        addParallel(new DriveByTime(1, 1, 1.15));
         
         //Shoot all
         addSequential(new TiltTableToTop());
