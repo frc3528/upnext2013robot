@@ -7,7 +7,7 @@ package com.teamupnext.robot.subsystems;
 import com.teamupnext.helperPackage.PneumaticDevice;
 import com.teamupnext.helperPackage.PneumaticHelper;
 import com.teamupnext.robot.RobotMap;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,14 +20,14 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
 
     private PneumaticHelper armPiston;
     
-    private Talon sweeper;
+    private Relay sweeper;
    
     public PickerUpper() {
         armPiston = new PneumaticHelper(RobotMap.ARM_DOWN_SOLENOID_CHANNEL, 
                 RobotMap.ARM_UP_SOLENOID_CHANNEL, 
                 RobotMap.ARM_UP_SOLENOID_CHANNEL);
         
-        sweeper = new Talon(RobotMap.SWEEPER_PWM_CHANNEL);
+        sweeper = new Relay(RobotMap.SWEEPER_RELAY_CHANNEL);
     }
     
     public void initDefaultCommand() {
@@ -45,17 +45,17 @@ public class PickerUpper extends Subsystem implements PneumaticDevice {
     
     public void setForward(boolean forward) {
         if(forward) {
-            sweeper.set(RobotMap.SWEEPER_SPEED);
+            sweeper.set(Relay.Value.kForward);
         } else {
-            sweeper.set(0);
+            sweeper.set(Relay.Value.kOff);
         }
     }
     
     public void setReverse(boolean reverse) {
         if(reverse) {
-            sweeper.set(-RobotMap.SWEEPER_SPEED);
+            sweeper.set(Relay.Value.kReverse);
         } else {
-            sweeper.set(0);
+            sweeper.set(Relay.Value.kOff);
         }
     }
     

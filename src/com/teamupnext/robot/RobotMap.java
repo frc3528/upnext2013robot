@@ -68,7 +68,8 @@ public class RobotMap {
     public static final int ARM_DOWN_SOLENOID_CHANNEL = 1;
     public static final double ARM_UP_TIMEOUT = 1.25;
     public static final double ARM_DOWN_TIMEOUT = 1;
-    public static final int SWEEPER_PWM_CHANNEL = 2;
+    //public static final int SWEEPER_PWM_CHANNEL = 2;
+    public static final int SWEEPER_RELAY_CHANNEL = 5;
     public static double SWEEPER_SPEED = 1;
     public static double CLAMP_TIMEOUT = .3;
     //End PickerUpper Constants
@@ -93,7 +94,8 @@ public class RobotMap {
     
     //TableTilter Constants
     public static final int TABLE_GYRO_CHANNEL = 2;
-    public static final int LEAD_SCREW_RELAY_CHANNEL = 3;
+    //public static final int LEAD_SCREW_RELAY_CHANNEL = 3;
+    public static final int LEAD_SCREW_PWM_CHANNEL = 9;
     public static final int TABLE_LOW_LIMIT_CHANNEL = 3;
     public static final int TABLE_HIGH_LIMIT_CHANNEL = 5;
     public static final double TABLE_GYRO_SENSITIVITY = .007;
@@ -104,4 +106,6 @@ public class RobotMap {
     public static final double AUTO_DRIVE_POWER = 0.75;
     public static final double AUTO_FORWARD_TIME = 2;
     //End Auto Constants
+    
+    
 }

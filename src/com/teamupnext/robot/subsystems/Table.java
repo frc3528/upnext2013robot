@@ -8,7 +8,7 @@ import com.teamupnext.robot.RobotMap;
 import com.teamupnext.robot.commands.TiltTableWithJoystick;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,7 +22,7 @@ public class Table extends Subsystem {
     private Gyro gyro;
     private DigitalInput lowLimitSwitch;
     private DigitalInput highLimitSwitch;
-    private Relay leadScrewMotor; 
+    private Talon leadScrewMotor; 
     //private double angle;
    
     public Table()
@@ -38,7 +38,7 @@ public class Table extends Subsystem {
         
         //angle = gyro.getAngle();
         
-        leadScrewMotor = new Relay(RobotMap.LEAD_SCREW_RELAY_CHANNEL);
+        leadScrewMotor = new Talon(RobotMap.LEAD_SCREW_PWM_CHANNEL);
     }
     
     public void initDefaultCommand() {
@@ -54,27 +54,6 @@ public class Table extends Subsystem {
         return highLimitSwitch.get();
     }
     
-    /*public void move(double destination) {
-        double angle = gyro.getAngle();
-        
-        if(destination == angle) {
-            return;
-        }
-        
-        //double toMove = destination - angle;
-        
-        //zeroGyro();
-        
-        if(destination > angle) {
-            moveUp(destination);
-        }
-        else {
-            moveDown(destination);
-        }
-
-        //angle += gyro.getAngle();
-    }*/
-    
     public void moveUp()
     {        
         //System.out.println("moving up");
@@ -83,7 +62,7 @@ public class Table extends Subsystem {
             zeroGyro();
             stop();
         } else {
-            leadScrewMotor.set(Relay.Value.kForward);
+            leadScrewMotor.set(1);
             //angle = gyro.getAngle();
         }
     }
@@ -95,28 +74,15 @@ public class Table extends Subsystem {
         if(lowLimitSwitch.get()) {
             stop();
         } else {
-            leadScrewMotor.set(Relay.Value.kReverse);
+            leadScrewMotor.set(-1);
             //angle = gyro.getAngle();
         }
     }
     
     public void stop()
     {
-        leadScrewMotor.set(Relay.Value.kOff);
+        leadScrewMotor.set(0);
     }
-    
-    /*private void moveUp(double destinationAngle) {       
-        while(gyro.getAngle() < destinationAngle && !highLimitSwitch.get()) {
-            moveUp();
-        }
-    }
-    
-    private void moveDown(double destinationAngle) {
-        while(gyro.getAngle() > destinationAngle && !lowLimitSwitch.get()) {
-            moveDown();
-            //System.out.println("dest: " + destinationAngle + "current: " + gyro.getAngle());
-        }
-    }*/
     
     public double getAngle() {
         //return angle;
