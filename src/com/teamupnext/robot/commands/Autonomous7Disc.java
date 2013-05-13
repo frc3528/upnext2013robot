@@ -31,31 +31,31 @@ public class Autonomous7Disc extends CommandGroup implements  IAutonomousCommand
         
         //Pick-up discs
         addParallel(new StartSweeper());
-        addSequential(new DriveByTime(-1, -1, .65));//RobotMap.AUTO_FORWARD_TIME));
+        addSequential(new DriveByTime(-.95, -.95, .68));//RobotMap.AUTO_FORWARD_TIME));
         
-        //Drive Toward the 2 discs
+        //put 2 discs in hopper
+        //addParallel(new TiltTableDown(1));
         addSequential(new RaiseArm());
         addParallel(new StartSweeper());
-        addSequential(new Wait(.4));
+        addSequential(new Wait(1));
         addSequential(new TiltTableToBottom());
             
         //drive towards the next two discs
         addSequential(new LowerArm());
-        addSequential(new DriveByTime(-1, -1, 1.8));
+        addSequential(new DriveByTime(-.97, -1, 2.2));
         addSequential(new StopSweeper());
         //Pick up last two;
         //addSequential(new TiltTableUp(9));
         addParallel(new TiltTableUp(6));
         addSequential(new RaiseArm());
-        addParallel(new StartSweeper());
         //addSequential(new Wait(1.5));
         
-        //back up to front of pyramid
-        addParallel(new DriveByTime(1, 1, 1.15));
-        
+        //back up to front of pyramid        
         //Shoot all
-        addSequential(new TiltTableToTop());
-        
+        addParallel(new StartSweeper());
+        addSequential(new Wait(.7));
+        addParallel(new TiltTableToTop());
+        addSequential(new DriveByTime(.97, 1, 1.3));
         addSequential(new Fire());
         addSequential(new Fire()); 
         addSequential(new Fire());
