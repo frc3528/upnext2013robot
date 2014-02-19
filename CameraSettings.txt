@@ -1,0 +1,28 @@
+2013
+
+color level = 25
+
+brightness = 50
+
+sharpness = 90 
+
+contrast = 12
+
+expo. value = 50
+
+ex contorl = auto
+
+ebc = yes
+
+ex zones = auto
+
+ex priority = default
+
+
+ 
+
+
+
+?
+
+181    100    39
