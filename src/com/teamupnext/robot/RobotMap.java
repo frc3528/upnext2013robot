@@ -34,10 +34,10 @@ public class RobotMap {
     //End Joystick Constants
     
     //Drive Train Constants
-    public static final int DRIVE_LEFT_FRONT_CAN = 4;
-    public static final int DRIVE_LEFT_BACK_CAN = 5;
-    public static final int DRIVE_RIGHT_FRONT_CAN = 2;
-    public static final int DRIVE_RIGHT_BACK_CAN = 3;
+    public static final int DRIVE_LEFT_FRONT_CAN = 11;
+    public static final int DRIVE_LEFT_BACK_CAN = 13;
+    public static final int DRIVE_RIGHT_FRONT_CAN = 10;
+    public static final int DRIVE_RIGHT_BACK_CAN = 12;
     public static final int SHIFT_DOWN_SOLENOID_CHANNEL = 7;
     public static final int SHIFT_UP_SOLENOID_CHANNEL = 8;
     public static final double SHIFT_TIMEOUT_TIME = .25;

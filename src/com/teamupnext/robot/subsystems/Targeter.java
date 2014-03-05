@@ -16,7 +16,7 @@ public class Targeter extends Subsystem {
     // here. Call these from Commands.
 
     private AxisCamera targetingCamera;
-    private AxisCamera discCamera;
+    //private AxisCamera discCamera;
 
     public Targeter() {
         //targetingCamera = AxisCamera.getInstance(RobotMap.TARGETING_CAMERA_ADDRESS);
