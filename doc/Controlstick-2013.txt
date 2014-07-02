@@ -1,0 +1,36 @@
+controlstick (2)
+
+
+A button = 
+
+B button = Ready Shooter 
+
+X button = Fire four 
+
+Y button = Fire one
+
+L bumper = 
+
+R bumper = 
+
+Back button = decrease shooter power
+
+Start button = increase shooter power 
+
+Left thumb stick click = 
+
+Right thumb stick click = 
+
+left stick x = 
+
+left stick y = 
+
+Left trigger = lower shooter
+ 
+Right trigger = raise shooter 
+
+Right stick x = 
+
+Right stick y = 
+
+D pad left/right = 
